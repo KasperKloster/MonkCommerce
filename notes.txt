@@ -1,0 +1,82 @@
+php artisan vendor:publish --tag=monkcommerce --force
+
+/Users/kasperkloster/sites/Monk\ Commerce/MonkCommerceV1/packages/kasperkloster/monkcommerce/resources/assets/sass
+sass monkcommerce-style.scss:monkcommerce-style.css
+
+
+/
+https://github.com/puikinsh/ElaAdmin
+devdocs.bagisto.com/create_package.html
+//
+
+
+OPTIZATION: in migration number of char? Category name is maximum 50
+Eager loading in ServiceProvider View::share
+
+/// Readme
+<h2>Installation</h2>
+
+
+<h2>Getting Started</h2>
+<h3>Start with shop information</h3>
+
+
+<h3>Categories and Subcategories</h3>
+Recommended is too start of by building your categories.
+A category is the parent/main category: eg. "Rings"
+A subcategory is the child/sub category: eg. "Rings For Her".
+In the monkcommerce shop menu it would be:
+Rings
+ - Rings for Her
+<h4>Categories Routes</h4>
+Route name will be:
+
+The default views for the category requires a "cat" parameter (main or sub).
+
+<h3>Seeds</h3>
+When you are publishing the package, you will get a seeds for:
+- Categories
+- Subcategories
+
+This will get published in your database/seeds folder.
+A the lines:
+$this->call(MonkCommerceProductCategoriesTableSeeder::class);
+In DatabaseSeeder.php run() too make use of the seeds.
+
+The seeds are only used for demo purpose.
+
+<h3>Views</h3>
+All the shop storefront view, will have minimum CSS provided, so you will make your own site as unique as possible.
+This is for you to decide (Bootstrap 4 is referenced in styles and javascript).
+You will find your storefront views under monkcommerce-storefront:
+
+
+You might want to consider using the storefront views, that is provided in the package as reference for variables etc.
+
+
+<h3>Your Shop Information</h3>
+After you have installed the package, run the artisan command:
+This will store your shop information in the database.
+The shop information is used throughout MonkCommerce:
+Will be shown in the footer (frontend), on your about page, used as a prefix on pagetitle.
+These informations you can change later under Shop Settings in the Admin Panel.
+
+
+<h2>Language and Translations</h2>
+When you are php artisan vendor:publish --tag=monkcommerce,
+
+the language files will be stored in resources/lang/
+And given moment the languages are english and danish.
+If the you have set you language to another in config/app.php laravel will use the fallback language.
+If your fallback language is not supported by MonkCommerce, Laravel will write out the path to the translation.
+
+No your language?
+The best way for you to solve this is to copy-paste resources/lang/en/monkcommerce-dashboard.php to resources/lang/YOUR-LANGUAGE/monkcommerce-dashboard.php and start translations yourselves.
+
+<h2>SEO</h2>
+Will create local business schema on frontend.
+Product name will be page titles.
+Description will be meta (Truncate after..).
+Use shopname as prefix.
+
+Product pages as json schema.

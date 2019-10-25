@@ -1,0 +1,19 @@
+{
+    "name": "kasperkloster/monkcommerce",
+    "description": "A Laravel Basic E-commerce",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kasper Kloster",
+            "email": "kasperkloster@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+      "psr-4": {
+          "KasperKloster\\MonkCommerce\\": "src/"
+      }
+    }
+}

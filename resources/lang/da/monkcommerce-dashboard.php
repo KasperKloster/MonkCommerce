@@ -1,0 +1,77 @@
+<?php
+    return [
+        //'title' => 'da Translation demo',
+        'page-titles' => [
+          'all_products'  => 'alle produkter',
+        ],
+
+        'general-words' => [
+          // Buttons
+          'save'            => 'gem',
+          'edit'            => 'rediger',
+          'reset'           => 'nulstil',
+          'delete'          => 'slet',
+          'back'            => 'tilbage',
+          'show_in_shop'    => 'vis i shop',
+          'name'            => 'navn',
+          'description'     => 'beskrivelse',
+          'price'           => 'pris',
+          'special_price'   => 'udsalgspris',
+          'in_stock'        => 'på lager',
+        ],
+        // Admin Sidebar Menu
+        'left-panel' => [
+            'categories'          => 'kategorier',
+            'create_new_category' => 'opret ny kategori',
+            'products'            => 'produkter',
+            'all_products'        => 'alle produkter',
+            'create_new_product'  => 'opret nyt produkt',
+            'product_attributes'  => 'produkt attributter',
+            'users'               => 'brugere',
+            'customers'           => 'kunder',
+            'orders'              => 'ordrer',
+            'settings'            => 'indstillinger',
+            'shop_settings'       => 'butiks indstillinger'
+        ],
+
+        'categories' => [
+          'all_categories'        => 'alle kategorier',
+          'create_new_category'   => 'opret ny kategori',
+          'edit_category'         => 'rediger kategori',
+          'delete_category'       => 'slet kategori',
+          'category_name'         => 'kategori navn',
+          'category_description'  => 'kategori beskrivelse',
+          'show_in_menu'          => 'vis i menu',
+          'create_subcategory'    => 'opret underkategori',
+          'edit_subcategory'      => 'rediger underkategori',
+          'subcategory_name'      => 'underkategori navn',
+          'main_category'         => 'hovedkategori'
+        ],
+
+        // Products
+        'products' => [
+          'all_products'        => 'alle produkter',
+          'create_new_product'  => 'opret nyt produkt',
+          'product_name'        => 'produkt navn',
+          'quantity'            => 'antal',
+          'create_product'      => 'opret produkt',
+          'edit_product'        => 'rediger produkt'
+        ],
+
+
+        // Shop Settings -> Shop Information Form
+        'shop-information' => [
+            'shop_information'  => 'butiksinformation',
+            'shop_name'         => 'butiksnavn',
+            'street_address'    => 'addresse',
+            'postal_code'       => 'postnummer',
+            'city'              => 'by',
+            'country'           => 'land',
+            'phone'             => 'telefonnummer',
+            'email'             => 'email',
+            'url'               => 'url',
+            'vat_number'        => 'CVR Nummer',
+            // Placeholders and Helptext
+            'emailHelp' => 'Vi deler aldrig din email med andre'
+        ]
+    ]; // return

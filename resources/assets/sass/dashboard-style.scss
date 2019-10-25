@@ -1,0 +1,101 @@
+body {
+  font-family: 'Open Sans';
+}
+
+// Admin Navbar (Top)
+.admin-navbar {
+  background: $white;
+  border-bottom: 1px solid $border-color;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  clear: both;
+  padding: 0 30px;
+  height: 55px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+// Left Aside
+.left-panel {
+  background: $white;
+  height: 100vh;
+  padding: 0;
+  vertical-align: top;
+  width: 280px;
+  border-right: 1px solid $border-color;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: 55px;
+  overflow-y: scroll;
+  // z-index: 999;
+}
+
+#sidebar-menu {
+  width: 100%;
+  padding-left: 15px;
+}
+
+#sidebar-menu .sidebar-menu-header {
+  background: #fafafa;
+  text-align: center;
+}
+
+#sidebar-menu .menu-title {
+  color: #41434d;
+  clear: both;
+  display: block;
+  font-family: 'Open Sans';
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 50px;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+#sidebar-menu li a {
+  color: #607d8b;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 26px;
+  padding: 10px 0;
+  position: relative;
+  width: 100%;
+}
+
+#sidebar-menu li a:hover {
+  background: #fafafa;
+  text-decoration: none;
+}
+
+// Content
+.right-panel {
+  background-color: $grey;
+  margin-left: 280px;
+  padding-right: 25px;
+  height: 100vh;
+}
+
+.content {
+  padding-top: 80px;
+  padding-left: 25px;
+}
+
+.content h1 {
+  margin-bottom: 20px;
+}
+// Buttons
+.mat-inline-center {
+  display: inline-flex;
+  align-items: center;
+}
+
+footer {
+  margin-top: 100px;
+  background-color: $white;
+  height: 55px;
+  padding: 15px;
+}
