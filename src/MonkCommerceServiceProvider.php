@@ -22,7 +22,6 @@ class MonkCommerceServiceProvider extends ServiceProvider
       // Register controllers
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController');
-      $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductSubcategoryController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShopSettingController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController');
@@ -64,12 +63,14 @@ class MonkCommerceServiceProvider extends ServiceProvider
 
         // For all Views
         // Storefront Navbar
-        $storefrontNavbarCategories = MonkCommerceProductCategory::all()->where('show_in_menu', 1);
-        $storefrontNavbarSubCategories = MonkCommerceProductSubcategory::with('productCategories')->get();
+        $storefrontNavbarCategories = MonkCommerceProductCategory::whereNull('category_id')
+                                      ->where('show_in_menu', 1)
+                                      ->with('productChildrenCategories')
+                                      ->get();
+
         $storefrontShop = MonkCommerceShop::first();
 
         View::share('storefrontNavbarCategories', $storefrontNavbarCategories);
-        View::share('storefrontNavbarSubCategories', $storefrontNavbarSubCategories);
         View::share('storefrontShop', $storefrontShop);
 
         //DEV

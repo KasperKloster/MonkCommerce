@@ -22,15 +22,16 @@ class MonkCommerceCreateShopInformationsTable extends Migration
           $table->string('country')->nullable();
           $table->string('phone')->nullable();
           $table->string('email')->nullable();
-          $table->string('url')->nullable()->comment('Your website domain. Use with http(s):// and www. ');
-          $table->string('vat_number')->nullable()->comment('Your website domain. Use with http(s):// and www. ');
+          $table->string('url')->nullable()->comment('Your website domain. With http(s)://');
+          $table->string('vat_number')->nullable();
           $table->timestamps();
       });
 
-      // Insert some stuff
+      // Insert init. row
       DB::table('monkcommerce_shop_informations')->insert(
         array(
-         'shop_name' => 'monkcommerce Demoshop'
+         'shop_name' => config('app.name'),
+         'url'       => config('app.url')
         )
       );
 

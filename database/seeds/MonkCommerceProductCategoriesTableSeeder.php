@@ -11,34 +11,42 @@ class MonkCommerceProductCategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-      // Main Categories
+      // Categories
       \DB::table('monkcommerce_product_categories')->insert(array (
           0 =>
           array (
-              'name'         => 'Visible Main Category',
-              'slug'         => 'visible-main-category',
-              'description'  => 'A Description of Main Category. This will be shown in the menu',
+              'name'         => 'Main Category',
+              'slug'         => 'main-category',
+              'description'  => 'Main Category. This will be shown in the menu',
               'show_in_menu' => TRUE,
+              'category_id'  => NULL,
           ),
 
           1 =>
           array (
-              'name'         => 'Non-visible Category',
-              'slug'         => 'non-visible-main-category',
-              'description'  => 'A Description of Main Category that will not be shown in the menu.',
-              'show_in_menu' => NULL,
-          )
-      ));
+              'name'         => 'Main Category with subcategories',
+              'slug'         => 'main-category-with-subcategories',
+              'description'  => 'Main category with subcategories',
+              'show_in_menu' => TRUE,
+              'category_id'  => NULL,
+          ),
 
-      // Subcategories
-      \DB::table('monkcommerce_product_subcategories')->insert(array (
-          0 =>
+          2 =>
           array (
-              'name'                => 'A Name of Subcategory',
-              'slug'                => 'a-name-of-subcategory',
-              'description'         => 'A Description of a Subcategory Description',
-              'product_category_id' => '1',
-              'show_in_menu'        => TRUE,
+              'name'         => 'Subcategory',
+              'slug'         => 'subcategory',
+              'description'  => 'subcategory',
+              'show_in_menu' => TRUE,
+              'category_id'  => 1,
+          ),
+
+          3 =>
+          array (
+              'name'         => 'Sub Subcategory',
+              'slug'         => 'sub-subcategory',
+              'description'  => 'sub subcategory',
+              'show_in_menu' => TRUE,
+              'category_id'  => 2,
           ),
       ));
 

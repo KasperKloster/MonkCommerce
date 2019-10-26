@@ -21,14 +21,11 @@ class MonkAdminProductCategoryController extends Controller
      */
     public function index()
     {
-      // All categories
-      $productCategories = MonkCommerceProductCategory::paginate(6);
-      // Eager loading
-      $productSubCategories = MonkCommerceProductSubcategory::with('productCategories')->get();
-      // Return View
-      return view('monkcommerce::monkcommerce-dashboard.admin.categories.index')
-              ->with('productCategories', $productCategories)
-              ->with('productSubCategories', $productSubCategories);
+      $productCategories = MonkCommerceProductCategory::whereNull('category_id')
+                            ->with('productChildrenCategories')
+                            ->get();
+
+      return view('monkcommerce::monkcommerce-dashboard.admin.categories.index', compact('productCategories'));
     }
 
     /**
@@ -36,9 +33,18 @@ class MonkAdminProductCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('monkcommerce::monkcommerce-dashboard.admin.categories.create');
+      if($request->has('parentCat'))
+      {
+        $parentCat = $request->parentCat;
+      }
+      else {
+        $parentCat = NULL;
+      }
+
+      return view('monkcommerce::monkcommerce-dashboard.admin.categories.create')
+              ->with('parentCat', $parentCat);
     }
 
     /**
@@ -56,6 +62,7 @@ class MonkAdminProductCategoryController extends Controller
           'categoryName'          => 'required|min:1|max:40|unique:monkcommerce_product_categories,name',
           'categoryDescription'   => 'nullable|max:1000',
           'showInMenu'            => 'nullable',
+          'parentCat'             => 'nullable|integer'
         ]);
 
         /*
@@ -66,12 +73,13 @@ class MonkAdminProductCategoryController extends Controller
         $category->slug         = Str::slug($request->categoryName);
         $category->description  = $request->categoryDescription;
         $category->show_in_menu = $request->showInMenu;
+        $category->category_id  = $request->parentCat;
         $category->save();
 
         /*
         * Message and Redirect
         */
-        Session::flash('success', 'Category Has Been Created');
+        Session::flash('success', 'Maincategory Has Been Created');
         return Redirect::route('monk-admin-categories-home');
     }
 

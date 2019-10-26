@@ -14,11 +14,13 @@ class MonkCommerceCreateProductCategoriesTable extends Migration
     public function up()
     {
       Schema::create('monkcommerce_product_categories', function (Blueprint $table) {
-          $table->increments('id');
+          $table->bigIncrements('id');
           $table->string('name')->comment('Main category name');
           $table->string('slug')->unique()->nullable();
           $table->string('description')->nullable()->comment('Main category description');
           $table->boolean('show_in_menu')->nullable()->comment('Show in frontend menu');
+          $table->unsignedBigInteger('category_id')->nullable();
+          $table->foreign('category_id')->references('id')->on('monkcommerce_product_categories');
           $table->timestamps();
       });
     }

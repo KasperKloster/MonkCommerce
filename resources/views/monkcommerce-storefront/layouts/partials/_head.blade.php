@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ config('app.locale') }}">
   <head>
     <title>@yield('page-title')</title>
     <!-- Fonts -->

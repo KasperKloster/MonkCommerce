@@ -13,7 +13,7 @@
       <!-- Footer -->
       <footer>
         <div class="nav justify-content-end">
-          <small class="text-muted"><i>Made by Kaspers Kloster at OnlineMind</i></small>
+          <small class="text-muted"><i>Made by <a href="https://kasperkloster.dk" target="_blank">Kasper Kloster</a> at <a href="https://onlinemind.dk" target="_blank">OnlineMind</a></i></small>
         </div>
       </footer>
     </div> <!-- ./content -->

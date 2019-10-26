@@ -26,17 +26,6 @@ Route::group(['middleware' => ['web']], function () {
 			Route::post('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController@update')->name('monk-admin-update-category');
 	  });
 
-		// Subcategories
-		Route::group([
-			'prefix'	=> 'subcategories'
-		], function() {
-			Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductSubcategoryController@index')->name('monk-admin-subcategories-home');
-			Route::get('/create/{mainCategory}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductSubcategoryController@create')->name('monk-admin-create-subcategory');
-			Route::post('/create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductSubcategoryController@store')->name('monk-admin-store-subcategory');
-			Route::get('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductSubcategoryController@edit')->name('monk-admin-edit-subcategory');
-			Route::post('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductSubcategoryController@update')->name('monk-admin-update-subcategory');
-		});
-
 	  // Products
 	  Route::group([
 	  	'prefix'	=> 'products'

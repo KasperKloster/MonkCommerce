@@ -13,7 +13,7 @@
     "sku": "{{ $product->sku }}",
       "offers": {
       "@type": "Offer",
-      "url": "{{url()->current()}}",
+      "url": "{{ url()->current() }}",
       "availability": "http://schema.org/InStock",
       "price": "{{ $product->price }}",
       "priceCurrency": "DKK"
