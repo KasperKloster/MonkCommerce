@@ -27,6 +27,11 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <label for="productDescription">{{ ucwords(__('monkcommerce-dashboard.general-words.description')) }}</label>
+      <textarea class="form-control" id="productDescription" name="productDescription" rows="3"></textarea>
+    </div>
+
     <div class="form-group row">
       <div class="col">
         <label for="productPrice">{{ ucwords(__('monkcommerce-dashboard.general-words.price')) }}</label>
@@ -34,13 +39,17 @@
       </div>
       <div class="col">
         <label for="productSpecialPrice">{{ ucwords(__('monkcommerce-dashboard.general-words.special_price')) }}</label>
-        <input type="text" class="form-control" id="productSpecialPrice" name="productSpecialPrice" placeholder="199" required>
+        <input type="text" class="form-control" id="productSpecialPrice" name="productSpecialPrice" placeholder="199">
       </div>
     </div>
 
     <div class="form-group">
-      <label for="productDescription">{{ ucwords(__('monkcommerce-dashboard.general-words.description')) }}</label>
-      <textarea class="form-control" id="productDescription" name="productDescription" rows="3"></textarea>
+      <label for="productCategories">{{ ucwords(__('monkcommerce-dashboard.categories.categories')) }}</label>
+      <select multiple class="form-control" id="productCategories" name="productCategories[]" required>
+        @foreach ($productCategories as $productCategory)
+        <option value="{{$productCategory->id}}">{{ $productCategory->name }}</option>
+        @endforeach
+      </select>
     </div>
 
     <div class="form-check">

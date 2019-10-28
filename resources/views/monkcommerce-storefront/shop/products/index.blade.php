@@ -23,6 +23,27 @@
   @stop
 
   @section('content')
-	   <h1>{{ $product->name }}</h1>
-     <p class="lead">{{ $product->description }}</p>
+  <div class="container">
+    <h1>{{ $product->name }}</h1>
+    <p class="lead">{{ $product->description }}</p>
+
+    <ul>
+      <li>{{ $product->sku }}</li>
+      <li>{{ $product->price }}</li>
+      <li>{{ $product->special_price }}</li>
+      <li>{{ $product->qty }}</li>
+      <li>{{ $product->in_stock }}</li>
+    </ul>
+
+    <h3>Product Belongs to categories:</h3>
+    <ul>
+      @foreach($product->productCategories as $category)
+      <li>
+        <a href="{{ route('monk-shop-single-category', $category->slug) }}">
+        {{ $category->name }}
+        </a>
+      </li>
+      @endforeach
+    </ul>
+  </div>
   @stop

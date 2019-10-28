@@ -14,10 +14,20 @@
     <div class="form-group">
       <label for="categoryName">{{ ucwords(__('monkcommerce-dashboard.categories.category_name')) }}</label>
       <input type="text" class="form-control" name="categoryName" id="categoryName" placeholder="{{ ucwords(__('monkcommerce-dashboard.categories.category_name')) }}" required>
-      <input type="hidden" name="parentCat" value="{{ $parentCat }}">
     </div>
 
-    LIST OF ALL, IF NONE SELECTED THEN MAIN
+    <div class="form-group">
+      <label for="mainCategory">{{ ucwords(__('monkcommerce-dashboard.categories.main_category')) }}</label>
+      <select class="form-control" id="mainCategory" name="mainCategory">
+        <option selected value="0">-- {{ ucwords(__('monkcommerce-dashboard.categories.create_new_main_category')) }}--</option>
+        @foreach ($productCategories as $productCategory)
+           @if ($parentCat == $productCategory->id)
+             <option value="{{ $productCategory->id }}" selected>{{ $productCategory->name }}</option>
+           @endif
+           <option value="{{ $productCategory->id }}">{{ $productCategory->name }}</option>
+        @endforeach
+      </select>
+    </div>
 
     <div class="form-group">
       <label for="categoryDescription">{{ ucwords(__('monkcommerce-dashboard.categories.category_description')) }}</label>

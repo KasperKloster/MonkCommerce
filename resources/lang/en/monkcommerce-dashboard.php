@@ -31,8 +31,10 @@
         ],
 
         'categories' => [
+          'categories'                 => 'categories',
           'all_categories'             => 'all categories',
           'create_new_category'        => 'create new category',
+          'create_new_main_category'   => 'create new maincategory',
           'edit_category'              => 'edit category',
           'delete_category'            => 'delete category',
           'category_name'              => 'category name',

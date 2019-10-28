@@ -20,10 +20,11 @@ class MonkCommerceCreateProductCategoriesTable extends Migration
           $table->string('description')->nullable()->comment('Main category description');
           $table->boolean('show_in_menu')->nullable()->comment('Show in frontend menu');
           $table->unsignedBigInteger('category_id')->nullable();
-          $table->foreign('category_id')->references('id')->on('monkcommerce_product_categories');
+          $table->foreign('category_id')->references('id')->on('monkcommerce_product_categories')->onDelete('cascade');
           $table->timestamps();
       });
     }
+
 
     /**
      * Reverse the migrations.

@@ -10,6 +10,7 @@ use Session;
 
 // Models
 use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductCategory;
 
 class MonkAdminProductController extends Controller
 {
@@ -32,7 +33,8 @@ class MonkAdminProductController extends Controller
      */
     public function create()
     {
-      return view('monkcommerce::monkcommerce-dashboard.admin.products.create');
+      $productCategories = MonkCommerceProductCategory::all();
+      return view('monkcommerce::monkcommerce-dashboard.admin.products.create')->with('productCategories', $productCategories);
     }
 
     /**
@@ -53,7 +55,8 @@ class MonkAdminProductController extends Controller
         'productPrice'        => 'required',
         'productSpecialPrice' => 'nullable',
         'productDescription'  => 'nullable',
-        'productInStock'      => 'nullable|max:2'
+        'productInStock'      => 'nullable|max:2',
+        'productCategories'   => 'required|array',
       ]);
 
       // Getting Checkbox
@@ -79,6 +82,10 @@ class MonkAdminProductController extends Controller
       $product->qty           = $request->productQty;
       $product->in_stock      = $request->productInStock;
       $product->save();
+
+      // Attach Product to Categorie(s)
+      $productCategory = MonkCommerceProductCategory::find($request->productCategories);
+      $product->productCategories()->attach($productCategory);
 
       /*
       * Message and Redirect
@@ -107,8 +114,10 @@ class MonkAdminProductController extends Controller
     public function edit($id)
     {
       $product = MonkCommerceProduct::find($id);
+      $productCategories = MonkCommerceProductCategory::all();
       return view('monkcommerce::monkcommerce-dashboard.admin.products.edit')
-              ->with('product', $product);
+              ->with('product', $product)
+              ->with('productCategories', $productCategories);
     }
 
     /**
@@ -125,12 +134,13 @@ class MonkAdminProductController extends Controller
       */
       $request->validate([
         'productName'         => 'required|min:1|max:255|unique:monkcommerce_products,name,' . $request->id,
-        'productSku'          => 'required|unique:monkcommerce_products,sku,'  . $request->productSku,
+        //'productSku'          => 'required|unique:monkcommerce_products,sku,' . $request->productSku,
         'productQty'          => 'required|integer',
         'productPrice'        => 'required',
         'productSpecialPrice' => 'nullable',
         'productDescription'  => 'nullable',
-        'productInStock'      => 'nullable|max:2'
+        'productInStock'      => 'nullable|max:2',
+        'productCategories'   => 'required|array',
       ]);
 
       // Getting Checkbox
@@ -157,6 +167,11 @@ class MonkAdminProductController extends Controller
       $product->in_stock      = $request->productInStock;
       $product->update();
 
+
+      // Sync Product to Categorie(s)
+      //$productCategory = MonkCommerceProductCategory::find($request->productCategories);
+      $product->productCategories()->sync($request->productCategories);
+
       /*
       * Message and Redirect
       */
@@ -173,6 +188,16 @@ class MonkAdminProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $product = MonkCommerceProduct::find($id);
+      // Detach products from all categories
+      $product->productCategories()->detach();
+      // Delete the product
+      $product->destroy($id);
+
+      /*
+      * Message and Redirect
+      */
+      Session::flash('success', 'Product Has Been Deleted');
+      return Redirect::route('monk-admin-products-home');
     }
 }

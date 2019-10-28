@@ -12,13 +12,36 @@
 
       <!-- Categories -->
       @foreach($storefrontNavbarCategories as $category)
-        <li>{{ $category->name }}</li>
+        <div>
+        <li>
+          <a href="{{ route('monk-shop-single-category', $category->slug) }}">
+          {{ $category->name }}
+          </a>
+        </li>
         @foreach ($category->productChildrenCategories as $childCategory)
           <ul>
           @include('monkcommerce::monkcommerce-storefront.layouts.partials._navbar-child-category', ['child_category' => $childCategory])
           </ul>
         @endforeach
+        </div>
       @endforeach
+
+      <!-- Categories -->
+
+      {{-- @foreach($storefrontNavbarCategories as $category)
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ $category->name }}
+          </a>
+        @foreach ($category->productChildrenCategories as $childCategory)
+
+          <ul>
+          @include('monkcommerce::monkcommerce-storefront.layouts.partials._navbar-child-category', ['child_category' => $childCategory])
+          </ul>
+
+        @endforeach
+        </li>
+      @endforeach --}}
 
     </ul>
 

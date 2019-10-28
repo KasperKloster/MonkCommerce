@@ -17,6 +17,20 @@
     </div>
 
     <div class="form-group">
+      <label for="mainCategory">{{ ucwords(__('monkcommerce-dashboard.categories.main_category')) }}</label>
+      <select class="form-control" id="mainCategory" name="mainCategory">
+        <option selected value="0">-- {{ ucwords(__('monkcommerce-dashboard.categories.create_new_main_category')) }}--</option>
+        @foreach ($productCategories as $productCategory)
+          <option value="{{ $productCategory->id }}"
+            @if ($category->category_id == $productCategory->id)
+            selected
+            @endif
+         >{{ $productCategory->name }}</option>
+        @endforeach
+      </select>
+    </div>
+
+    <div class="form-group">
       <label for="categoryDescription">{{ ucwords(__('monkcommerce-dashboard.categories.category_description')) }}</label>
       <textarea class="form-control" name="categoryDescription" id="categoryDescription" rows="3" required>{{ $category->description }}</textarea>
     </div>

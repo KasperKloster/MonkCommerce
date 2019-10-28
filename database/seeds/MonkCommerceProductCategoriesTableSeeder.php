@@ -37,7 +37,7 @@ class MonkCommerceProductCategoriesTableSeeder extends Seeder
               'slug'         => 'subcategory',
               'description'  => 'subcategory',
               'show_in_menu' => TRUE,
-              'category_id'  => 1,
+              'category_id'  => 2,
           ),
 
           3 =>
@@ -46,24 +46,8 @@ class MonkCommerceProductCategoriesTableSeeder extends Seeder
               'slug'         => 'sub-subcategory',
               'description'  => 'sub subcategory',
               'show_in_menu' => TRUE,
-              'category_id'  => 2,
+              'category_id'  => 3,
           ),
       ));
-
-      // Products
-      \DB::table('monkcommerce_products')->insert(array (
-          0 =>
-          array (
-              'sku'           => 'AB00-00',
-              'name'          => 'Product Name',
-              'slug'          => 'product-name',
-              'description'   => 'A Product Description',
-              'price'         => '249',
-              'special_price' => '199',
-              'qty'           => '2',
-              'in_stock'      => TRUE,
-          ),
-      ));
-
     }
 }

@@ -20,19 +20,8 @@ class MonkStorefrontController extends Controller
 
     public function getSingleCategory(Request $request, $slug)
     {
-      // Getting cat type
-      $catType = $request->input('cat');
-
-      // Find Correct Category
-      if ($catType == 'main')
-      {
-        $category = MonkCommerceProductCategory::where('slug', $slug)->first();
-      }
-      elseif ($catType == 'sub')
-      {
-        $category = MonkCommerceProductSubcategory::where('slug', $slug)->first();
-      }
-
+      // Find Category
+      $category = MonkCommerceProductCategory::where('slug', $slug)->with('products')->first();
       // Return View
       return view('monkcommerce::monkcommerce-storefront.shop.categories.index')
               ->with('category', $category);
@@ -40,7 +29,7 @@ class MonkStorefrontController extends Controller
 
     public function getSingleProduct(Request $request, $slug)
     {
-      $product = MonkCommerceProduct::where('slug', $slug)->first();
+      $product = MonkCommerceProduct::where('slug', $slug)->with('productCategories')->first();
       return view('monkcommerce::monkcommerce-storefront.shop.products.index')
             ->with('product', $product);
     }

@@ -35,17 +35,19 @@
         ],
 
         'categories' => [
-          'all_categories'        => 'alle kategorier',
-          'create_new_category'   => 'opret ny kategori',
-          'edit_category'         => 'rediger kategori',
-          'delete_category'       => 'slet kategori',
-          'category_name'         => 'kategori navn',
-          'category_description'  => 'kategori beskrivelse',
-          'show_in_menu'          => 'vis i menu',
-          'create_subcategory'    => 'opret underkategori',
-          'edit_subcategory'      => 'rediger underkategori',
-          'subcategory_name'      => 'underkategori navn',
-          'main_category'         => 'hovedkategori'
+          'categories'                 => 'kategorier',
+          'all_categories'             => 'alle kategorier',
+          'create_new_category'        => 'opret ny kategori',
+          'create_new_main_category'   => 'opret ny hovedkategori',
+          'edit_category'              => 'rediger kategori',
+          'delete_category'            => 'slet kategori',
+          'category_name'              => 'kategori navn',
+          'category_description'       => 'kategori beskrivelse',
+          'show_in_menu'               => 'vis i menu',
+          'create_subcategory'         => 'opret underkategori',
+          'edit_subcategory'           => 'rediger underkategori',
+          'subcategory_name'           => 'underkategori navn',
+          'main_category'              => 'hovedkategori'
         ],
 
         // Products

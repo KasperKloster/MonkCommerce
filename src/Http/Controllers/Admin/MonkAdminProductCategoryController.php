@@ -10,7 +10,6 @@ use Session;
 
 // Models
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductCategory;
-use KasperKloster\MonkCommerce\Models\MonkCommerceProductSubcategory;
 
 class MonkAdminProductCategoryController extends Controller
 {
@@ -43,8 +42,11 @@ class MonkAdminProductCategoryController extends Controller
         $parentCat = NULL;
       }
 
+      $productCategories = MonkCommerceProductCategory::all();
+
       return view('monkcommerce::monkcommerce-dashboard.admin.categories.create')
-              ->with('parentCat', $parentCat);
+              ->with('parentCat', $parentCat)
+              ->with('productCategories', $productCategories);
     }
 
     /**
@@ -62,8 +64,14 @@ class MonkAdminProductCategoryController extends Controller
           'categoryName'          => 'required|min:1|max:40|unique:monkcommerce_product_categories,name',
           'categoryDescription'   => 'nullable|max:1000',
           'showInMenu'            => 'nullable',
-          'parentCat'             => 'nullable|integer'
+          'mainCategory'          => 'nullable|integer'
         ]);
+
+        // If maincat, make value to null
+        if($request->mainCategory == '0')
+        {
+          $request->mainCategory = NULL;
+        }
 
         /*
         * Create Category
@@ -73,7 +81,7 @@ class MonkAdminProductCategoryController extends Controller
         $category->slug         = Str::slug($request->categoryName);
         $category->description  = $request->categoryDescription;
         $category->show_in_menu = $request->showInMenu;
-        $category->category_id  = $request->parentCat;
+        $category->category_id  = $request->mainCategory;
         $category->save();
 
         /*
@@ -93,9 +101,12 @@ class MonkAdminProductCategoryController extends Controller
     {
         // Find Category
         $category = MonkCommerceProductCategory::find($id);
+        // All Cats
+        $productCategories = MonkCommerceProductCategory::all();
         // Return View
         return view('monkcommerce::monkcommerce-dashboard.admin.categories.edit')
-                ->with('category', $category);
+                ->with('category', $category)
+                ->with('productCategories', $productCategories);
     }
 
     /**
@@ -114,8 +125,14 @@ class MonkAdminProductCategoryController extends Controller
           'categoryName'          => 'required|min:1|max:40|unique:monkcommerce_product_categories,name,' . $request->id,
           'categoryDescription'   => 'nullable|max:1000',
           'showInMenu'            => 'nullable|max:2',
+          'mainCategory'          => 'nullable|integer'
         ]);
 
+        // If maincat, make value to null
+        if($request->mainCategory == '0')
+        {
+          $request->mainCategory = NULL;
+        }
         // Getting Checkbox
         if($request->showInMenu == 'on')
         {
@@ -134,6 +151,7 @@ class MonkAdminProductCategoryController extends Controller
         $category->slug         = Str::slug($request->categoryName);
         $category->description  = $request->categoryDescription;
         $category->show_in_menu = $request->showInMenu;
+        $category->category_id  = $request->mainCategory;
         $category->update();
 
         /*
@@ -151,6 +169,26 @@ class MonkAdminProductCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+      // Find given Category
+      $category = MonkCommerceProductCategory::find($id);
+      // Detach categories from all products (Has to be before subcats)
+      $category->products()->detach();
+      // Find All Subcategories
+      $subCategories = MonkCommerceProductCategory::where('category_id', $category->id)->get();
+      // Set all child subcategories to NULL
+      foreach($subCategories as $subCategory)
+      {
+        $category = MonkCommerceProductCategory::find($subCategory->id);
+        $category->category_id = NULL;
+        $category->save();
+      }
+      // Delete Category
+      $category->destroy($id);
+
+      /*
+      * Message and Redirect
+      */
+      Session::flash('success', 'Category Has Been Deleted');
+      return Redirect::route('monk-admin-categories-home');
     }
 }

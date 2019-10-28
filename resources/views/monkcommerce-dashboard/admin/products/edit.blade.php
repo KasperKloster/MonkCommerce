@@ -40,6 +40,23 @@
     </div>
 
     <div class="form-group">
+      <label for="productCategories">{{ ucwords(__('monkcommerce-dashboard.categories.categories')) }}</label>
+      <select multiple class="form-control" id="productCategories" name="productCategories[]" required>
+
+        @foreach ($productCategories as $productCategory)
+        <option value="{{$productCategory->id}}"
+          @foreach($product->productCategories as $category)
+            @if($category->id == $productCategory->id)
+              selected
+            @endif
+          @endforeach
+          >{{ $productCategory->name }}</option>
+        @endforeach
+
+      </select>
+    </div>
+
+    <div class="form-group">
       <label for="productDescription">{{ ucwords(__('monkcommerce-dashboard.general-words.description')) }}</label>
       <textarea class="form-control" id="productDescription" name="productDescription" rows="3">{{ $product->description }}</textarea>
     </div>

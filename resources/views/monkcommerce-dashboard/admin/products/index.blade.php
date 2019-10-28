@@ -46,11 +46,11 @@
                     <i class="material-icons">edit</i>{{ ucwords(__('monkcommerce-dashboard.general-words.edit')) }}
                   </a>
                   <!-- show in shop -->
-                  <a href="#" class="btn btn-sm btn-outline-secondary mat-inline-center ml-3 mr-3" target="_blank">
+                  <a href="{{ route('monk-shop-single-product', $product->slug)}}" class="btn btn-sm btn-outline-secondary mat-inline-center ml-3 mr-3" target="_blank">
                     {{ ucwords(__('monkcommerce-dashboard.general-words.show_in_shop')) }}<i class="material-icons">open_in_new</i>
                   </a>
                   <!-- Delete Category -->
-                  <a href="#" class="btn btn-sm btn-danger mat-inline-center">
+                  <a href="{{ route('monk-admin-destroy-product', $product->id) }}" class="btn btn-sm btn-danger mat-inline-center">
                     <i class="material-icons">delete_forever</i> {{ ucwords(__('monkcommerce-dashboard.general-words.delete')) }}
                   </a>
 
