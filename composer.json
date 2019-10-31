@@ -17,6 +17,11 @@
       }
     },
 
-
+    "extra": {
+      "laravel": {
+        "providers": [
+          "KasperKloster\\MonkCommerce\\MonkCommerceServiceProvider"
+        ]
+      }
     }
 }
