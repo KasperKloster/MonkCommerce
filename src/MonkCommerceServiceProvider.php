@@ -9,6 +9,7 @@ use View;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductCategory;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductSubcategory;
 use KasperKloster\MonkCommerce\Models\MonkCommerceShop;
+use KasperKloster\MonkCommerce\Models\MonkCommerceStaticPages;
 
 class MonkCommerceServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,7 @@ class MonkCommerceServiceProvider extends ServiceProvider
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShopSettingController');
+      $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController');
       // Load Views
       $this->loadViewsFrom(__DIR__.'/../resources/views', 'monkcommerce');
@@ -63,15 +65,19 @@ class MonkCommerceServiceProvider extends ServiceProvider
 
         // For all Views
         // Storefront Navbar
+        // Shop Categories
         $storefrontNavbarCategories = MonkCommerceProductCategory::whereNull('category_id')
                                       ->where('show_in_menu', 1)
                                       ->with('productChildrenCategories')
                                       ->get();
-
+        // Shop informations
         $storefrontShop = MonkCommerceShop::first();
+        // Pages
+        $storefrontStaticPages = MonkCommerceStaticPages::where('show_in_menu', 1)->get();
 
         View::share('storefrontNavbarCategories', $storefrontNavbarCategories);
         View::share('storefrontShop', $storefrontShop);
+        View::share('storefrontStaticPages', $storefrontStaticPages);
 
         //DEV
         //include __DIR__.'/routes.php';

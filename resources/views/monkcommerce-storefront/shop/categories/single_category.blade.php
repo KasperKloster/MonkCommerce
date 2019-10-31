@@ -2,6 +2,7 @@
   @section('page-title')
     {{ $category->name }}
   @stop
+  @section('meta-desc'){{ Str::limit($category->description, $limit = 180, $end = '...') }}@stop
 
   @section('content')
   <div class="container">

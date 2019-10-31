@@ -2,6 +2,7 @@
   @section('page-title')
     {{ $product->name }}
   @stop
+  @section('meta-desc'){{ Str::limit($product->description, $limit = 180, $end = '...') }}@stop
 
   @section('schema')
   <script type="application/ld+json">

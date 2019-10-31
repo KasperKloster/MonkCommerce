@@ -43,6 +43,12 @@
         </li>
       @endforeach --}}
 
+      <!-- Pages -->
+      @foreach($storefrontStaticPages as $page)
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('monk-shop-single-page', $page->slug) }}">{{ $page->name }} </a>
+      </li>
+      @endforeach
     </ul>
 
     <ul class="nav justify-content-end">

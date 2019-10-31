@@ -1,12 +1,5 @@
 <?php
-//
-// Route::get('calculator', function(){
-//   echo 'Hello from the calculator package!';
-// });
-
-
 /** Admin Dashboard **/
-
 Route::group(['middleware' => ['web']], function () {
 
 	Route::group([
@@ -46,6 +39,18 @@ Route::group(['middleware' => ['web']], function () {
 	    Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShopSettingController@index')->name('monk-admin-shop-settings');
 	    Route::post('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShopSettingController@store')->name('monk-admin-store-shop-informations');
 	  });
+		// Pages
+		Route::group([
+			'prefix'	=> 'pages'
+		], function() {
+			Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@index')->name('monk-admin-pages-index');
+			Route::get('/create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@create')->name('monk-admin-create-page');
+			Route::post('/create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@store')->name('monk-admin-store-page');
+			Route::get('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@edit')->name('monk-admin-edit-page');
+			Route::post('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@update')->name('monk-admin-update-page');
+			Route::get('/delete/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@destroy')->name('monk-admin-destroy-page');
+		});
+
 	});
 
 });
@@ -58,3 +63,5 @@ Route::group([
 		Route::get('category/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSingleCategory')->name('monk-shop-single-category');
 		Route::get('product/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSingleProduct')->name('monk-shop-single-product');
 });
+
+Route::get('page/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSinglePage')->name('monk-shop-single-page');

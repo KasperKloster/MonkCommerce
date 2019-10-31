@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 // MODELS
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductcategory;
-use KasperKloster\MonkCommerce\Models\MonkCommerceProductSubcategory;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
+use KasperKloster\MonkCommerce\Models\MonkCommerceStaticPages;
 
 class MonkStorefrontController extends Controller
 {
@@ -23,14 +23,21 @@ class MonkStorefrontController extends Controller
       // Find Category
       $category = MonkCommerceProductCategory::where('slug', $slug)->with('products')->first();
       // Return View
-      return view('monkcommerce::monkcommerce-storefront.shop.categories.index')
+      return view('monkcommerce::monkcommerce-storefront.shop.categories.single_category')
               ->with('category', $category);
     }
 
     public function getSingleProduct(Request $request, $slug)
     {
       $product = MonkCommerceProduct::where('slug', $slug)->with('productCategories')->first();
-      return view('monkcommerce::monkcommerce-storefront.shop.products.index')
+      return view('monkcommerce::monkcommerce-storefront.shop.products.single_product')
             ->with('product', $product);
+    }
+
+    public function getSinglePage(Request $request, $slug)
+    {
+      $page = MonkCommerceStaticPages::where('slug', $slug)->first();
+      return view('monkcommerce::monkcommerce-storefront.static_pages.single_page')
+            ->with('page', $page);
     }
 }

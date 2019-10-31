@@ -18,6 +18,7 @@
           'price'           => 'pris',
           'special_price'   => 'udsalgspris',
           'in_stock'        => 'på lager',
+          'show_in_menu'    => 'vis i menu',
         ],
         // Admin Sidebar Menu
         'left-panel' => [
@@ -31,7 +32,8 @@
             'customers'           => 'kunder',
             'orders'              => 'ordrer',
             'settings'            => 'indstillinger',
-            'shop_settings'       => 'butiks indstillinger'
+            'shop_settings'       => 'butiks indstillinger',
+            'pages'               => 'sider',
         ],
 
         'categories' => [
@@ -60,6 +62,19 @@
           'edit_product'        => 'rediger produkt'
         ],
 
+        // pages
+        'pages' => [
+          'all_pages'           => 'alle sider',
+          'create_new_page'     => 'opret ny side',
+          'page_name'           => 'side navn',
+          'create_page'         => 'opret side',
+          'edit_page'           => 'rediger side',
+          'delete_page'         => 'slet side',
+          'page_name'           => 'side navn',
+          'save_page'           => 'gem side',
+          // Helptext
+          'pageNameHelp'        => 'som standard vil det blive vist i url, menuen og h1',
+        ],
 
         // Shop Settings -> Shop Information Form
         'shop-information' => [
@@ -73,7 +88,7 @@
             'email'             => 'email',
             'url'               => 'url',
             'vat_number'        => 'CVR Nummer',
-            // Placeholders and Helptext
+            // Helptext
             'emailHelp' => 'Vi deler aldrig din email med andre'
         ]
     ]; // return

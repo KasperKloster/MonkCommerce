@@ -2,7 +2,7 @@
   {{ ucwords(__('monkcommerce-dashboard.left-panel.shop_settings')) }}
 @stop
 
-@extends('monkcommerce::monkcommerce-dashboard.layouts.dashboard-create')
+@extends('monkcommerce::monkcommerce-dashboard.layouts.dashboard-form')
 
 @section('header')
   {{ ucwords(__('monkcommerce-dashboard.left-panel.shop_settings')) }}

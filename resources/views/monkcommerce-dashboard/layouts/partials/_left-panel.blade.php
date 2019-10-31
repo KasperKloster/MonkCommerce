@@ -11,7 +11,7 @@
       <li class="menu-title">{{ __('monkcommerce-dashboard.left-panel.categories') }}</li>
       <li>
         <a href="{{ route('monk-admin-categories-home') }}">
-          {{ ucwords(__('monkcommerce-dashboard.left-panel.categories')) }}<i class="material-icons float-right">chevron_right</i>
+          {{ ucwords(__('monkcommerce-dashboard.categories.all_categories')) }}<i class="material-icons float-right">chevron_right</i>
         </a>
       </li>
 
@@ -69,6 +69,15 @@
           {{ ucwords(__('monkcommerce-dashboard.left-panel.shop_settings')) }}<i class="material-icons float-right">chevron_right</i>
         </a>
       </li>
+
+      <li class="menu-title">{{ ucwords(__('monkcommerce-dashboard.left-panel.pages')) }}</li>
+      <li>
+        <a href="{{ route('monk-admin-pages-index') }}">
+          {{ ucwords(__('monkcommerce-dashboard.pages.all_pages')) }}<i class="material-icons float-right">chevron_right</i>
+        </a>
+      </li>
+
+
     </ul>
   </nav>
 </aside>

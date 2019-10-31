@@ -2,7 +2,7 @@
   {{ ucwords(__('monkcommerce-dashboard.categories.edit_category')) }} | Admin Dashboard
 @stop
 
-@extends('monkcommerce::monkcommerce-dashboard.layouts.dashboard-create')
+@extends('monkcommerce::monkcommerce-dashboard.layouts.dashboard-form')
 
   @section('header')
     {{ ucwords(__('monkcommerce-dashboard.categories.edit_category')) }}

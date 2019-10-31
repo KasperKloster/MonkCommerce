@@ -14,6 +14,7 @@
           'price'          => 'price',
           'special_price'  => 'special price',
           'in_stock'       => 'in stock',
+          'show_in_menu'   => 'show in menu',
         ],
         // Admin Sidebar Menu
         'left-panel' => [
@@ -27,7 +28,8 @@
             'customers'           => 'customers',
             'orders'              => 'orders',
             'settings'            => 'settings',
-            'shop_settings'       => 'shop settings'
+            'shop_settings'       => 'shop settings',
+            'pages'               => 'pages',
         ],
 
         'categories' => [
@@ -54,6 +56,20 @@
           'quantity'            => 'quantity',
           'create_product'      => 'create product',
           'edit_product'        => 'edit product'
+        ],
+
+        // pages
+        'pages' => [
+          'all_pages'           => 'all pages',
+          'create_new_page'     => 'create new page',
+          'page_name'           => 'page name',
+          'create_page'         => 'create page',
+          'edit_page'           => 'edit page',
+          'delete_page'         => 'delete page',
+          'page_name'           => 'page name',
+          'save_page'           => 'save page',
+          // Helptext
+          'pageNameHelp'        => 'By default, this will apear as the url, menu and h1.',
         ],
 
         // Shop Settings -> Shop Information Form
