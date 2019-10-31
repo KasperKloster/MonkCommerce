@@ -15,5 +15,13 @@
       "psr-4": {
           "KasperKloster\\MonkCommerce\\": "src/"
       }
+    },
+
+    "extra": {
+      "laravel": {
+        "providers": [
+          "KasperKloster\\MonkCommerce\\MonkCommerceServiceProvider"
+        ]
+      }
     }
 }
