@@ -4,39 +4,19 @@ namespace KasperKloster\MonkCommerce\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-// Models
-use KasperKloster\MonkCommerce\Models\MonkcommerceProductAttributeValue;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
 
-class MonkcommerceProductAttribute extends Model
+class MonkCommerceProductAttribute extends Model
 {
   // Name of the Table
-  protected $table = 'monkcommerce_product_attributes';
+  protected $table = 'mc_prod_attr';
 
-  /**
-  * @var array
+  /*
+  * Relationships
   */
-  protected $fillable = [
-    // 'code',
-    'name',
-    // 'frontend_type',
-    // 'is_filterable',
-    // 'is_required'
-  ];
-
-  // /**
-  // * @var array
-  // */
-  // protected $casts  = [
-  //   'is_filterable' =>  'boolean',
-  //   'is_required'   =>  'boolean',
-  // ];
-
-  /**
-  * @return \Illuminate\Database\Eloquent\Relations\HasMany
-  */
-  public function productAttributeValues()
+  public function attributeValues()
   {
-    return $this->hasMany(MonkcommerceProductAttributeValue::class, 'id');
+    return $this->belongsToMany(MonkCommerceProductAttributeValue::class, 'mc_prod_attr_prod_values', 'product_attribute_id', 'product_attribute_value_id');
   }
-
 }

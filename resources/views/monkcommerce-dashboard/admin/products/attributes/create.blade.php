@@ -1,5 +1,5 @@
 @section('page-title')
-  {{ ucwords(__('monkcommerce-dashboard.products.create_new_product')) }} | Admin Dashboard
+  {{ ucwords(__('monkcommerce-dashboard.attr.create_new_attr')) }} | Admin Dashboard
 @stop
 
 @extends('monkcommerce::monkcommerce-dashboard.layouts.dashboard-form')
@@ -11,16 +11,17 @@
 @section('page-content')
 <div class="card">
   <div class="card-header">
-    {{ ucwords(__('monkcommerce-dashboard.products.create_new_product')) }}
+    {{ ucwords(__('monkcommerce-dashboard.attr.create_new_attr')) }}
   </div>
   <div class="card-body">
-    <form action="{{ route('monk-admin-store-product') }}" method="post">
+    <form action="{{ route('monk-admin-products-attr-store') }}" method="post">
     @csrf
     <div class="form-group">
-      <label for="productName">{{ ucwords(__('monkcommerce-dashboard.products.product_name')) }}</label>
-      <input type="text" class="form-control" id="productName" name="productName" placeholder="Product Name" required>
+      <label for="attrName">{{ ucwords(__('monkcommerce-dashboard.general-words.name')) }}</label>
+      <input type="text" class="form-control" id="attrName" name="attrName" placeholder="{{ ucwords(__('monkcommerce-dashboard.general-words.name')) }}" required>
     </div>
 
+    {{--
     <div class="form-group row">
       <div class="col">
         <label for="productSku">SKU</label>
@@ -61,10 +62,10 @@
       <input type="checkbox" class="form-check-input" name="productInStock" id="productInStock">
       <label class="form-check-label" for="productInStock">{{ ucwords(__('monkcommerce-dashboard.general-words.in_stock')) }}</label>
     </div>
-
+ --}}
     <div class="form-group row pt-3">
       <div class="col">
-        <button class="btn btn-success" type="submit">{{ ucwords(__('monkcommerce-dashboard.products.create_product')) }}</button>
+        <button class="btn btn-success" type="submit">{{ ucwords(__('monkcommerce-dashboard.general-words.save')) }}</button>
         <button class="btn btn-outline-secondary" type="reset">{{ ucwords(__('monkcommerce-dashboard.general-words.reset')) }}</button>
       </div>
     </div>

@@ -4,13 +4,13 @@
 
 @extends('monkcommerce::monkcommerce-dashboard.layouts.dashboard-form')
 
-@section('header')
-  {{ ucwords(__('monkcommerce-dashboard.products.edit_product')) }}
-@stop
-
-
-  @section('form')
-  <form action="{{ route('monk-admin-update-product', $product->id) }}" method="post">
+@section('page-content')
+<div class="card">
+  <div class="card-header">
+    {{ ucwords(__('monkcommerce-dashboard.products.edit_product')) }}
+  </div>
+  <div class="card-body">
+    <form action="{{ route('monk-admin-update-product', $product->id) }}" method="post">
     @csrf
     <div class="form-group">
       <label for="productName">{{ ucwords(__('monkcommerce-dashboard.products.product_name')) }}</label>
@@ -73,4 +73,6 @@
       </div>
     </div>
   </form>
-  @stop
+  </div>
+</div>
+@stop

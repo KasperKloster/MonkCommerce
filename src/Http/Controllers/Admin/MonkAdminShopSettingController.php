@@ -25,31 +25,39 @@ class MonkAdminShopSettingController extends Controller
     {
       // Validation
       $request->validate([
-        'shop_name'       => 'required|string',
-        'shop_val'        => 'required|integer',
-        'street_address'  => 'required',
-        'postal_code'     => 'required',
-        'city'            => 'required|string',
-        'country'         => 'required',
-        'phone'           => 'nullable',
-        'email'           => 'email',
-        'url'             => 'string',
-        'vat_number'      => 'string',
+        'shop_name'             => 'string|nullable',
+        'shop_val'              => 'required|integer',
+        'street_address'        => 'string|nullable',
+        'postal_code'           => 'string|nullable',
+        'city'                  => 'string|nullable',
+        'country'               => 'string|nullable',
+        'phone'                 => 'nullable',
+        'email'                 => 'email|nullable',
+        'url'                   => 'string|nullable',
+        'vat_number'            => 'string|nullable',
+        'shopCurrency'          => 'string|nullable',
+        'shopSchemaCurrency'    => 'string|nullable',
+        'shopPrefix'            => 'string|nullable',
+        'shopCookieConsentMsg'  => 'string|nullable',
       ]);
 
       /*
       * Store Shop
       */
       $shop = MonkCommerceShop::find($request->shop_val);
-      $shop->shop_name       = $request->shop_name;
-      $shop->street_address  = $request->street_address;
-      $shop->postal_code     = $request->postal_code;
-      $shop->city            = $request->city;
-      $shop->country         = $request->country;
-      $shop->phone           = $request->phone;
-      $shop->email           = $request->email;
-      $shop->url             = $request->url;
-      $shop->vat_number      = $request->vat_number;
+      $shop->shop_name          = $request->shop_name;
+      $shop->street_address     = $request->street_address;
+      $shop->postal_code        = $request->postal_code;
+      $shop->city               = $request->city;
+      $shop->country            = $request->country;
+      $shop->phone              = $request->phone;
+      $shop->email              = $request->email;
+      $shop->url                = $request->url;
+      $shop->vat_number         = $request->vat_number;
+      $shop->shopCurrency       = $request->shopCurrency;
+      $shop->shopSchemaCurrency = $request->shopSchemaCurrency;
+      $shop->shopPrefix         = $request->shopPrefix;
+      $shop->cookie_msg         = $request->shopCookieConsentMsg;
       $shop->update();
 
       /*

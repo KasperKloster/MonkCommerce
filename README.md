@@ -3,5 +3,6 @@
 
 ## Installation
 - Install a new laravel project.
-- run composer require kasperkloster/monkcommerce.
+- Run composer require kasperkloster/monkcommerce.
 - Go to config/app.php providers and add kasperkloster\monkcommerce\MonkCommerceServiceProvider::class,
+- Run php artisan vendor:publish --tag=monkcommerce

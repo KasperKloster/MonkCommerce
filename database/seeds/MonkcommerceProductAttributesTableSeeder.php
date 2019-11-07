@@ -11,18 +11,30 @@ class MonkcommerceProductAttributesTableSeeder extends Seeder
      */
     public function run()
     {
-      \DB::table('monkcommerce_product_attributes')->insert(array (
+      \DB::table('mc_prod_attr')->insert(array (
         // Create a size attribute
         0 =>
         array (
           'name'          =>  'Size',
+          'slug'          =>  'size',
         ),
         // Create a color attribute
         1 =>
         array (
           'name'          =>  'Color',
+          'slug'          =>  'color',
         ),
-        
+        2 =>
+        array (
+          'name'          =>  'Material',
+          'slug'          =>  'material',
+        ),
+        3 =>
+        array (
+          'name'          =>  'Brand',
+          'slug'          =>  'brand',
+        ),
+
       ));
     }
 }

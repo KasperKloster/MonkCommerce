@@ -4,12 +4,13 @@
 
 @extends('monkcommerce::monkcommerce-dashboard.layouts.dashboard-form')
 
-  @section('header')
+@section('page-content')
+<div class="card">
+  <div class="card-header">
     {{ ucwords(__('monkcommerce-dashboard.pages.edit_page')) }}
-  @stop
-
-  @section('form')
-  <form action="{{ route('monk-admin-store-page') }}" method="post">
+  </div>
+  <div class="card-body">
+    <form action="{{ route('monk-admin-store-page') }}" method="post">
     @csrf
     <div class="form-group">
       <label for="pageName">{{ ucwords(__('monkcommerce-dashboard.pages.page_name')) }}</label>
@@ -41,4 +42,6 @@
     </div>
 
   </form>
-  @stop
+  </div>
+</div>
+@stop

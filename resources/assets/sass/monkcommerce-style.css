@@ -67,6 +67,9 @@ body {
   padding-right: 25px;
   height: 100vh; }
 
+.right-panel h1 {
+  font-weight: 600; }
+
 .content {
   padding-top: 80px;
   padding-left: 25px; }

@@ -58,6 +58,12 @@
           'edit_product'        => 'edit product'
         ],
 
+        'attr' => [
+          'all_products_attr'  => 'all product attributes',
+          'create_new_attr'    => 'create new attribute',
+          'create_new_val'     => 'create new value',
+        ],
+
         // pages
         'pages' => [
           'all_pages'           => 'all pages',

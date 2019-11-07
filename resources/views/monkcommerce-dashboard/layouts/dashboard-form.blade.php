@@ -15,16 +15,8 @@
 @include('monkcommerce::monkcommerce-dashboard.layouts.partials._messages')
 
 <!-- Page Content -->
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        @yield('card-header')
-      </div>
-      <div class="card-body">
-        @yield('form')
-      </div>
-    </div>
-  </div>
-</div>
+<section>
+  @yield('page-content')
+</section>
+
 @stop

@@ -23,7 +23,7 @@
       </li>
 
       <li>
-        <a href="{{ route('monk-admin-create-product') }}">
+        <a href="{{ route('monk-admin-products-attr-home') }}">
           {{ ucwords(__('monkcommerce-dashboard.left-panel.product_attributes')) }}<i class="material-icons float-right">chevron_right</i>
         </a>
       </li>

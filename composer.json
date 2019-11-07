@@ -16,7 +16,6 @@
           "KasperKloster\\MonkCommerce\\": "src/"
       }
     },
-
     "extra": {
       "laravel": {
         "providers": [

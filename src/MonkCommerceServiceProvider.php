@@ -24,6 +24,7 @@ class MonkCommerceServiceProvider extends ServiceProvider
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController');
+      $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShopSettingController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController');
@@ -70,18 +71,13 @@ class MonkCommerceServiceProvider extends ServiceProvider
                                       ->where('show_in_menu', 1)
                                       ->with('productChildrenCategories')
                                       ->get();
-        // Shop informations
+        // Shop information
         $storefrontShop = MonkCommerceShop::first();
-        // Pages
+        // Static Pages
         $storefrontStaticPages = MonkCommerceStaticPages::where('show_in_menu', 1)->get();
 
         View::share('storefrontNavbarCategories', $storefrontNavbarCategories);
         View::share('storefrontShop', $storefrontShop);
         View::share('storefrontStaticPages', $storefrontStaticPages);
-
-        //DEV
-        //include __DIR__.'/routes.php';
-        // $this->loadTranslationsFrom(__DIR__.'/path/to/translations', 'courier');
-        // $this->loadMigrationsFrom(__DIR__.'/migrations');
     }
 }

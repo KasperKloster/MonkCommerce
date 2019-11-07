@@ -3,36 +3,20 @@
 namespace KasperKloster\MonkCommerce\Models;
 
 use Illuminate\Database\Eloquent\Model;
-// Models
-use KasperKloster\MonkCommerce\Models\MonkcommerceProductAttribute;
 
-class MonkcommerceProductAttributeValue extends Model
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
+
+class MonkCommerceProductAttributeValue extends Model
 {
   // Name of the Table
-  protected $table = 'monkcommerce_product_attribute_values';
+  protected $table = 'mc_prod_attr_values';
 
-  /**
-  * @var array
+  /*
+  * Relationships
   */
-  protected $fillable = [
-      'attribute_id',
-      'value',
-      'price'
-  ];
-
-  /**
-  * @var array
-  */
-  protected $casts = [
-    'attribute_id'  =>  'integer',
-  ];
-
-  /**
-  * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-  */
-  public function productAttribute()
+  public function attributes()
   {
-    return $this->belongsTo(MonkcommerceProductAttribute::class, 'id', 'attribute_id');
+    return $this->hasMany(MonkCommerceProductAttribute::class, 'mc_prod_attr_prod_values');
   }
-
 }

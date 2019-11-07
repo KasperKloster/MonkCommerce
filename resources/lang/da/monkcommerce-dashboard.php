@@ -62,6 +62,12 @@
           'edit_product'        => 'rediger produkt'
         ],
 
+        'attr' => [
+          'all_products_attr'  => 'alle produkt attributter',
+          'create_new_attr'    => 'opret ny attribut',
+          'create_new_val'     => 'opret ny værdi',
+        ],
+
         // pages
         'pages' => [
           'all_pages'           => 'alle sider',

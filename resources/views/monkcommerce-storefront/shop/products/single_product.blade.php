@@ -30,8 +30,8 @@
 
     <ul>
       <li>{{ $product->sku }}</li>
-      <li>{{ $product->price }}</li>
-      <li>{{ $product->special_price }}</li>
+      <li>{{ $product->price }} {{$storefrontShop->shopCurrency}}</li>
+      <li>{{ $product->special_price }} {{$storefrontShop->shopCurrency}}</li>
       <li>{{ $product->qty }}</li>
       <li>{{ $product->in_stock }}</li>
     </ul>

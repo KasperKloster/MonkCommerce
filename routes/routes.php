@@ -30,6 +30,14 @@ Route::group(['middleware' => ['web']], function () {
 			Route::get('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@edit')->name('monk-admin-edit-product');
 			Route::post('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@update')->name('monk-admin-update-product');
 			Route::get('/delete/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@destroy')->name('monk-admin-destroy-product');
+				// Attributes
+				Route::group([
+					'prefix'	=> 'attributes'
+				], function() {
+					Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@index')->name('monk-admin-products-attr-home');
+					Route::get('/create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@create')->name('monk-admin-products-attr-create');
+					Route::post('/create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@store')->name('monk-admin-products-attr-store');
+				});
 	  });
 
 	  // Shop Settings
