@@ -17,7 +17,7 @@
       "url": "{{ url()->current() }}",
       "availability": "http://schema.org/InStock",
       "price": "{{ $product->price }}",
-      "priceCurrency": "DKK"
+      "priceCurrency": "{{ $storefrontShop->shopSchemaCurrency }}"
       }
     }
   </script>
@@ -27,7 +27,7 @@
   <div class="container">
     <h1>{{ $product->name }}</h1>
     <p class="lead">{{ $product->description }}</p>
-
+    {{ $storefrontShop->shopSchemaCurrency }}
     <ul>
       <li>{{ $product->sku }}</li>
       <li>{{ $product->price }} {{$storefrontShop->shopCurrency}}</li>
@@ -49,13 +49,16 @@
 
     <h3>Attributes</h3>
     <ul>
-      @forelse($product->attributeValues as $attr)
-        {{ $attr }}
-        {{ $attr->value }}
-
-      @empty
-        <li></li>
-      @endforelse
+      <!-- Loop Values -->
+      @foreach($product->attributeValues as $attrVal)
+        <!-- Loop Attr. -->
+        @foreach($attrVal->attributes as $attr)
+        <!-- Attr Name -->
+          <li>{{ $attr->name }}</li>
+        @endforeach
+        <!-- Value Name -->
+        <li>{{ $attrVal->value }}</li>
+      @endforeach
     </ul>
   </div>
   @stop

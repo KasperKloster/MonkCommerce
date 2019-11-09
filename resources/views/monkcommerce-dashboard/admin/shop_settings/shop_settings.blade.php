@@ -79,10 +79,10 @@
           <div class="col">
             <label for="shopSchemaCurrency">Schema Currency</label>
             <input type="text" class="form-control" id="shopSchemaCurrency" name="shopSchemaCurrency" value="{{ $shop->shopSchemaCurrency }}">
-            <small id="shopshopCurrency" class="form-text text-muted">DKK, EUR, USA etc. (Used for Google too read)</small>
+            <small id="shopshopCurrency" class="form-text text-muted"><a href="https://en.wikipedia.org/wiki/ISO_4217" target="_blank">ISO 4217 standard currency format.</a> Used for structured data.</small>
           </div>
         </div>
-
+      
         <hr/>
         <div class="form-group">
           <label for="shopPrefix">Prefix</label>

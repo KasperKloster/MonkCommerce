@@ -1,4 +1,3 @@
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light admin-navbar">
   <a class="navbar-brand" href="{{ route('monk-admin-home') }}">Dashboard</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

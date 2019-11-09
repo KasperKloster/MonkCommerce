@@ -76,7 +76,7 @@ body {
   background-color: $grey;
   margin-left: 280px;
   padding-right: 25px;
-  height: 100vh;
+  min-height: 120vh;
 }
 
 .right-panel h1 {
@@ -101,7 +101,6 @@ body {
 }
 
 footer {
-  margin-top: 100px;
   background-color: $white;
   height: 55px;
   padding: 15px;

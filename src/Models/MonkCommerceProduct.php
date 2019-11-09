@@ -42,7 +42,16 @@ class MonkCommerceProduct extends Model
   // Attribute
   // public function attribute()
   // {
-  //   return $this->hasManyThrough(MonkCommerceProduct::class, MonkCommerceProductAttributeValue::class);
+  //   return $this->hasManyThrough(MonkCommerceProductAttribute::class, MonkCommerceProductAttributeValue::class, 'some', 'id');
+  //
+  //     //     return $this->hasManyThrough(
+  //     //     Post::class,
+  //     //     User::class,
+  //     //     'country_id', // Foreign key on users table...
+  //     //     'user_id', // Foreign key on posts table...
+  //     //     'id', // Local key on countries table...
+  //     //     'id' // Local key on users table...
+  //     // );
   // }
 
 

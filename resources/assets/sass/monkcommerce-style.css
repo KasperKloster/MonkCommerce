@@ -65,7 +65,7 @@ body {
   background-color: #F7F8F9;
   margin-left: 280px;
   padding-right: 25px;
-  height: 100vh; }
+  min-height: 120vh; }
 
 .right-panel h1 {
   font-weight: 600; }
@@ -85,7 +85,6 @@ body {
   align-items: center; }
 
 footer {
-  margin-top: 100px;
   background-color: #ffffff;
   height: 55px;
   padding: 15px; }

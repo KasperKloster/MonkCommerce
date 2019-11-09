@@ -13,77 +13,26 @@
 @stop
 
 @section('card-content')
-<ul>
-@foreach ($productCategories as $category)
-  <li>{{ $category->name }}</li>
-      <!-- edit -->
-      <a href="{{ route('monk-admin-edit-category', $category->id) }}" class="btn btn-sm btn-info mat-inline-center">
-        <i class="material-icons">edit</i>{{ ucwords(__('monkcommerce-dashboard.general-words.edit')) }}
-      </a>
-      <!-- create subcategory -->
-      <a href="{{ route('monk-admin-create-category', ['parentCat' => $category->id])}}" class="btn btn-sm btn-success mat-inline-center ml-3">
-        <i class="material-icons">add</i> {{ ucwords(__('monkcommerce-dashboard.categories.create_subcategory')) }}
-      </a>
-      <!-- show in shop -->
-      <a href="{{ route('monk-shop-single-category', $category->slug )}}" class="btn btn-sm btn-outline-secondary mat-inline-center ml-3 mr-3" target="_blank">
-        {{ ucwords(__('monkcommerce-dashboard.general-words.show_in_shop')) }}<i class="material-icons">open_in_new</i>
-      </a>
-      <!-- Delete Category -->
-      <a href="{{ route('monk-admin-destroy-category', $category->id) }}" class="btn btn-sm btn-danger mat-inline-center">
-        <i class="material-icons">delete_forever</i> {{ ucwords(__('monkcommerce-dashboard.general-words.delete')) }}
-      </a>
-    <ul>
-    @foreach ($category->productChildrenCategories as $childCategory)
-        @include('monkcommerce::monkcommerce-dashboard.admin.partials._child_category', ['child_category' => $childCategory])
-    @endforeach
-    </ul>
-@endforeach
-</ul>
-
-{{-- @foreach ($productCategories as $category)
-<div class="accordion" id="accordion{{ $category->name }}">
-  <div class="card">
-    <div class="card-header" id="heading{{ $category->name }}">
-      <!-- Header -->
-      <div class="d-flex justify-content-start">
-        <h2 class="mb-0">
-          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ $category->name }}" aria-expanded="true" aria-controls="collapse{{ $category->name }}">
-            {{ $category->name }}
-          </button>
-        </h2>
+<div class="pb-4 pt-3">
+  <div class="form-row ml-1">
+    <div class="col">
+      @foreach ($productCategories as $category)
+      <b>{{ $category->name }}</b>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="{{ route('monk-admin-edit-category', $category->id) }}" class="btn btn-sm btn-info mat-inline-center"><i class="material-icons">edit</i>{{ ucwords(__('monkcommerce-dashboard.general-words.edit')) }}</a>
+        <a href="{{ route('monk-admin-create-category', ['parentCat' => $category->id])}}" class="btn btn-sm btn-success mat-inline-center"><i class="material-icons">add</i> {{ ucwords(__('monkcommerce-dashboard.categories.create_subcategory')) }}</a>
+        <a href="{{ route('monk-shop-single-category', $category->slug )}}" class="btn btn-sm btn-outline-secondary mat-inline-center">{{ ucwords(__('monkcommerce-dashboard.general-words.show_in_shop')) }}<i class="material-icons">open_in_new</i></a>
+        <a href="{{ route('monk-admin-destroy-category', $category->id) }}" class="btn btn-sm btn-danger"><i class="material-icons">delete_forever</i> {{ ucwords(__('monkcommerce-dashboard.general-words.delete')) }}</a>
       </div>
 
-      <!-- Buttons -->
-      <div class="d-flex justify-content-end">
-        <!-- edit -->
-        <a href="{{ route('monk-admin-edit-category', $category->id) }}" class="btn btn-sm btn-info mat-inline-center">
-          <i class="material-icons">edit</i>{{ ucwords(__('monkcommerce-dashboard.general-words.edit')) }}
-        </a>
-        <!-- create subcategory -->
-        <a href="{{ route('monk-admin-create-category', ['parentCat' => $category->id] )}}" class="btn btn-sm btn-success mat-inline-center ml-3">
-          <i class="material-icons">add</i> {{ ucwords(__('monkcommerce-dashboard.categories.create_subcategory')) }}
-        </a>
-        <!-- show in shop -->
-        <a href="{{ route('monk-shop-single-category', $category->slug )}}" class="btn btn-sm btn-outline-secondary mat-inline-center ml-3 mr-3" target="_blank">
-          {{ ucwords(__('monkcommerce-dashboard.general-words.show_in_shop')) }}<i class="material-icons">open_in_new</i>
-        </a>
-        <!-- Delete Category -->
-        <a href="#" class="btn btn-sm btn-danger mat-inline-center">
-          <i class="material-icons">delete_forever</i> {{ ucwords(__('monkcommerce-dashboard.general-words.delete')) }}
-        </a>
-      </div>
-    </div> <!-- /.card-header -->
-  </div> <!-- /.card -->
+        @foreach ($category->productChildrenCategories as $childCategory)
+            @include('monkcommerce::monkcommerce-dashboard.admin.partials._child_category', ['child_category' => $childCategory])
+        @endforeach
 
-  <!-- accordion Content / Subcategories -->
-  <div id="collapse{{ $category->name }}" class="collapse" aria-labelledby="heading{{ $category->name }}" data-parent="#accordion{{ $category->name }}">
-    @foreach ($category->productChildrenCategories as $childCategory)
-        @include('monkcommerce::monkcommerce-dashboard.admin.partials._child_category', ['child_category' => $childCategory])
-    @endforeach
+      @endforeach
+    </div>
   </div>
-</div> <!-- /.accordion -->
-@endforeach --}}
-
+</div>
 
 <!-- Pagination -->
 {{-- <div class="row pt-3">

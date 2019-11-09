@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductcategory;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
 use KasperKloster\MonkCommerce\Models\MonkCommerceStaticPages;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
+
+
 
 class MonkStorefrontController extends Controller
 {
@@ -29,7 +33,20 @@ class MonkStorefrontController extends Controller
 
     public function getSingleProduct(Request $request, $slug)
     {
+
       $product = MonkCommerceProduct::where('slug', $slug)->with('productCategories')->with('attributeValues')->first();
+      //$attr = MonkCommerceProductAttribute::with('attributeValues')->get();
+      $value = MonkCommerceProductAttributeValue::with('attributes')->get();
+
+      // foreach($value as $val)
+      // {
+      //   foreach($val->attributes as $att)
+      //   {
+      //       return $att->name;
+      //   }
+      // }
+      // return $value;
+
       return view('monkcommerce::monkcommerce-storefront.shop.products.single_product')
             ->with('product', $product);
     }

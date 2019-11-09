@@ -14,6 +14,8 @@ class MonkCommerceProductAttribute extends Model
   // Name of the Table
   protected $table = 'mc_prod_attr';
 
+  public $timestamps = false;
+
   /*
   * Relationships
   */
