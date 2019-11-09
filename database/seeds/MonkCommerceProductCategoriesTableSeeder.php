@@ -12,7 +12,7 @@ class MonkCommerceProductCategoriesTableSeeder extends Seeder
     public function run()
     {
       // Categories
-      \DB::table('monkcommerce_product_categories')->insert(array (
+      \DB::table('mc_product_categories')->insert(array (
           0 =>
           array (
               'name'         => 'Main Category',

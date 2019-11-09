@@ -13,7 +13,7 @@ class MonkcommerceCreateCategoryProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('monkcommerce_category_product', function (Blueprint $table) {
+        Schema::create('mc_category_product', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('category_id')->unsigned();
           $table->integer('product_id')->unsigned();
@@ -27,6 +27,6 @@ class MonkcommerceCreateCategoryProductTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('monkcommerce_category_product');
+        Schema::dropIfExists('mc_category_product');
     }
 }

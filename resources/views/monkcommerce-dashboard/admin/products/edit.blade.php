@@ -39,6 +39,27 @@
       </div>
     </div>
 
+    @forelse($productAttributes as $attr)
+    <div class="form-group">
+      <label for="productAttr">{{$attr->name}}</label>
+      <select class="form-control" name="productAttr[]">
+        @foreach($attr->attributeValues as $value)
+          <option value="{{ $value->id }}"
+          @forelse($product->attributeValues as $attr)
+            @if($value->id == $attr->id)
+              selected
+            @endif
+          @empty
+            ''
+          @endforelse
+            >{{$value->value}}</option>
+        @endforeach
+      </select>
+    </div>
+    @empty
+    <div></div>
+    @endforelse
+
     <div class="form-group">
       <label for="productCategories">{{ ucwords(__('monkcommerce-dashboard.categories.categories')) }}</label>
       <select multiple class="form-control" id="productCategories" name="productCategories[]" required>
@@ -68,7 +89,7 @@
 
     <div class="form-group row pt-3">
       <div class="col">
-        <button class="btn btn-success" type="submit">{{ ucwords(__('monkcommerce-dashboard.products.create_product')) }}</button>
+        <button class="btn btn-success" type="submit">{{ ucwords(__('monkcommerce-dashboard.general-words.update')) }}</button>
         <button class="btn btn-outline-secondary" type="reset">{{ ucwords(__('monkcommerce-dashboard.general-words.reset')) }}</button>
       </div>
     </div>

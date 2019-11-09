@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class MonkCommerceShop extends Model
 {
   // Name of the Table
-  protected $table = 'monkcommerce_shop_informations';
+  protected $table = 'mc_shop_informations';
 }

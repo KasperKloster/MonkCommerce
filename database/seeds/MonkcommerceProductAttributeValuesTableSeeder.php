@@ -16,28 +16,28 @@ class MonkcommerceProductAttributeValuesTableSeeder extends Seeder
           // Create size attribute values
           0 =>
           array (
-            'value'             =>  'small',
+            'value'             =>  'Small',
           ),
           1 =>
           array (
-            'value'             =>  'medium',
+            'value'             =>  'Medium',
           ),
           2 =>
           array (
-            'value'             =>  'large',
+            'value'             =>  'Large',
           ),
           // Create Color attribute values
           3 =>
           array (
-            'value'             =>  'black',
+            'value'             =>  'Black',
           ),
           4 =>
           array (
-            'value'             =>  'white',
+            'value'             =>  'White',
           ),
           5 =>
           array (
-            'value'             =>  'red',
+            'value'             =>  'Red',
           ),
       ));
     }

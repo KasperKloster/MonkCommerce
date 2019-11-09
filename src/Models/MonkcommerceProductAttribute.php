@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
+
 
 class MonkCommerceProductAttribute extends Model
 {
@@ -19,4 +21,9 @@ class MonkCommerceProductAttribute extends Model
   {
     return $this->belongsToMany(MonkCommerceProductAttributeValue::class, 'mc_prod_attr_prod_values', 'product_attribute_id', 'product_attribute_value_id');
   }
+
+  // public function products()
+  // {
+  //   return $this->hasManyThrough(MonkCommerceProduct::class, MonkCommerceProductAttributeValue::class);
+  // }
 }

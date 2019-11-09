@@ -7,6 +7,7 @@
           'edit'           => 'edit',
           'delete'         => 'delete',
           'back'           => 'back',
+          'update'         => 'update',
           'reset'          => 'reset',
           'show_in_shop'   => 'show in shop',
           'name'           => 'name',

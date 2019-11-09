@@ -5,11 +5,13 @@ namespace KasperKloster\MonkCommerce\Models;
 use Illuminate\Database\Eloquent\Model;
 // Models
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductCategory;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
 
 class MonkCommerceProduct extends Model
 {
   // Name of the Table
-  protected $table = 'monkcommerce_products';
+  protected $table = 'mc_products';
 
   protected $fillable = [
       'sku',
@@ -28,13 +30,20 @@ class MonkCommerceProduct extends Model
   // Product Categories
   public function productCategories()
   {
-    return $this->belongsToMany(MonkCommerceProductCategory::class, 'monkcommerce_category_product', 'product_id', 'category_id');
-
-    //public BelongsToMany belongsToMany(
-    // string $related,
-    // string $table = null,
-    // string $foreignKey = null,
-    // string $otherKey = null,
-    // string $relation = null)
+    return $this->belongsToMany(MonkCommerceProductCategory::class, 'mc_category_product', 'product_id', 'category_id');
   }
+
+  // Attributes Values
+  public function attributeValues()
+  {
+    return $this->belongsToMany(MonkCommerceProductAttributeValue::class, 'mc_prod_attr_value_prod', 'product_id', 'product_attribute_value_id');
+  }
+
+  // Attribute
+  // public function attribute()
+  // {
+  //   return $this->hasManyThrough(MonkCommerceProduct::class, MonkCommerceProductAttributeValue::class);
+  // }
+
+
 }

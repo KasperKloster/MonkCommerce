@@ -12,6 +12,7 @@
           'reset'           => 'nulstil',
           'delete'          => 'slet',
           'back'            => 'tilbage',
+          'update'          => 'opdater',
           'show_in_shop'    => 'vis i shop',
           'name'            => 'navn',
           'description'     => 'beskrivelse',

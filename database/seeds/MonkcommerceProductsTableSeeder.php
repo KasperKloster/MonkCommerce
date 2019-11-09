@@ -12,7 +12,7 @@ class MonkcommerceProductsTableSeeder extends Seeder
     public function run()
     {
       // Products
-      \DB::table('monkcommerce_products')->insert(array (
+      \DB::table('mc_products')->insert(array (
           0 =>
           array (
               'sku'           => 'AB00-00',

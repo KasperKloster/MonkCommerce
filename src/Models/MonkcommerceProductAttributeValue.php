@@ -19,4 +19,9 @@ class MonkCommerceProductAttributeValue extends Model
   {
     return $this->hasMany(MonkCommerceProductAttribute::class, 'mc_prod_attr_prod_values');
   }
+
+  public function products()
+  {
+    return $this->hasMany(MonkCommerceProduct::class, 'mc_prod_attr_value_prod');
+  }
 }

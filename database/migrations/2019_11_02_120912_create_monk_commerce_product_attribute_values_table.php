@@ -16,7 +16,6 @@ class CreateMonkCommerceProductAttributeValuesTable extends Migration
         Schema::create('mc_prod_attr_values', function (Blueprint $table) {
             $table->increments('id');
             $table->string('value')->nullable();
-            $table->timestamps();
         });
     }
 

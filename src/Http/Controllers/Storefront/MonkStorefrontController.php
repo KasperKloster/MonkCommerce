@@ -29,7 +29,7 @@ class MonkStorefrontController extends Controller
 
     public function getSingleProduct(Request $request, $slug)
     {
-      $product = MonkCommerceProduct::where('slug', $slug)->with('productCategories')->first();
+      $product = MonkCommerceProduct::where('slug', $slug)->with('productCategories')->with('attributeValues')->first();
       return view('monkcommerce::monkcommerce-storefront.shop.products.single_product')
             ->with('product', $product);
     }

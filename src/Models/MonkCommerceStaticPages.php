@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MonkCommerceStaticPages extends Model
 {
-    protected $table = 'monkcommerce_static_pages';
+    protected $table = 'mc_static_pages';
 
     //  mass-assignable
     protected $fillable = [

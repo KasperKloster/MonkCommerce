@@ -4,10 +4,6 @@
 
 @extends('monkcommerce::monkcommerce-dashboard.layouts.dashboard-form')
 
-  @section('header')
-
-  @stop
-
 @section('page-content')
 <div class="card">
   <div class="card-header">
@@ -47,6 +43,20 @@
         <input type="text" class="form-control" id="productSpecialPrice" name="productSpecialPrice" placeholder="199">
       </div>
     </div>
+
+    @forelse($productAttributes as $attr)
+    <div class="form-group">
+      <label for="productAttr">{{$attr->name}}</label>
+      <select class="form-control" name="productAttr[]">
+        <option>Select</option>
+        @foreach($attr->attributeValues as $value)
+          <option value="{{$value->id}}">{{$value->value}}</option>
+        @endforeach
+      </select>
+    </div>
+    @empty
+    <div></div>
+    @endforelse
 
     <div class="form-group">
       <label for="productCategories">{{ ucwords(__('monkcommerce-dashboard.categories.categories')) }}</label>

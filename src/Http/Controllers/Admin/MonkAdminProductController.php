@@ -11,6 +11,9 @@ use Session;
 // Models
 use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductCategory;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
+
 
 class MonkAdminProductController extends Controller
 {
@@ -34,7 +37,11 @@ class MonkAdminProductController extends Controller
     public function create()
     {
       $productCategories = MonkCommerceProductCategory::all();
-      return view('monkcommerce::monkcommerce-dashboard.admin.products.create')->with('productCategories', $productCategories);
+      $productAttributes = MonkCommerceProductAttribute::with('attributeValues')->get();
+
+      return view('monkcommerce::monkcommerce-dashboard.admin.products.create')
+              ->with('productCategories', $productCategories)
+              ->with('productAttributes', $productAttributes);
     }
 
     /**
@@ -49,13 +56,14 @@ class MonkAdminProductController extends Controller
       * Validate
       */
       $request->validate([
-        'productName'         => 'required|min:1|max:255|unique:monkcommerce_products,name',
-        'productSku'          => 'required|unique:monkcommerce_products,sku',
+        'productName'         => 'required|min:1|max:255|unique:mc_products,name',
+        'productSku'          => 'required|unique:mc_products,sku',
         'productQty'          => 'required|integer',
         'productPrice'        => 'required',
         'productSpecialPrice' => 'nullable',
         'productDescription'  => 'nullable',
         'productInStock'      => 'nullable|max:2',
+        'productAttr'         => 'nullable|array',
         'productCategories'   => 'required|array',
       ]);
 
@@ -83,6 +91,16 @@ class MonkAdminProductController extends Controller
       $product->in_stock      = $request->productInStock;
       $product->save();
 
+      // Attach attributes
+      // for ($i = 0; $i < count($request->productAttr); $i++)
+      // {
+      //   $attrValue = MonkCommerceProductAttributeValue::find($request->productAttr[$i]);
+      //   $product->attributeValues()->attach($attrValue);
+      // }
+
+      $attrValue = MonkCommerceProductAttributeValue::find($request->productAttr);
+      $product->attributeValues()->attach($attrValue);
+
       // Attach Product to Categorie(s)
       $productCategory = MonkCommerceProductCategory::find($request->productCategories);
       $product->productCategories()->attach($productCategory);
@@ -94,17 +112,6 @@ class MonkAdminProductController extends Controller
       return Redirect::route('monk-admin-products-home');
     }
 
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show($id)
-    // {
-    //     //
-    // }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -115,9 +122,12 @@ class MonkAdminProductController extends Controller
     {
       $product = MonkCommerceProduct::find($id);
       $productCategories = MonkCommerceProductCategory::all();
+      $productAttributes = MonkCommerceProductAttribute::with('attributeValues')->get();
+
       return view('monkcommerce::monkcommerce-dashboard.admin.products.edit')
               ->with('product', $product)
-              ->with('productCategories', $productCategories);
+              ->with('productCategories', $productCategories)
+              ->with('productAttributes', $productAttributes);
     }
 
     /**
@@ -133,8 +143,8 @@ class MonkAdminProductController extends Controller
       * Validate
       */
       $request->validate([
-        'productName'         => 'required|min:1|max:255|unique:monkcommerce_products,name,' . $request->id,
-        //'productSku'          => 'required|unique:monkcommerce_products,sku,' . $request->productSku,
+        'productName'         => 'required|min:1|max:255|unique:mc_products,name,' . $request->id,
+        //'productSku'          => 'required|unique:mc_products,sku,' . $request->productSku,
         'productQty'          => 'required|integer',
         'productPrice'        => 'required',
         'productSpecialPrice' => 'nullable',
@@ -191,6 +201,8 @@ class MonkAdminProductController extends Controller
       $product = MonkCommerceProduct::find($id);
       // Detach products from all categories
       $product->productCategories()->detach();
+      // Detach attributes
+      $product->attributeValues()->detach();
       // Delete the product
       $product->destroy($id);
 

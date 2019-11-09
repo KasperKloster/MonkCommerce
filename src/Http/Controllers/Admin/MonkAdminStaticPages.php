@@ -46,7 +46,7 @@ class MonkAdminStaticPages extends Controller
     {
       // Validation
       $request->validate([
-        'pageName'        => 'required|string|max:150|unique:monkcommerce_static_pages,name',
+        'pageName'        => 'required|string|max:150|unique:mc_static_pages,name',
         'pageDescription' => 'required|string',
         'showInMenu'      => 'nullable',
       ]);
@@ -102,7 +102,7 @@ class MonkAdminStaticPages extends Controller
     {
       // Validation
       $request->validate([
-        'pageName'        => 'required|string|max:150|unique:monkcommerce_static_pages,name',
+        'pageName'        => 'required|string|max:150|unique:mc_static_pages,name',
         'pageDescription' => 'required|string',
         'showInMenu'      => 'nullable',
       ]);

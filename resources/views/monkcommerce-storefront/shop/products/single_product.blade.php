@@ -46,5 +46,16 @@
       </li>
       @endforeach
     </ul>
+
+    <h3>Attributes</h3>
+    <ul>
+      @forelse($product->attributeValues as $attr)
+        {{ $attr }}
+        {{ $attr->value }}
+
+      @empty
+        <li></li>
+      @endforelse
+    </ul>
   </div>
   @stop

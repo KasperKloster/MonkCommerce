@@ -13,7 +13,7 @@ class CreateMonkcommerceStaticPages extends Migration
      */
     public function up()
     {
-        Schema::create('monkcommerce_static_pages', function (Blueprint $table) {
+        Schema::create('mc_static_pages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('slug');
@@ -30,6 +30,6 @@ class CreateMonkcommerceStaticPages extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('monkcommerce_static_pages');
+        Schema::dropIfExists('mc_static_pages');
     }
 }

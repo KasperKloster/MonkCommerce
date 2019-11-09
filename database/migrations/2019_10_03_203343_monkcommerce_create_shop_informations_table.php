@@ -13,7 +13,7 @@ class MonkCommerceCreateShopInformationsTable extends Migration
      */
     public function up()
     {
-      Schema::create('monkcommerce_shop_informations', function (Blueprint $table) {
+      Schema::create('mc_shop_informations', function (Blueprint $table) {
           $table->increments('id');
           $table->string('shop_name')->nullable();
           $table->string('street_address')->nullable()->comment('eg: 1901 Lemur Ave');
@@ -32,7 +32,7 @@ class MonkCommerceCreateShopInformationsTable extends Migration
       });
 
       // Insert init. row
-      DB::table('monkcommerce_shop_informations')->insert(
+      DB::table('mc_shop_informations')->insert(
         array(
          'shop_name' => config('app.name'),
          'url'       => config('app.url')
@@ -48,6 +48,6 @@ class MonkCommerceCreateShopInformationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('monkcommerce_shop_informations');
+        Schema::dropIfExists('mc_shop_informations');
     }
 }

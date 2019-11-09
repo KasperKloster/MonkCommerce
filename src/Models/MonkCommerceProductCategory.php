@@ -10,7 +10,7 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
 class MonkCommerceProductCategory extends Model
 {
     // Name of the Table
-    protected $table = 'monkcommerce_product_categories';
+    protected $table = 'mc_product_categories';
 
     // protected $fillable = [
     //     'category_name',
@@ -35,7 +35,7 @@ class MonkCommerceProductCategory extends Model
     // Products
     public function products()
     {
-      return $this->belongsToMany(MonkCommerceProduct::class, 'monkcommerce_category_product', 'category_id', 'product_id');
+      return $this->belongsToMany(MonkCommerceProduct::class, 'mc_category_product', 'category_id', 'product_id');
     }
 
     //public BelongsToMany belongsToMany(

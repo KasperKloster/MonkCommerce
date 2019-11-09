@@ -61,7 +61,7 @@ class MonkAdminProductCategoryController extends Controller
         * Validate
         */
         $request->validate([
-          'categoryName'          => 'required|min:1|max:40|unique:monkcommerce_product_categories,name',
+          'categoryName'          => 'required|min:1|max:40|unique:mc_product_categories,name',
           'categoryDescription'   => 'nullable|max:1000',
           'showInMenu'            => 'nullable',
           'mainCategory'          => 'nullable|integer'
@@ -122,7 +122,7 @@ class MonkAdminProductCategoryController extends Controller
         * Validate
         */
         $request->validate([
-          'categoryName'          => 'required|min:1|max:40|unique:monkcommerce_product_categories,name,' . $request->id,
+          'categoryName'          => 'required|min:1|max:40|unique:mc_product_categories,name,' . $request->id,
           'categoryDescription'   => 'nullable|max:1000',
           'showInMenu'            => 'nullable|max:2',
           'mainCategory'          => 'nullable|integer'

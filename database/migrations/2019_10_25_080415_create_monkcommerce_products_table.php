@@ -13,8 +13,8 @@ class CreateMonkCommerceProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('monkcommerce_products', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('mc_products', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('sku')->unique();
             $table->string('name');
             $table->string('slug')->unique()->nullable();
@@ -34,6 +34,6 @@ class CreateMonkCommerceProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('monk_commerce_products');
+        Schema::dropIfExists('mc_products');
     }
 }

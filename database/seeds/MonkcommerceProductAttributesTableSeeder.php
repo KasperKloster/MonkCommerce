@@ -24,17 +24,6 @@ class MonkcommerceProductAttributesTableSeeder extends Seeder
           'name'          =>  'Color',
           'slug'          =>  'color',
         ),
-        2 =>
-        array (
-          'name'          =>  'Material',
-          'slug'          =>  'material',
-        ),
-        3 =>
-        array (
-          'name'          =>  'Brand',
-          'slug'          =>  'brand',
-        ),
-
       ));
     }
 }

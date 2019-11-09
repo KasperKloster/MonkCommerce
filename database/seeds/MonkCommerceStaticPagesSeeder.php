@@ -11,7 +11,7 @@ class MonkCommerceStaticPagesSeeder extends Seeder
      */
     public function run()
     {
-      \DB::table('monkcommerce_static_pages')->insert(array (
+      \DB::table('mc_static_pages')->insert(array (
           0 =>
           array (
               'name'           => 'About',
