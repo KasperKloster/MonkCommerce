@@ -16,9 +16,9 @@ class CreateMonkcommerceProductAttrProductAttrValuesTable extends Migration
         Schema::create('mc_prod_attr_prod_values', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('product_attribute_id')->unsigned();
-          $table->foreign('product_attribute_id')->references('id')->on('mc_prod_attr');
+          $table->foreign('product_attribute_id')->references('id')->on('mc_prod_attr')->onDelete('cascade');
           $table->integer('product_attribute_value_id')->unsigned();
-          $table->foreign('product_attribute_value_id')->references('id')->on('mc_prod_attr_values');
+          $table->foreign('product_attribute_value_id')->references('id')->on('mc_prod_attr_values')->onDelete('cascade');
         });
     }
 
