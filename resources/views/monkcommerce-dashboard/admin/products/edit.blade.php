@@ -41,7 +41,7 @@
         </div>
         <div class="col">
           <label for="productSpecialPrice">{{ ucwords(__('monkcommerce-dashboard.general-words.special_price')) }}</label>
-          <input type="text" class="form-control" id="productSpecialPrice" name="productSpecialPrice" value="{{ $product->special_price }}" required>
+          <input type="text" class="form-control" id="productSpecialPrice" name="productSpecialPrice" value="{{ $product->special_price }}">
         </div>
       </div>
 
@@ -92,11 +92,23 @@
           <div class="card-deck">
             @forelse($product->images as $image)
             <div class="card">
-            <img src="{{ url('monkcommerce/images/products/' . $product->id . '/' . $image->filename) }}" class="card-img-top">
-            <input type="hidden" value="{{ $image->filename }}" name="orgImages[{{$image->id}}]">
-              <div class="card-footer">
-                {{ $image->filename }}
-                <button class="btn btn-danger btn-sm mat-inline-center removeImg"><i class="material-icons">delete_forever</i></button>
+              <div class="card-header">
+                <div class="float-right">
+                  <button class="btn btn-danger btn-sm mat-inline-center removeImg"><i class="material-icons">delete_forever</i></button>
+                </div>
+              </div>
+
+              <img src="{{ url('monkcommerce/images/products/' . $product->id . '/' . $image->filename) }}" class="card-img-top">
+              <input type="hidden" value="{{ $image->filename }}" name="orgImages[{{$image->id}}]">
+              <div class="card-footer p-4">
+                <div class="form-group">
+                  <input type="radio" value="{{ $image->id }}" name="mainImg"
+                  @if ($image->main_image == TRUE)
+                    checked
+                  @endif
+                  >
+                  <label class="form-check-label" for="exampleCheck1"><small>Main Image</small></label>
+                </div>
               </div>
             </div>
             @empty

@@ -54,6 +54,7 @@ class MonkAdminProductController extends Controller
      */
     public function store(Request $request)
     {
+
       /*
       * Validate
       */
@@ -68,14 +69,6 @@ class MonkAdminProductController extends Controller
         'productCategories'   => 'required|array',
         'filename.*'          => 'file|image|max:5000',
       ]);
-
-      // if (request()->hasFile('filename'))
-      // {
-      //
-      //   //   request()->validate([
-      //   //     $image => 'file|image|max:5000',
-      //   //   ]);
-      // }
 
       /*
       * Create/Store Product
@@ -108,19 +101,28 @@ class MonkAdminProductController extends Controller
       $product->productCategories()->attach($productCategory);
 
       // Store Image(s)
-      // IF EMPTY
       if (request()->hasFile('filename'))
       {
+        $i = 0;
         foreach($request->file('filename') as $image)
         {
-          // ImgName and public_folder
-          $orgImgName = Str::snake($image->getClientOriginalName());
-          $image->move(public_path(). '/monkcommerce/images/products/' . $product->id . '/', $orgImgName);
+          // ImgName and folder
+          $imgExt = $image->getClientOriginalExtension();
+          $newImgName = strtolower($request->productSku . '-' . Str::snake($request->productName) . '-' . $i . '-' . time() . '.' . $imgExt);
+          $destinationPath = public_path('/monkcommerce/images/products/' . $product->id . '/');
+          $image->move($destinationPath, $newImgName);
+
           // Create to DB
           $imageModel = new MonkCommerceProductImage;
           $imageModel->product_id = $product->id;
-          $imageModel->filename   = $orgImgName;
+          $imageModel->filename   = $newImgName;
+          if($i == 0)
+          {
+            $imageModel->main_image = TRUE;
+          }
           $imageModel->save();
+
+          $i++;
         }
       }
 
@@ -232,22 +234,39 @@ class MonkAdminProductController extends Controller
             $dbImg->destroy($id);
           }
         }
+        // Main Image
+        // Set old Main Image as NULL
+        $oldMainImg = MonkCommerceProductImage::where('main_image', TRUE)->where('product_id', $id)->first();
+        $oldMainImg->update(['main_image' => FALSE]);
+        // Set Main Image
+        $newMainImg = MonkCommerceProductImage::findOrFail($request->mainImg);
+        $newMainImg->update(['main_image' => TRUE]);
       }
 
       // New uploaded images
       // Store Image(s)
       if (request()->hasFile('filename'))
       {
+        $i = 0;
         foreach($request->file('filename') as $image)
         {
-          // ImgName and public_folder
-          $orgImgName = Str::snake($image->getClientOriginalName());
-          $image->move(public_path(). '/monkcommerce/images/products/' . $product->id . '/', $orgImgName);
+          // ImgName and folder
+          $imgExt = $image->getClientOriginalExtension();
+          $newImgName = strtolower($request->productSku . '-' . Str::snake($request->productName) . '-' . $i . '-' . time() . '.' . $imgExt);
+          $destinationPath = public_path('/monkcommerce/images/products/' . $product->id . '/');
+          $image->move($destinationPath, $newImgName);
+
           // Create to DB
           $imageModel = new MonkCommerceProductImage;
           $imageModel->product_id = $product->id;
-          $imageModel->filename   = $orgImgName;
+          $imageModel->filename   = $newImgName;
+          if($i == 0)
+          {
+            $imageModel->main_image = TRUE;
+          }
           $imageModel->save();
+
+          $i++;
         }
       }
 

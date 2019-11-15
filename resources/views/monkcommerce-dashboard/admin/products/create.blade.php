@@ -70,21 +70,20 @@
         </select>
       </div>
 
-      {{-- <div class="form-group">
-        <label for="filename">{{ ucwords(__('monkcommerce-dashboard.products.images')) }}</label>
-        <input type="file" class="form-control-file" name="filename[]">
-      </div> --}}
-
-
+      <!-- images -->
       <div id="valueGroup">
-        <div class="form-row">
-          <label for="filename">{{ ucwords(__('monkcommerce-dashboard.products.image')) }}</label>
-          <div class="col">
-            <input type="file" class="form-control-file" name="filename[]">
-          </div>
-          <div class="col">
-            <button class="btn btn-primary addBtn">{{ ucwords(__('monkcommerce-dashboard.general-words.add')) }}</button>
-            <button class="btn btn-warning removeBtn">{{ ucwords(__('monkcommerce-dashboard.general-words.remove')) }}</button>
+        <div class="form-group">
+          <label aria-describedby="imageHelpBlock">{{ ucwords(__('monkcommerce-dashboard.products.image')) }}</label>
+          <small id="imageHelpBlock" class="form-text text-muted">Main image will be used as the first image and thumbnail</small>
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="inputGroupFile02" name="filename[]"/>
+              <label class="custom-file-label mat-inline-center" for="inputGroupFile02"><i class="material-icons">folder_open</i>Choose file</label>
+            </div>
+            <div class="input-group-append">
+              <button class="btn btn-primary addBtn">{{ ucwords(__('monkcommerce-dashboard.general-words.add')) }}</button>
+              <button class="btn btn-warning removeBtn" type="button" id="inputGroupFileAddon04">{{ ucwords(__('monkcommerce-dashboard.general-words.remove')) }}</button>
+            </div>
           </div>
         </div>
       </div>
@@ -105,20 +104,44 @@
 
 @section('scripts')
 <script>
-// Add Btn
+// FileName (Input)
+$(function($) {
+  $(document).on('change', '.custom-file-input', function(event) {
+    event.preventDefault();
+    var fileName = $(this).val();
+    $(this).next('.custom-file-label').html(fileName);
+    console.log(fileName);
+  });
+});
+
+// Add Input Btn
 $(function($) {
   $(document).on('click', '.addBtn', function(event) {
     event.preventDefault();
     var target = $(event.target).closest('#valueGroup');
-    target.append("<div class='form-row mt-2'><label for='filename'>{{ ucwords(__('monkcommerce-dashboard.products.image')) }}</label><div class='col'><input type='file' class='form-control-file' name='filename[]'></div><div class='col'><button class='btn btn-primary addBtn mr-1'>{{ ucwords(__('monkcommerce-dashboard.general-words.add')) }}</button><button class='btn btn-warning removeBtn'>{{ ucwords(__('monkcommerce-dashboard.general-words.remove')) }}</button></div></div>");
+
+    target.append(
+      '<div class="input-group mb-3">' +
+        '<div class="custom-file">' +
+          '<input type="file" class="custom-file-input id="inputGroupFile02" name="filename[]" />' +
+          '<label class="custom-file-label mat-inline-center" for="inputGroupFile02"><i class="material-icons">folder_open</i>Choose file</label>' +
+        '</div>' +
+        '<div class="input-group-append">' +
+          '<button class="btn btn-primary addBtn">{{ ucwords(__('monkcommerce-dashboard.general-words.add')) }}</button>' +
+          '<button class="btn btn-warning removeBtn" type="button" id="inputGroupFileAddon04">{{ ucwords(__('monkcommerce-dashboard.general-words.remove')) }}</button>' +
+        '</div>' +
+      '</div>'
+    );
   });
 });
-// Remove BTN
+
+// Remove Input BTN
 $(function($) {
   $(document).on('click', '.removeBtn', function(event) {
     event.preventDefault();
-    var target = $(event.target).closest('.form-row').remove();
+    var target = $(event.target).closest('.input-group').remove();
   });
 });
+
 </script>
 @stop

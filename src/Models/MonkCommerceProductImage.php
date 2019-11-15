@@ -10,10 +10,16 @@ class MonkCommerceProductImage extends Model
 {
     protected $table = 'mc_prod_images';
 
+    protected $fillable = [
+        'product_id',
+        'filename',
+        'main_image',
+    ];
+
     /*
     * Relationships
     */
-    // 
+    //
     // public function products()
     // {
     //   return $this->belongsTo(MonkCommerceProduct::class);
