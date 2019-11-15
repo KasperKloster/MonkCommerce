@@ -12,6 +12,7 @@
     "name": "{{ $product->name }}",
     "description": "{{ $product->description }}",
     "sku": "{{ $product->sku }}",
+    "image": "#",
       "offers": {
       "@type": "Offer",
       "url": "{{ url()->current() }}",
@@ -33,7 +34,6 @@
       <li>{{ $product->price }} {{$storefrontShop->shopCurrency}}</li>
       <li>{{ $product->special_price }} {{$storefrontShop->shopCurrency}}</li>
       <li>{{ $product->qty }}</li>
-      <li>{{ $product->in_stock }}</li>
     </ul>
 
     <h3>Product Belongs to categories:</h3>
@@ -60,5 +60,10 @@
         <li>{{ $attrVal->value }}</li>
       @endforeach
     </ul>
+
+    <h3>Product Images</h3>
+    @foreach($product->images as $prodImage)
+      <img src="{{ url('monkcommerce/images/products/' . $product->id . '/' . $prodImage->filename) }}" alt="{{ $product->name }}" />
+    @endforeach
   </div>
   @stop

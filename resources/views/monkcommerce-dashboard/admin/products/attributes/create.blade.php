@@ -14,18 +14,18 @@
       @csrf
       <div class="form-group">
         <label for="attrName">{{ ucwords(__('monkcommerce-dashboard.general-words.name')) }}</label>
-        <input type="text" class="form-control" id="attrName" name="attrName" placeholder="{{ ucwords(__('monkcommerce-dashboard.general-words.name')) }}" required>
+        <input type="text" class="form-control" id="attrName" name="attrName" value="{{old('attrName')}}" placeholder="{{ ucwords(__('monkcommerce-dashboard.general-words.name')) }}" required>
       </div>
 
       <div id="valueGroup">
         <div class="form-row">
           <div class="col-md-1"></div>
           <div class="col">
-            <input type="text" class="form-control" id="attrValueName" name="attrValueName[]" placeholder="Value" required>
+            <input type="text" class="form-control" id="attrValueName" name="attrValueName[]" value="{{old('attrValueName')}}" placeholder="Value" required>
           </div>
           <div class="col">
-            <button class="btn btn-primary addBtn">Add</button>
-            <button class="btn btn-warning removeBtn">Remove</button>
+            <button class="btn btn-primary addBtn">{{ ucwords(__('monkcommerce-dashboard.general-words.add')) }}</button>
+            <button class="btn btn-warning removeBtn">{{ ucwords(__('monkcommerce-dashboard.general-words.remove')) }}</button>
           </div>
         </div>
       </div>

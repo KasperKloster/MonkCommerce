@@ -44,24 +44,26 @@ class MonkCommerceServiceProvider extends ServiceProvider
         // Migrations
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         // Publish Styles
-        $this->publishes([
-            __DIR__.'/../resources/assets/sass/monkcommerce-style.css' => public_path('monkcommerce/css/monkcommerce-style.css'),
-        ], 'monkcommerce');
-        $this->publishes([
-            __DIR__.'/../resources/assets/sass/monkcommerce-style.css.map' => public_path('monkcommerce/css/monkcommerce-style.css.map'),
-        ], 'monkcommerce');
+        // $this->publishes([
+        //     __DIR__.'/../resources/assets/sass/monkcommerce-style.css' => public_path('monkcommerce/css/monkcommerce-style.css'),
+        // ], 'monkcommerce');
+        // $this->publishes([
+        //     __DIR__.'/../resources/assets/sass/monkcommerce-style.css.map' => public_path('monkcommerce/css/monkcommerce-style.css.map'),
+        // ], 'monkcommerce');
 
         // Translations
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'monkcommerce');
         $this->publishes(
         [
-          __DIR__.'/../resources/lang' => resource_path('lang')
-        ], 'monkcommerce');
-
-        // Seeds
-        $this->publishes(
-        [
-          __DIR__.'/../database/seeds' => base_path('database/seeds')
+          // Translations
+          __DIR__.'/../resources/lang' => resource_path('lang'),
+          // Seeds
+          __DIR__.'/../database/seeds' => base_path('database/seeds'),
+          // Styles
+          __DIR__.'/../resources/assets/sass/monkcommerce-style.css' => public_path('monkcommerce/css/monkcommerce-style.css'),
+          __DIR__.'/../resources/assets/sass/monkcommerce-style.css.map' => public_path('monkcommerce/css/monkcommerce-style.css.map'),
+          // Product Images
+          __DIR__.'/../resources/images/' => public_path('monkcommerce/images/'),
         ], 'monkcommerce');
 
         // For all Views

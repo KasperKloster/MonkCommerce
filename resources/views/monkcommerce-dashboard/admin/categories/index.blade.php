@@ -22,7 +22,7 @@
         <a href="{{ route('monk-admin-edit-category', $category->id) }}" class="btn btn-sm btn-info mat-inline-center"><i class="material-icons">edit</i>{{ ucwords(__('monkcommerce-dashboard.general-words.edit')) }}</a>
         <a href="{{ route('monk-admin-create-category', ['parentCat' => $category->id])}}" class="btn btn-sm btn-success mat-inline-center"><i class="material-icons">add</i> {{ ucwords(__('monkcommerce-dashboard.categories.create_subcategory')) }}</a>
         <a href="{{ route('monk-shop-single-category', $category->slug )}}" class="btn btn-sm btn-outline-secondary mat-inline-center">{{ ucwords(__('monkcommerce-dashboard.general-words.show_in_shop')) }}<i class="material-icons">open_in_new</i></a>
-        <a href="{{ route('monk-admin-destroy-category', $category->id) }}" class="btn btn-sm btn-danger"><i class="material-icons">delete_forever</i> {{ ucwords(__('monkcommerce-dashboard.general-words.delete')) }}</a>
+        <a href="{{ route('monk-admin-destroy-category', $category->id) }}" class="btn btn-sm btn-danger mat-inline-center"><i class="material-icons">delete_forever</i> {{ ucwords(__('monkcommerce-dashboard.general-words.delete')) }}</a>
       </div>
 
         @foreach ($category->productChildrenCategories as $childCategory)

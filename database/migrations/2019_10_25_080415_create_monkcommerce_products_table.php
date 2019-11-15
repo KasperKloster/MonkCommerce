@@ -22,7 +22,6 @@ class CreateMonkCommerceProductsTable extends Migration
             $table->decimal('price')->nullable();
             $table->decimal('special_price')->nullable();
             $table->integer('qty')->nullable();
-            $table->boolean('in_stock')->nullable();
             $table->timestamps();
         });
     }

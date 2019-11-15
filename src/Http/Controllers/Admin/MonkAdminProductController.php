@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use Redirect;
 use Str;
 use Session;
+use Validator;
+use File;
 
 // Models
 use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductCategory;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
-
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductImage;
 
 class MonkAdminProductController extends Controller
 {
@@ -62,23 +64,21 @@ class MonkAdminProductController extends Controller
         'productPrice'        => 'required',
         'productSpecialPrice' => 'nullable',
         'productDescription'  => 'nullable',
-        'productInStock'      => 'nullable|max:2',
         'productAttr'         => 'nullable|array',
         'productCategories'   => 'required|array',
+        'filename.*'          => 'file|image|max:5000',
       ]);
 
-      // Getting Checkbox
-      if($request->productInStock == 'on')
-      {
-        $request->productInStock = 1;
-      }
-      else
-      {
-        $request->productInStock = NULL;
-      }
+      // if (request()->hasFile('filename'))
+      // {
+      //
+      //   //   request()->validate([
+      //   //     $image => 'file|image|max:5000',
+      //   //   ]);
+      // }
 
       /*
-      * Create Product
+      * Create/Store Product
       */
       $product = new MonkCommerceProduct;
       $product->sku           = $request->productSku;
@@ -88,15 +88,17 @@ class MonkAdminProductController extends Controller
       $product->price         = $request->productPrice;
       $product->special_price = $request->productSpecialPrice;
       $product->qty           = $request->productQty;
-      $product->in_stock      = $request->productInStock;
       $product->save();
 
       // Attach attributes
-      // for ($i = 0; $i < count($request->productAttr); $i++)
-      // {
-      //   $attrValue = MonkCommerceProductAttributeValue::find($request->productAttr[$i]);
-      //   $product->attributeValues()->attach($attrValue);
-      // }
+      $attr = $request->productAttr;
+      foreach($attr as $key => $value)
+      {
+        if ($value == 'NULL')
+        {
+          unset($attr[$key]);
+        }
+      }
 
       $attrValue = MonkCommerceProductAttributeValue::find($request->productAttr);
       $product->attributeValues()->attach($attrValue);
@@ -104,6 +106,23 @@ class MonkAdminProductController extends Controller
       // Attach Product to Categorie(s)
       $productCategory = MonkCommerceProductCategory::find($request->productCategories);
       $product->productCategories()->attach($productCategory);
+
+      // Store Image(s)
+      // IF EMPTY
+      if (request()->hasFile('filename'))
+      {
+        foreach($request->file('filename') as $image)
+        {
+          // ImgName and public_folder
+          $orgImgName = Str::snake($image->getClientOriginalName());
+          $image->move(public_path(). '/monkcommerce/images/products/' . $product->id . '/', $orgImgName);
+          // Create to DB
+          $imageModel = new MonkCommerceProductImage;
+          $imageModel->product_id = $product->id;
+          $imageModel->filename   = $orgImgName;
+          $imageModel->save();
+        }
+      }
 
       /*
       * Message and Redirect
@@ -120,7 +139,8 @@ class MonkAdminProductController extends Controller
      */
     public function edit($id)
     {
-      $product = MonkCommerceProduct::find($id);
+      $product = MonkCommerceProduct::where('id', $id)->with('images')->first();
+      //$product = MonkCommerceProduct::where('id', $id)->with('images')->get();
       $productCategories = MonkCommerceProductCategory::all();
       $productAttributes = MonkCommerceProductAttribute::with('attributeValues')->get();
 
@@ -149,19 +169,11 @@ class MonkAdminProductController extends Controller
         'productPrice'        => 'required',
         'productSpecialPrice' => 'nullable',
         'productDescription'  => 'nullable',
-        'productInStock'      => 'nullable|max:2',
+        'productAttr'         => 'nullable|array',
         'productCategories'   => 'required|array',
+        'filename.*'          => 'file|image|max:5000',
+        'orgImages'           => 'array',
       ]);
-
-      // Getting Checkbox
-      if($request->productInStock == 'on')
-      {
-        $request->productInStock = 1;
-      }
-      else
-      {
-        $request->productInStock = NULL;
-      }
 
       /*
       * Update Product
@@ -174,13 +186,70 @@ class MonkAdminProductController extends Controller
       $product->price         = $request->productPrice;
       $product->special_price = $request->productSpecialPrice;
       $product->qty           = $request->productQty;
-      $product->in_stock      = $request->productInStock;
       $product->update();
 
+      // If attribute is NULL, then it's select. Remove from Array
+      $attr = $request->productAttr;
+      foreach($attr as $key => $value)
+      {
+        if ($value == 'NULL')
+        {
+          unset($attr[$key]);
+        }
+      }
+      // Sync attributes
+      //$attrValue = MonkCommerceProductAttributeValue::find($request->productAttr);
+      $product->attributeValues()->sync($attr);
 
       // Sync Product to Categorie(s)
       //$productCategory = MonkCommerceProductCategory::find($request->productCategories);
       $product->productCategories()->sync($request->productCategories);
+
+      /*
+      * Images
+      */
+      // Compare and Find deleted images (Existing)
+      if (request()->has('orgImages'))
+      {
+        $dbImgs = MonkCommerceProductImage::select('id', 'filename')->where('product_id', $id)->get()->toArray();
+        //convert $dbImgs to indexed array
+        foreach ($dbImgs as $key => $value)
+        {
+          $dbImgArr[$value['id']] = $value['filename'];
+        }
+        // Find Difference between DB array and request array
+        $imgDifference = array_diff($dbImgArr, $request->orgImages);
+        // Delete diffences from from public_folder and DB
+        $image_path = public_path().'/monkcommerce/images/products/' . $id . '/';
+        foreach ($imgDifference as $id => $imgName)
+        {
+          if (File::exists($image_path . $imgName))
+          {
+            // Folder
+            File::delete($image_path . $imgName);
+            // DB
+            $dbImg = MonkCommerceProductImage::find($id);
+            $dbImg->destroy($id);
+          }
+        }
+      }
+
+      // New uploaded images
+      // Store Image(s)
+      if (request()->hasFile('filename'))
+      {
+        foreach($request->file('filename') as $image)
+        {
+          // ImgName and public_folder
+          $orgImgName = Str::snake($image->getClientOriginalName());
+          $image->move(public_path(). '/monkcommerce/images/products/' . $product->id . '/', $orgImgName);
+          // Create to DB
+          $imageModel = new MonkCommerceProductImage;
+          $imageModel->product_id = $product->id;
+          $imageModel->filename   = $orgImgName;
+          $imageModel->save();
+        }
+      }
 
       /*
       * Message and Redirect
@@ -203,7 +272,20 @@ class MonkAdminProductController extends Controller
       $product->productCategories()->detach();
       // Detach attributes
       $product->attributeValues()->detach();
-      // Delete the product
+      // Delete Images
+      foreach ($product->images as $image)
+      {
+        // Delete public_folder from Server
+        $image_path = public_path().'/monkcommerce/images/products/' . $product->id . '/';
+        if (File::exists($image_path))
+        {
+           File::deleteDirectory($image_path);
+        }
+        // Delete from DB
+        $image->destroy($image->id);
+      }
+
+      // Finally Delete the product
       $product->destroy($id);
 
       /*

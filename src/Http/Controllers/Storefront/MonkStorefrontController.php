@@ -34,18 +34,13 @@ class MonkStorefrontController extends Controller
     public function getSingleProduct(Request $request, $slug)
     {
 
-      $product = MonkCommerceProduct::where('slug', $slug)->with('productCategories')->with('attributeValues')->first();
-      //$attr = MonkCommerceProductAttribute::with('attributeValues')->get();
-      $value = MonkCommerceProductAttributeValue::with('attributes')->get();
+      $product = MonkCommerceProduct::where('slug', $slug)
+                  ->with('productCategories')
+                  ->with('attributeValues')
+                  ->with('images')
+                  ->first();
 
-      // foreach($value as $val)
-      // {
-      //   foreach($val->attributes as $att)
-      //   {
-      //       return $att->name;
-      //   }
-      // }
-      // return $value;
+      $value = MonkCommerceProductAttributeValue::with('attributes')->get();
 
       return view('monkcommerce::monkcommerce-storefront.shop.products.single_product')
             ->with('product', $product);

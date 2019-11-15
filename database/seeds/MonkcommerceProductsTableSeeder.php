@@ -22,7 +22,6 @@ class MonkcommerceProductsTableSeeder extends Seeder
               'price'         => '249',
               'special_price' => '199',
               'qty'           => '2',
-              'in_stock'      => TRUE,
           ),
       ));
     }

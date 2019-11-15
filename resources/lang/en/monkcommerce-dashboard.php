@@ -16,6 +16,8 @@
           'special_price'  => 'special price',
           'in_stock'       => 'in stock',
           'show_in_menu'   => 'show in menu',
+          'add'            => 'add',
+          'remove'         => 'remove',
         ],
         // Admin Sidebar Menu
         'left-panel' => [
@@ -56,7 +58,8 @@
           'product_name'        => 'product name',
           'quantity'            => 'quantity',
           'create_product'      => 'create product',
-          'edit_product'        => 'edit product'
+          'edit_product'        => 'edit product',
+          'image'               => 'image',
         ],
 
         'attr' => [

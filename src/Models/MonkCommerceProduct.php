@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductCategory;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductImage;
 
 class MonkCommerceProduct extends Model
 {
@@ -39,20 +40,9 @@ class MonkCommerceProduct extends Model
     return $this->belongsToMany(MonkCommerceProductAttributeValue::class, 'mc_prod_attr_value_prod', 'product_id', 'product_attribute_value_id');
   }
 
-  // Attribute
-  // public function attribute()
-  // {
-  //   return $this->hasManyThrough(MonkCommerceProductAttribute::class, MonkCommerceProductAttributeValue::class, 'some', 'id');
-  //
-  //     //     return $this->hasManyThrough(
-  //     //     Post::class,
-  //     //     User::class,
-  //     //     'country_id', // Foreign key on users table...
-  //     //     'user_id', // Foreign key on posts table...
-  //     //     'id', // Local key on countries table...
-  //     //     'id' // Local key on users table...
-  //     // );
-  // }
-
+  public function images()
+  {
+    return $this->hasMany(MonkCommerceProductImage::class, 'product_id');
+  }
 
 }

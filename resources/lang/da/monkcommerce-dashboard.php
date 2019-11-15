@@ -20,6 +20,8 @@
           'special_price'   => 'udsalgspris',
           'in_stock'        => 'på lager',
           'show_in_menu'    => 'vis i menu',
+          'add'             => 'tilføj',
+          'remove'          => 'fjern',
         ],
         // Admin Sidebar Menu
         'left-panel' => [
@@ -60,7 +62,8 @@
           'product_name'        => 'produkt navn',
           'quantity'            => 'antal',
           'create_product'      => 'opret produkt',
-          'edit_product'        => 'rediger produkt'
+          'edit_product'        => 'rediger produkt',
+          'image'               => 'billed',
         ],
 
         'attr' => [

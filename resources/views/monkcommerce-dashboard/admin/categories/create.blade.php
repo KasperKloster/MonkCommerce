@@ -16,7 +16,7 @@
     <div class="card-body">
       <div class="form-group">
         <label for="categoryName">{{ ucwords(__('monkcommerce-dashboard.categories.category_name')) }}</label>
-        <input type="text" class="form-control" name="categoryName" id="categoryName" placeholder="{{ ucwords(__('monkcommerce-dashboard.categories.category_name')) }}" required>
+        <input type="text" class="form-control" name="categoryName" id="categoryName" value="{{old('categoryName')}}" placeholder="{{ ucwords(__('monkcommerce-dashboard.categories.category_name')) }}" required>
       </div>
 
       <div class="form-group">
@@ -34,7 +34,7 @@
 
       <div class="form-group">
         <label for="categoryDescription">{{ ucwords(__('monkcommerce-dashboard.categories.category_description')) }}</label>
-        <textarea class="form-control" name="categoryDescription" id="categoryDescription" rows="3" required></textarea>
+        <textarea class="form-control" name="categoryDescription" id="categoryDescription" rows="3" required>{{old('categoryDescription')}}</textarea>
       </div>
 
       <div class="form-check">
