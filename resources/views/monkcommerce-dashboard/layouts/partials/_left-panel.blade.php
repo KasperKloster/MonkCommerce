@@ -2,13 +2,11 @@
 <aside id="left-panel" class="left-panel">
   <nav class="navbar">
 
-
+    <div class="sidebar-menu-header">
+      <span class="menu-title">Dashboard</span>
+    </div>
     <ul id="sidebar-menu" class="list-unstyled">
-      <div class="sidebar-menu-header">
-        Dashboard
-      </div>
-
-      <li class="menu-title">{{ __('monkcommerce-dashboard.left-panel.categories') }}</li>
+      <li class="menu-title">{{ ucwords(__('monkcommerce-dashboard.left-panel.categories')) }}</li>
       <li>
         <a href="{{ route('monk-admin-categories-home') }}">
           {{ ucwords(__('monkcommerce-dashboard.categories.all_categories')) }}<i class="material-icons float-right">chevron_right</i>
@@ -34,11 +32,6 @@
           Lorem Ipsum<i class="material-icons float-right">chevron_right</i>
         </a>
       </li>
-      <li>
-        <a href="#">
-          Lorem Ipsum<i class="material-icons float-right">chevron_right</i>
-        </a>
-      </li>
 
       <li class="menu-title">{{ ucwords(__('monkcommerce-dashboard.left-panel.customers')) }}</li>
       <li>
@@ -46,18 +39,8 @@
           Lorem Ipsum<i class="material-icons float-right">chevron_right</i>
         </a>
       </li>
-      <li>
-        <a href="#">
-          Lorem Ipsum<i class="material-icons float-right">chevron_right</i>
-        </a>
-      </li>
       <!-- -->
       <li class="menu-title">{{ ucwords(__('monkcommerce-dashboard.left-panel.orders')) }}</li>
-      <li>
-        <a href="#">
-          Lorem Ipsum<i class="material-icons float-right">chevron_right</i>
-        </a>
-      </li>
       <li>
         <a href="#">
           Lorem Ipsum<i class="material-icons float-right">chevron_right</i>
@@ -76,8 +59,6 @@
           {{ ucwords(__('monkcommerce-dashboard.pages.all_pages')) }}<i class="material-icons float-right">chevron_right</i>
         </a>
       </li>
-
-
     </ul>
   </nav>
 </aside>

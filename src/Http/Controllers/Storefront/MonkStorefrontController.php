@@ -52,4 +52,17 @@ class MonkStorefrontController extends Controller
       return view('monkcommerce::monkcommerce-storefront.static_pages.single_page')
             ->with('page', $page);
     }
+
+    /*
+    * Cart
+    */
+    public function getCartIndex()
+    {
+      return view('monkcommerce::monkcommerce-storefront.shop.cart.cart');
+    }
+
+    function addToCart($id)
+    {
+      return MonkCommerceProduct::find($id);
+    }
 }

@@ -43,16 +43,9 @@ class MonkCommerceServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../routes/routes.php');
         // Migrations
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // Publish Styles
-        // $this->publishes([
-        //     __DIR__.'/../resources/assets/sass/monkcommerce-style.css' => public_path('monkcommerce/css/monkcommerce-style.css'),
-        // ], 'monkcommerce');
-        // $this->publishes([
-        //     __DIR__.'/../resources/assets/sass/monkcommerce-style.css.map' => public_path('monkcommerce/css/monkcommerce-style.css.map'),
-        // ], 'monkcommerce');
-
         // Translations
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'monkcommerce');
+        // Vendor Publish
         $this->publishes(
         [
           // Translations

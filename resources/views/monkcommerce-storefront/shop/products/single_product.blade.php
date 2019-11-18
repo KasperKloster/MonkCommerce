@@ -28,12 +28,12 @@
   <div class="container">
     <h1>{{ $product->name }}</h1>
     <p class="lead">{{ $product->description }}</p>
-    {{ $storefrontShop->shopSchemaCurrency }}
+
     <ul>
-      <li>{{ $product->sku }}</li>
-      <li>{{ $product->price }} {{$storefrontShop->shopCurrency}}</li>
-      <li>{{ $product->special_price }} {{$storefrontShop->shopCurrency}}</li>
-      <li>{{ $product->qty }}</li>
+      <li>SKU: {{ $product->sku }} {{ $storefrontShop->shopSchemaCurrency }}</li>
+      <li>Price: {{ $product->price }} {{$storefrontShop->shopCurrency}}</li>
+      <li>Special Price: {{ $product->special_price }} {{$storefrontShop->shopCurrency}}</li>
+      <li>Qty: {{ $product->qty }}</li>
     </ul>
 
     <h3>Product Belongs to categories:</h3>
@@ -65,5 +65,8 @@
     @foreach($product->images as $prodImage)
       <img src="{{ url('monkcommerce/images/products/' . $product->id . '/' . $prodImage->filename) }}" alt="{{ $product->name }}" />
     @endforeach
+
+    <h3>Put i basket</h3>
+    <a href="{{route('monk-shop-add-to-cart', $product->id)}}">Put in cart</a>
   </div>
   @stop

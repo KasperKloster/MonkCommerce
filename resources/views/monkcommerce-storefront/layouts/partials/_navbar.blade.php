@@ -25,24 +25,6 @@
         @endforeach
         </div>
       @endforeach
-
-      <!-- Categories -->
-
-      {{-- @foreach($storefrontNavbarCategories as $category)
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ $category->name }}
-          </a>
-        @foreach ($category->productChildrenCategories as $childCategory)
-
-          <ul>
-          @include('monkcommerce::monkcommerce-storefront.layouts.partials._navbar-child-category', ['child_category' => $childCategory])
-          </ul>
-
-        @endforeach
-        </li>
-      @endforeach --}}
-
       <!-- Pages -->
       @foreach($storefrontStaticPages as $page)
       <li class="nav-item">
@@ -52,6 +34,10 @@
     </ul>
 
     <ul class="nav justify-content-end">
+      <li class="nav-iten">
+        <a class="nav-link" href="{{ route('monk-shop-cart-index') }}"><i class="material-icons">shopping_cart</i>Cart</a>
+      </li>
+
       <li>
         <a href="{{ route('monk-admin-home') }}">
           <i class="material-icons">account_circle</i>

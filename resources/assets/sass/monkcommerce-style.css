@@ -18,7 +18,6 @@ body {
 
 .left-panel {
   background: #ffffff;
-  height: 100vh;
   padding: 0;
   vertical-align: top;
   width: 280px;
@@ -29,24 +28,23 @@ body {
   top: 55px;
   overflow-y: scroll; }
 
-#sidebar-menu {
-  width: 100%;
-  padding-left: 15px; }
-
-#sidebar-menu .sidebar-menu-header {
+.sidebar-menu-header {
   background: #fafafa;
-  text-align: center; }
+  text-align: center;
+  width: 100%; }
 
-#sidebar-menu .menu-title {
+.sidebar-menu-header .menu-title {
   color: #41434d;
   clear: both;
   display: block;
   font-family: 'Open Sans';
   font-size: 14px;
-  font-weight: 700;
-  line-height: 50px;
-  padding: 0;
-  text-transform: uppercase; }
+  font-weight: 600;
+  line-height: 50px; }
+
+#sidebar-menu {
+  width: 100%;
+  padding-left: 15px; }
 
 #sidebar-menu li a {
   color: #607d8b;

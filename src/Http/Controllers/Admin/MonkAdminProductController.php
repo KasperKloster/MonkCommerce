@@ -247,7 +247,6 @@ class MonkAdminProductController extends Controller
       // Store Image(s)
       if (request()->hasFile('filename'))
       {
-        $i = 0;
         foreach($request->file('filename') as $image)
         {
           // ImgName and folder
@@ -255,18 +254,11 @@ class MonkAdminProductController extends Controller
           $newImgName = strtolower($request->productSku . '-' . Str::snake($request->productName) . '-' . $i . '-' . time() . '.' . $imgExt);
           $destinationPath = public_path('/monkcommerce/images/products/' . $product->id . '/');
           $image->move($destinationPath, $newImgName);
-
           // Create to DB
           $imageModel = new MonkCommerceProductImage;
           $imageModel->product_id = $product->id;
           $imageModel->filename   = $newImgName;
-          if($i == 0)
-          {
-            $imageModel->main_image = TRUE;
-          }
           $imageModel->save();
-
-          $i++;
         }
       }
 
@@ -275,7 +267,6 @@ class MonkAdminProductController extends Controller
       */
       Session::flash('success', 'Product Has Been Updated');
       return Redirect::route('monk-admin-products-home');
-
     }
 
     /**

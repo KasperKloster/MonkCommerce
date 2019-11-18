@@ -21,7 +21,7 @@ body {
 // Left Aside
 .left-panel {
   background: $white;
-  height: 100vh;
+  //height: 100vh;
   padding: 0;
   vertical-align: top;
   width: 280px;
@@ -34,26 +34,24 @@ body {
   // z-index: 999;
 }
 
-#sidebar-menu {
-  width: 100%;
-  padding-left: 15px;
-}
-
-#sidebar-menu .sidebar-menu-header {
+.sidebar-menu-header {
   background: #fafafa;
   text-align: center;
+  width: 100%;
 }
-
-#sidebar-menu .menu-title {
+.sidebar-menu-header .menu-title {
   color: #41434d;
   clear: both;
   display: block;
   font-family: 'Open Sans';
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 50px;
-  padding: 0;
-  text-transform: uppercase;
+}
+
+#sidebar-menu {
+  width: 100%;
+  padding-left: 15px;
 }
 
 #sidebar-menu li a {

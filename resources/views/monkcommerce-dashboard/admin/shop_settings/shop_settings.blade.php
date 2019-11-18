@@ -112,7 +112,7 @@
   <div class="d-flex justify-content-end pt-3">
     <div class="form-group row">
       <div class="col right">
-        <button type="submit" class="btn btn-lg btn-success">{{ ucwords(__('monkcommerce-dashboard.general-words.save')) }}</button>
+        <button type="submit" class="btn btn-md btn-success">{{ ucwords(__('monkcommerce-dashboard.general-words.save')) }}</button>
       </div>
     </div>
   </div>
