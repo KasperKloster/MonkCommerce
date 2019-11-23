@@ -1,6 +1,6 @@
 <?php
 
-namespace KasperKloster\MonkCommerce;
+namespace KasperKloster\MonkCommerce\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -29,7 +29,9 @@ class MonkCommerceServiceProvider extends ServiceProvider
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController');
       // Load Views
-      $this->loadViewsFrom(__DIR__.'/../resources/views', 'monkcommerce');
+      $this->loadViewsFrom(__DIR__.'/../../resources/views', 'monkcommerce');
+      // Events
+      $this->app->register(MonkCommerceEventServiceProvider::class);
     }
 
     /**
@@ -40,23 +42,28 @@ class MonkCommerceServiceProvider extends ServiceProvider
     public function boot()
     {
         // Routes
-        $this->loadRoutesFrom(__DIR__.'/../routes/routes.php');
+        $this->loadRoutesFrom(__DIR__.'/../../routes/routes.php');
         // Migrations
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
         // Translations
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'monkcommerce');
+        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'monkcommerce');
         // Vendor Publish
         $this->publishes(
         [
           // Translations
-          __DIR__.'/../resources/lang' => resource_path('lang'),
+          __DIR__.'/../../resources/lang' => resource_path('lang'),
           // Seeds
-          __DIR__.'/../database/seeds' => base_path('database/seeds'),
+          __DIR__.'/../../database/seeds' => base_path('database/seeds'),
           // Styles
-          __DIR__.'/../resources/assets/sass/monkcommerce-style.css' => public_path('monkcommerce/css/monkcommerce-style.css'),
-          __DIR__.'/../resources/assets/sass/monkcommerce-style.css.map' => public_path('monkcommerce/css/monkcommerce-style.css.map'),
+          __DIR__.'/../../resources/assets/sass/monkcommerce-style.css' => public_path('monkcommerce/css/monkcommerce-style.css'),
+          __DIR__.'/../../resources/assets/sass/monkcommerce-style.css.map' => public_path('monkcommerce/css/monkcommerce-style.css.map'),
           // Product Images
-          __DIR__.'/../resources/images/' => public_path('monkcommerce/images/'),
+          __DIR__.'/../../resources/images/' => public_path('monkcommerce/images/'),
+          // StoreFont View
+          __DIR__.'/../../resources/views/monkcommerce-storefront/' => base_path('resources/views/monkcommerce-storefront/'),
+          // Events & Listeners
+          // __DIR__.'/../Events/'     => base_path('app/Events/'),
+          // __DIR__.'/../Listeners/'  => base_path('app/Listeners/'),
         ], 'monkcommerce');
 
         // For all Views

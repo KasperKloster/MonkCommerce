@@ -37,6 +37,7 @@ class MonkAdminShopSettingController extends Controller
         'vat_number'            => 'string|nullable',
         'shopCurrency'          => 'string|nullable',
         'shopSchemaCurrency'    => 'string|nullable',
+        'stripe_api'            => 'string|nullable',
         'shopPrefix'            => 'string|nullable',
         'shopCookieConsentMsg'  => 'string|nullable',
       ]);
@@ -56,6 +57,7 @@ class MonkAdminShopSettingController extends Controller
       $shop->vat_number         = $request->vat_number;
       $shop->shopCurrency       = $request->shopCurrency;
       $shop->shopSchemaCurrency = $request->shopSchemaCurrency;
+      $shop->stripe_api         = $request->stripe_api;
       $shop->shopPrefix         = $request->shopPrefix;
       $shop->cookie_msg         = $request->shopCookieConsentMsg;
       $shop->update();

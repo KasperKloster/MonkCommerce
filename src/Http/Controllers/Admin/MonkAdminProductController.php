@@ -54,7 +54,6 @@ class MonkAdminProductController extends Controller
      */
     public function store(Request $request)
     {
-
       /*
       * Validate
       */
@@ -115,7 +114,7 @@ class MonkAdminProductController extends Controller
           // Create to DB
           $imageModel = new MonkCommerceProductImage;
           $imageModel->product_id = $product->id;
-          $imageModel->filename   = $newImgName;
+          $imageModel->filename   = $product->id . '/' . $newImgName;
           if($i == 0)
           {
             $imageModel->main_image = TRUE;
@@ -124,6 +123,15 @@ class MonkAdminProductController extends Controller
 
           $i++;
         }
+      }
+      else
+      {
+        // If no attached image, set default image
+        $imageModel = new MonkCommerceProductImage;
+        $imageModel->product_id = $product->id;
+        $imageModel->filename   = '/default.jpg';
+        $imageModel->main_image = TRUE;
+        $imageModel->save();
       }
 
       /*
@@ -210,43 +218,53 @@ class MonkAdminProductController extends Controller
       /*
       * Images
       */
-      // Compare and Find deleted images (Existing)
-      if (request()->has('orgImages'))
+      $image_path = public_path().'/monkcommerce/images/products/';
+      // Original Images
+      // All Original Images Arr
+      $allOrgImages = $request->orgImages;
+      // Deleted images are not in this array
+      $keepImages = $request->delOrgImages;
+      // If keeps are empty Delete All
+      if ($keepImages == NULL)
       {
-        $dbImgs = MonkCommerceProductImage::select('id', 'filename')->where('product_id', $id)->get()->toArray();
-        //convert $dbImgs to indexed array
-        foreach ($dbImgs as $key => $value)
+        $dbImage = MonkCommerceProductImage::select('id', 'filename')->where('product_id', $id)->get()->toArray();
+        foreach($dbImage as $key => $value)
         {
-          $dbImgArr[$value['id']] = $value['filename'];
-        }
-        // Find Difference between DB array and request array
-        $imgDifference = array_diff($dbImgArr, $request->orgImages);
-        // Delete diffences from from public_folder and DB
-        $image_path = public_path().'/monkcommerce/images/products/' . $id . '/';
-        foreach ($imgDifference as $id => $imgName)
-        {
-          if (File::exists($image_path . $imgName))
+          $dbImg = MonkCommerceProductImage::destroy($value['id']);
+          if ($value['filename'] != '/default.jpg')
           {
-            // Folder
-            File::delete($image_path . $imgName);
-            // DB
-            $dbImg = MonkCommerceProductImage::find($id);
-            $dbImg->destroy($id);
+            // Delete from Folder
+            if (File::exists($image_path . $value['filename']))
+            {
+              File::delete($image_path . $value['filename']);
+            }
           }
         }
-        // Main Image
-        // Set old Main Image as NULL
-        $oldMainImg = MonkCommerceProductImage::where('main_image', TRUE)->where('product_id', $id)->first();
-        $oldMainImg->update(['main_image' => FALSE]);
-        // Set Main Image
-        $newMainImg = MonkCommerceProductImage::findOrFail($request->mainImg);
-        $newMainImg->update(['main_image' => TRUE]);
       }
-
-      // New uploaded images
-      // Store Image(s)
+      // Delete Org. images
+      if ($keepImages != NULL)
+      {
+        $imgDifference = array_diff($allOrgImages, $keepImages);
+        foreach($imgDifference as $imageName)
+        {
+          // Select and Delete from DB
+          $dbImage = MonkCommerceProductImage::where('product_id', $id)->where('filename', $imageName)->first();
+          $dbImg = MonkCommerceProductImage::destroy($dbImage->id);
+          // Do not delete default image from Folder
+          if ($imageName != '/default.jpg')
+          {
+            // Delete from Folder
+            if (File::exists($image_path . $imageName))
+            {
+              File::delete($image_path . $imageName);
+            }
+          }
+        }
+      }
+      // Upload New Images
       if (request()->hasFile('filename'))
       {
+        $i = 0;
         foreach($request->file('filename') as $image)
         {
           // ImgName and folder
@@ -257,8 +275,30 @@ class MonkAdminProductController extends Controller
           // Create to DB
           $imageModel = new MonkCommerceProductImage;
           $imageModel->product_id = $product->id;
-          $imageModel->filename   = $newImgName;
+          $imageModel->filename   = $product->id . '/' . $newImgName;
           $imageModel->save();
+          //
+          $i++;
+        }
+      }
+      // Check if has main_img is set. Othervise take a random. if all empty. take def.
+      if (request()->filled('mainImg') == FALSE)
+      {
+        $dbImgs = MonkCommerceProductImage::select('id', 'filename', 'main_image')->where('product_id', $id)->first();
+        // If empty, there is no images, set a default
+        if(empty($dbImgs))
+        {
+          $imageModel = new MonkCommerceProductImage;
+          $imageModel->product_id = $product->id;
+          $imageModel->filename   = '/default.jpg';
+          $imageModel->main_image = TRUE;
+          $imageModel->save();
+        }
+        else
+        {
+          // Else let the first be main
+          $dbImgs->main_image = TRUE;
+          $dbImgs->update();
         }
       }
 
@@ -287,14 +327,10 @@ class MonkAdminProductController extends Controller
       {
         // Delete public_folder from Server
         $image_path = public_path().'/monkcommerce/images/products/' . $product->id . '/';
-        if (File::exists($image_path))
-        {
-           File::deleteDirectory($image_path);
-        }
+        File::deleteDirectory($image_path);
         // Delete from DB
         $image->destroy($image->id);
       }
-
       // Finally Delete the product
       $product->destroy($id);
 

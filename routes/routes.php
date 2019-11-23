@@ -1,5 +1,6 @@
 <?php
 /** Admin Dashboard **/
+// Group because of session & csrf
 Route::group(['middleware' => ['web']], function () {
 
 	Route::group([
@@ -68,16 +69,21 @@ Route::group(['middleware' => ['web']], function () {
 
 /** Frontend **/
 // Shop
-Route::group([
-	'prefix' => 'shop'
-], function() {
-		Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getShopIndex')->name('monk-shop-index');
-		Route::get('category/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSingleCategory')->name('monk-shop-single-category');
-		Route::get('product/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSingleProduct')->name('monk-shop-single-product');
-		// Cart
-		Route::get('cart','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getCartIndex')->name('monk-shop-cart-index');
-		Route::get('add-to-cart/{id}','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@addToCart')->name('monk-shop-add-to-cart');
-});
+Route::group(['middleware' => 'web'], function (){
 
-// Static pages
-Route::get('page/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSinglePage')->name('monk-shop-single-page');
+	Route::group([
+		'prefix' => 'shop'
+	], function() {
+			Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getShopIndex')->name('monk-shop-index');
+			Route::get('category/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSingleCategory')->name('monk-shop-single-category');
+			Route::get('product/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSingleProduct')->name('monk-shop-single-product');
+			// Cart
+			Route::get('cart','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getCartIndex')->name('monk-shop-cart-index');
+			Route::get('add-to-cart/{id}','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@addToCart')->name('monk-shop-add-to-cart');
+			Route::get('checkout','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getCheckout')->name('monk-shop-checkout');
+	});
+
+	// Static pages
+	Route::get('page/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSinglePage')->name('monk-shop-single-page');
+
+});

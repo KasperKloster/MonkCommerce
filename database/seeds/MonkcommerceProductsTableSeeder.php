@@ -24,5 +24,14 @@ class MonkcommerceProductsTableSeeder extends Seeder
               'qty'           => '2',
           ),
       ));
+      // Product Images
+      \DB::table('mc_prod_images')->insert(array (
+        0 =>
+        array (
+          'product_id'  => 1,
+          'filename'    => '/default.jpg',
+          'main_image'    => TRUE,
+        ),
+      ));
     }
 }

@@ -83,6 +83,11 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <label for="stripe_api">Stripe API Key</label>
+          <input type="text" class="form-control" id="stripe_api" name="stripe_api" value="{{ $shop->stripe_api }}">
+        </div>
+
         <hr/>
         <div class="form-group">
           <label for="shopPrefix">Prefix</label>

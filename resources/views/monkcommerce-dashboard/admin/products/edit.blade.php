@@ -90,7 +90,8 @@
       <div id="valueGroup">
         <div class="form-row">
           <div class="card-deck">
-            @forelse($product->images as $image)
+            <!-- OrgImages -->
+            @foreach($product->images as $image)
             <div class="card">
               <div class="card-header">
                 <div class="float-right">
@@ -98,11 +99,12 @@
                 </div>
               </div>
 
-              <img src="{{ url('monkcommerce/images/products/' . $product->id . '/' . $image->filename) }}" class="card-img-top">
-              <input type="hidden" value="{{ $image->filename }}" name="orgImages[{{$image->id}}]">
+              <img src="{{ url('monkcommerce/images/products/' . $image->filename) }}" class="card-img-top">
+              <input type="hidden" value="{{ $image->filename }}" name="delOrgImages[{{$image->id}}]">
               <div class="card-footer p-4">
                 <div class="form-group">
-                  <input type="radio" value="{{ $image->id }}" name="mainImg"
+                  <input type="radio" value="{{ $image->id }}" name="mainImg[]"
+                  {{ $image->main_image }}
                   @if ($image->main_image == TRUE)
                     checked
                   @endif
@@ -111,11 +113,12 @@
                 </div>
               </div>
             </div>
-            @empty
-            @endforelse
+            <input type="text" value="{{ $image->filename }}" name="orgImages[{{$image->id}}]">
+            @endforeach
           </div>
         </div> <!-- /.form-row-->
         <div class="form-row mt-4">
+          <!-- New Images -->
           <label for="filename">{{ ucwords(__('monkcommerce-dashboard.products.image')) }}</label>
           <div class="col">
             <input type="file" class="form-control-file" name="filename[]">

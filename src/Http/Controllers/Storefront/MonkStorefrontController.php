@@ -4,6 +4,7 @@ namespace KasperKloster\MonkCommerce\Http\Controllers\Storefront;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Session;
 
 // MODELS
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductcategory;
@@ -11,7 +12,7 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
 use KasperKloster\MonkCommerce\Models\MonkCommerceStaticPages;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
-
+use KasperKloster\MonkCommerce\Models\MonkCommerceCart;
 
 
 class MonkStorefrontController extends Controller
@@ -56,13 +57,41 @@ class MonkStorefrontController extends Controller
     /*
     * Cart
     */
-    public function getCartIndex()
+    function addToCart(Request $request, $id)
     {
-      return view('monkcommerce::monkcommerce-storefront.shop.cart.cart');
+      // Find Product
+      $product = MonkCommerceProduct::findOrFail($id);
+      // Add to Cart Model and Session
+      $oldCart = Session::has('cart') ? Session::get('cart') : null;
+      $cart = New MonkCommerceCart($oldCart);
+      $cart->add($product, $product->id);
+      Session::put('cart', $cart);
+      Session::flash('success', 'Product has been added to cart');
+      return redirect()->back();
     }
 
-    function addToCart($id)
+    public function getCartIndex()
     {
-      return MonkCommerceProduct::find($id);
+      $oldCart = Session::get('cart');
+      $cart = new MonkCommerceCart($oldCart);
+      return view('monkcommerce::monkcommerce-storefront.shop.cart.cart-index',['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+    }
+
+    public function getCheckout()
+    {
+      if (!Session::has('cart'))
+      {
+        return view('monkcommerce::monkcommerce-storefront.shop.cart.cart-index');
+      }
+      // Get Cart
+      $oldCart = Session::get('cart');
+      $cart = New MonkCommerceCart($oldCart);
+
+      $totalPrice = $cart->totalPrice;
+
+
+      return view('monkcommerce::monkcommerce-storefront.shop.cart.checkout',['totalPrice' => $totalPrice]);
+
+
     }
 }

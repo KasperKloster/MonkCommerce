@@ -35,7 +35,12 @@
 
     <ul class="nav justify-content-end">
       <li class="nav-iten">
-        <a class="nav-link" href="{{ route('monk-shop-cart-index') }}"><i class="material-icons">shopping_cart</i>Cart</a>
+        <a class="nav-link" href="{{ route('monk-shop-cart-index') }}">
+          <i class="material-icons">shopping_cart</i>Cart
+          <span class="badge badge-dark">
+            {{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}
+          </span>
+        </a>
       </li>
 
       <li>

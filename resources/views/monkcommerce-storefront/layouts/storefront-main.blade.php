@@ -1,9 +1,10 @@
 @include('monkcommerce::monkcommerce-storefront.layouts.partials._head')
-  <!-- Navbar -->
-  @include('monkcommerce::monkcommerce-storefront.layouts.partials._navbar')
-
-  <main>
-    @yield('content')
-  </main>
-
+@include('monkcommerce::monkcommerce-storefront.layouts.partials._navbar')
+<main>
+  <div class="container">
+  <!-- Messages -->
+  @include('monkcommerce::monkcommerce-storefront.layouts.partials._messages')
+  @yield('content')
+  </div>
+</main>
 @include('monkcommerce::monkcommerce-storefront.layouts.partials._footer')
