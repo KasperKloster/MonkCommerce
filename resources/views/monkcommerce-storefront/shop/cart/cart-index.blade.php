@@ -17,24 +17,28 @@
       @foreach($products as $product)
       <li class="list-group-item d-flex justify-content-between lh-condensed">
 
-        <div>
-        <img src="#">
-        </div>
-        {{-- $product['item']['images'] --}}
-        <div>
+        @foreach ($product['item']->images as $key)
+          @if($key['main'] == 1)
+            <div class="col-md-2">
+              <img class="img-thumbnail img-fluid float-left" src="{{ url('monkcommerce/images/products/' . $key['filename']) }}" title="{{ $product['item']['name'] }}">
+            </div>
+          @endif
+        @endforeach
+
+        <div class="col-md-4">
           <h6 class="my-0"><a href="{{route('monk-shop-single-product', 1)}}">{{ $product['item']['name'] }}</a></h6>
           @for ($i = 0; $i < count($product['item']['attributeValues']); $i++)
-            <small class="text-muted">{{ $product['item']['attributeValues'][$i]['value'] }} | </small>
+            | <small class="text-muted">{{ $product['item']['attributeValues'][$i]['value'] }}</small>
           @endfor
         </div>
 
         <div>
           @if ($product['item']['special_price'])
-            <span class="text-muted"><s>{{ $product['item']['price'] }}</s></span>
+            <span class="text-muted"><s>{{ showPrice($product['item']['price']) }}</s></span>
             <br/>
-            <span class="text-muted">{{ $product['item']['special_price'] }}</span>
+            <span class="text-muted">{{ showPrice($product['item']['special_price']) }}</span>
           @else
-            <span class="text-muted">{{ $product['item']['price'] }}</span>
+            <span class="text-muted">{{ showPrice($product['item']['price']) }}</span>
           @endif
         </div>
 
@@ -51,7 +55,7 @@
     </ul>
     <hr class="mb-4">
     <div class="float-right">
-      <h6>Total: <b>{{ $totalPrice }} {{$storefrontShop->shopCurrency}}</b></h6>
+      <h6>Total: <b>{{ showPrice($totalPrice) }}</b></h6>
       <a href="{{ route('monk-shop-checkout') }}" class="btn btn-success">Proceed to Checkout</a>
     </div>
   @else
@@ -62,9 +66,7 @@
 
   <br/>
   <br/>
-  Have coupon code.
   Products. When if not in stock
-  Total.
   Shipping etc.
 </div>
 @stop

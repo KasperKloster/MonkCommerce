@@ -104,8 +104,8 @@
               <div class="card-footer p-4">
                 <div class="form-group">
                   <input type="radio" value="{{ $image->id }}" name="mainImg[]"
-                  {{ $image->main_image }}
-                  @if ($image->main_image == TRUE)
+                  {{ $image->main }}
+                  @if ($image->main == '1')
                     checked
                   @endif
                   >
@@ -113,7 +113,7 @@
                 </div>
               </div>
             </div>
-            <input type="text" value="{{ $image->filename }}" name="orgImages[{{$image->id}}]">
+            <input type="hidden" value="{{ $image->filename }}" name="orgImages[{{$image->id}}]">
             @endforeach
           </div>
         </div> <!-- /.form-row-->

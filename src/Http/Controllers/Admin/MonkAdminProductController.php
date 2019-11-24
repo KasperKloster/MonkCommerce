@@ -114,13 +114,23 @@ class MonkAdminProductController extends Controller
           // Create to DB
           $imageModel = new MonkCommerceProductImage;
           $imageModel->product_id = $product->id;
-          $imageModel->filename   = $product->id . '/' . $newImgName;
+          // If first image, make it as maun
           if($i == 0)
           {
-            $imageModel->main_image = TRUE;
+            $imageModel = new MonkCommerceProductImage;
+            $imageModel->product_id = $product->id;
+            $imageModel->filename   = $product->id . '/' . $newImgName;
+            $imageModel->main = '1';
+            $imageModel->save();
           }
-          $imageModel->save();
-
+          else
+          {
+            // Create to DB
+            $imageModel = new MonkCommerceProductImage;
+            $imageModel->product_id = $product->id;
+            $imageModel->filename   = $product->id . '/' . $newImgName;
+            $imageModel->save();
+          }
           $i++;
         }
       }
@@ -130,7 +140,7 @@ class MonkAdminProductController extends Controller
         $imageModel = new MonkCommerceProductImage;
         $imageModel->product_id = $product->id;
         $imageModel->filename   = '/default.jpg';
-        $imageModel->main_image = TRUE;
+        $imageModel->main = '1';
         $imageModel->save();
       }
 
@@ -150,7 +160,7 @@ class MonkAdminProductController extends Controller
     public function edit($id)
     {
       $product = MonkCommerceProduct::where('id', $id)->with('images')->first();
-      //$product = MonkCommerceProduct::where('id', $id)->with('images')->get();
+
       $productCategories = MonkCommerceProductCategory::all();
       $productAttributes = MonkCommerceProductAttribute::with('attributeValues')->get();
 
@@ -284,20 +294,20 @@ class MonkAdminProductController extends Controller
       // Check if has main_img is set. Othervise take a random. if all empty. take def.
       if (request()->filled('mainImg') == FALSE)
       {
-        $dbImgs = MonkCommerceProductImage::select('id', 'filename', 'main_image')->where('product_id', $id)->first();
+        $dbImgs = MonkCommerceProductImage::select('id', 'filename', 'main')->where('product_id', $id)->first();
         // If empty, there is no images, set a default
         if(empty($dbImgs))
         {
           $imageModel = new MonkCommerceProductImage;
           $imageModel->product_id = $product->id;
           $imageModel->filename   = '/default.jpg';
-          $imageModel->main_image = TRUE;
+          $imageModel->main = TRUE;
           $imageModel->save();
         }
         else
         {
           // Else let the first be main
-          $dbImgs->main_image = TRUE;
+          $dbImgs->main = TRUE;
           $dbImgs->update();
         }
       }

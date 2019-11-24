@@ -9,11 +9,11 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
 class MonkCommerceProductImage extends Model
 {
     protected $table = 'mc_prod_images';
-
+    public $timestamps = false;
+    
     protected $fillable = [
-        'product_id',
-        'filename',
-        'main_image',
+      'product_id',
+      'filename',
     ];
 
     /*

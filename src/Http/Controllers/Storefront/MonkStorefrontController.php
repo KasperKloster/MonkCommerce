@@ -34,7 +34,6 @@ class MonkStorefrontController extends Controller
 
     public function getSingleProduct(Request $request, $slug)
     {
-
       $product = MonkCommerceProduct::where('slug', $slug)
                   ->with('productCategories')
                   ->with('attributeValues')
@@ -87,11 +86,16 @@ class MonkStorefrontController extends Controller
       $oldCart = Session::get('cart');
       $cart = New MonkCommerceCart($oldCart);
 
-      $totalPrice = $cart->totalPrice;
+      return view('monkcommerce::monkcommerce-storefront.shop.cart.checkout',['cart' => $cart, 'products' => $cart->items]);
+    }
 
-
-      return view('monkcommerce::monkcommerce-storefront.shop.cart.checkout',['totalPrice' => $totalPrice]);
-
-
+    public function postCheckout(Request $request)
+    {
+      // Validate
+      $request->validate([
+        'firstName' => 'required|int'
+      ]);
+      return back()->with('success', 'User created successfully.');
+      //return $request;
     }
 }

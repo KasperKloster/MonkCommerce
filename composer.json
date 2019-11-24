@@ -10,12 +10,15 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "stripe/stripe-php": "^7.13"
+    },
     "autoload": {
       "psr-4": {
           "KasperKloster\\MonkCommerce\\": "src/"
       }
     },
+
     "extra": {
       "laravel": {
         "providers": [

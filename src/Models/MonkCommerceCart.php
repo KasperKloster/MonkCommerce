@@ -7,7 +7,7 @@ namespace KasperKloster\MonkCommerce\Models;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductCategory;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
-
+use KasperKloster\MonkCommerce\Models\MonkCommerceProductImage;
 
 class MonkCommerceCart
 {
@@ -31,7 +31,8 @@ class MonkCommerceCart
     [
       'qty'   => 0,
       'price' => ($item->special_price) ? $item->special_price : $item->price,
-      'item'  => $item
+      'item'  => $item,
+      'image' => $item->images,
     ];
 
     if ($this->items)

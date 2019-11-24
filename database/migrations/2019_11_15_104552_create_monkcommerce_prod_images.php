@@ -13,14 +13,13 @@ class CreateMonkcommerceProdImages extends Migration
      */
     public function up()
     {
-        Schema::create('mc_prod_images', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('mc_products')->onDelete('cascade');
-            $table->string('filename');
-            $table->boolean('main_image')->default(FALSE)->nullable();
-            $table->timestamps();
-        });
+      Schema::create('mc_prod_images', function (Blueprint $table) {
+        $table->increments('id');
+        $table->integer('product_id')->unsigned();
+        $table->foreign('product_id')->references('id')->on('mc_products')->onDelete('cascade');
+        $table->string('filename');
+        $table->boolean('main')->default(0);
+      });
     }
 
     /**

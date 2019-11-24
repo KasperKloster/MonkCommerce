@@ -40,6 +40,7 @@ class MonkCommerceProduct extends Model
     return $this->belongsToMany(MonkCommerceProductAttributeValue::class, 'mc_prod_attr_value_prod', 'product_id', 'product_attribute_value_id');
   }
 
+  // productImages
   public function images()
   {
     return $this->hasMany(MonkCommerceProductImage::class, 'product_id');

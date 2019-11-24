@@ -32,6 +32,8 @@ class MonkCommerceServiceProvider extends ServiceProvider
       $this->loadViewsFrom(__DIR__.'/../../resources/views', 'monkcommerce');
       // Events
       $this->app->register(MonkCommerceEventServiceProvider::class);
+      // Helpers
+      $this->app->register(HelperServiceProvider::class);
     }
 
     /**

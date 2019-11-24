@@ -12,4 +12,4 @@ Storefront views will be located in /resources/views/monkcommerce-storefront/.
 
 ## Setup Payment
 MonkCommerce uses the Stripe API.
-Insert your Stripe API Key at Dashboard -> Shop Settings -> Stripe API Key
+Insert your Stripe Secret API Key at Dashboard -> Shop Settings -> Stripe API Key

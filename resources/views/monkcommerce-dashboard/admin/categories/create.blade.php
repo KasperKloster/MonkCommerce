@@ -6,7 +6,7 @@
 
 
 @section('page-content')
-<form action="{{ route('monk-admin-store-category') }}" method="post">
+<form action="{{ route('monk-admin-store-category') }}" class="needs-validation" method="post">
   @csrf
   <div class="card">
     <div class="card-header">
@@ -14,9 +14,15 @@
     </div>
 
     <div class="card-body">
+
       <div class="form-group">
         <label for="categoryName">{{ ucwords(__('monkcommerce-dashboard.categories.category_name')) }}</label>
         <input type="text" class="form-control" name="categoryName" id="categoryName" value="{{old('categoryName')}}" placeholder="{{ ucwords(__('monkcommerce-dashboard.categories.category_name')) }}" required>
+        @if ($errors->has('categoryName'))
+          @foreach($errors->get('categoryName') as $error)
+            {{ $error }}
+          @endforeach
+        @endif
       </div>
 
       <div class="form-group">
@@ -35,6 +41,11 @@
       <div class="form-group">
         <label for="categoryDescription">{{ ucwords(__('monkcommerce-dashboard.categories.category_description')) }}</label>
         <textarea class="form-control" name="categoryDescription" id="categoryDescription" rows="3" required>{{old('categoryDescription')}}</textarea>
+        @if ($errors->has('categoryDescription'))
+          @foreach($errors->get('categoryDescription2') as $error)
+            {{ $error }}
+          @endforeach
+        @endif
       </div>
 
       <div class="form-check">
