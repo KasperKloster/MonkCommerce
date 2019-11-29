@@ -53,6 +53,13 @@
         </a>
       </li>
 
+      <li>
+        <a href="{{ route('monk-admin-ship-index') }}">
+          Shipping Settings<i class="material-icons float-right">chevron_right</i>
+
+        </a>
+      </li>
+
       <li class="menu-title">{{ ucwords(__('monkcommerce-dashboard.left-panel.pages')) }}</li>
       <li>
         <a href="{{ route('monk-admin-pages-index') }}">

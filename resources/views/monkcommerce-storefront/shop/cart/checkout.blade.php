@@ -52,6 +52,13 @@
           <span>Total</span>
           <strong><u>{{ showPrice($cart->totalPrice) }}</u></strong>
         </li>
+
+        @if(Session::has('error'))
+        <!-- Charge Error -->
+        <div id="charge-error" class="alert alert-danger {{ !Session::has('error') ? 'hidden' : '' }}">
+          {{ Session::get('error') }}
+        </div>
+        @endif
       </ul>
 
       <!-- Promo Code -->
@@ -68,7 +75,7 @@
     <!-- Adress -->
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Billing address</h4>
-      <form action="{{ route('monk-shop-checkout')}}" method="post">
+      <form action="{{ route('monk-shop-checkout')}}" method="post" id="checkout-form">
         @csrf
         <div class="row">
           <div class="col-md-6 mb-3">

@@ -63,6 +63,7 @@ class MonkAdminProductController extends Controller
         'productQty'          => 'required|integer',
         'productPrice'        => 'required',
         'productSpecialPrice' => 'nullable',
+        'productWeight'       => 'nullable|integer',
         'productDescription'  => 'nullable',
         'productAttr'         => 'nullable|array',
         'productCategories'   => 'required|array',
@@ -79,6 +80,7 @@ class MonkAdminProductController extends Controller
       $product->description   = $request->productDescription;
       $product->price         = $request->productPrice;
       $product->special_price = $request->productSpecialPrice;
+      $product->weight        = $request->productWeight;
       $product->qty           = $request->productQty;
       $product->save();
 
@@ -188,6 +190,7 @@ class MonkAdminProductController extends Controller
         'productQty'          => 'required|integer',
         'productPrice'        => 'required',
         'productSpecialPrice' => 'nullable',
+        'productWeight'       => 'nullable|integer',
         'productDescription'  => 'nullable',
         'productAttr'         => 'nullable|array',
         'productCategories'   => 'required|array',
@@ -205,6 +208,7 @@ class MonkAdminProductController extends Controller
       $product->description   = $request->productDescription;
       $product->price         = $request->productPrice;
       $product->special_price = $request->productSpecialPrice;
+      $product->weight        = $request->productWeight;
       $product->qty           = $request->productQty;
       $product->update();
 

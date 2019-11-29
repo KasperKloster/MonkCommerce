@@ -50,7 +50,14 @@ Route::group(['middleware' => ['web']], function () {
 	  ], function() {
 	    Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShopSettingController@index')->name('monk-admin-shop-settings');
 	    Route::post('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShopSettingController@store')->name('monk-admin-store-shop-informations');
-	  });
+			// Shipping
+			Route::group([
+				'prefix'	=> 'shipping'
+			], function() {
+				Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController@index')->name('monk-admin-ship-index');
+			});
+
+		});
 		// Pages
 		Route::group([
 			'prefix'	=> 'pages'

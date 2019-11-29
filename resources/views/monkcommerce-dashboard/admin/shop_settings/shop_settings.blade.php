@@ -72,20 +72,20 @@
         <div class="form-group row">
           <div class="col">
             <label for="shopCurrency">Currency</label>
-            <input type="text" class="form-control" id="shopCurrency" name="shopCurrency" value="{{ $shop->shopCurrency }}">
+            <input type="text" class="form-control" id="shopCurrency" name="shopCurrency" value="{{ $shop->shopCurrency }}" required>
             <small id="shopshopCurrency" class="form-text text-muted">The price displayed on the shop pages.</small>
           </div>
 
           <div class="col">
             <label for="shopSchemaCurrency">Schema Currency</label>
-            <input type="text" class="form-control" id="shopSchemaCurrency" name="shopSchemaCurrency" value="{{ $shop->shopSchemaCurrency }}">
-            <small id="shopshopCurrency" class="form-text text-muted"><a href="https://en.wikipedia.org/wiki/ISO_4217" target="_blank">ISO 4217 standard currency format.</a> Used for structured data.</small>
+            <input type="text" class="form-control" id="shopSchemaCurrency" name="shopSchemaCurrency" value="{{ $shop->shopSchemaCurrency }}" required>
+            <small id="shopshopCurrency" class="form-text text-muted"><a href="https://en.wikipedia.org/wiki/ISO_4217" target="_blank">ISO 4217 standard currency format.</a> Used for Stripe and structured data.</small>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="stripe_api">Stripe API Key</label>
-          <input type="text" class="form-control" id="stripe_api" name="stripe_api" value="{{ $shop->stripe_api }}">
+          <label for="stripe_publishable_key">Stripe Publishable Key</label>
+          <input type="text" class="form-control" id="stripe_publishable_key" name="stripe_publishable_key" value="{{ $shop->stripe_publishable_key }}">
         </div>
 
         <hr/>

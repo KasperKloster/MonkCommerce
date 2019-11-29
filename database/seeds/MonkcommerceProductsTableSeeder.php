@@ -21,6 +21,7 @@ class MonkcommerceProductsTableSeeder extends Seeder
             'description'   => 'A Product Description',
             'price'         => '249',
             'special_price' => '199',
+            'weight'        => '1000',
             'qty'           => '2',
         ),
         1 =>
@@ -31,6 +32,7 @@ class MonkcommerceProductsTableSeeder extends Seeder
             'description'   => 'A Product Description',
             'price'         => '100',
             'special_price' => '50',
+            'weight'        => '2000',
             'qty'           => '20',
         ),
         2 =>
@@ -41,6 +43,7 @@ class MonkcommerceProductsTableSeeder extends Seeder
             'description'   => 'A Product Description',
             'price'         => '1500',
             'special_price' => '900',
+            'weight'        => '100',
             'qty'           => '2',
         ),
         3 =>
@@ -51,7 +54,8 @@ class MonkcommerceProductsTableSeeder extends Seeder
             'description'   => 'A Product Description',
             'price'         => '249',
             'special_price' => NULL,
-            'qty'           => '2',
+            'weight'        => '8000',
+            'qty'           => '0',
         ),
       ));
       // Main Product Images

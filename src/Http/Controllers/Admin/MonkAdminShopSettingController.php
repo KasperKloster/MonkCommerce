@@ -35,8 +35,8 @@ class MonkAdminShopSettingController extends Controller
         'email'                 => 'email|nullable',
         'url'                   => 'string|nullable',
         'vat_number'            => 'string|nullable',
-        'shopCurrency'          => 'string|nullable',
-        'shopSchemaCurrency'    => 'string|nullable',
+        'shopCurrency'          => 'required|string',
+        'shopSchemaCurrency'    => 'required|string',
         'stripe_api'            => 'string|nullable',
         'shopPrefix'            => 'string|nullable',
         'shopCookieConsentMsg'  => 'string|nullable',
@@ -46,20 +46,20 @@ class MonkAdminShopSettingController extends Controller
       * Store Shop
       */
       $shop = MonkCommerceShop::find($request->shop_val);
-      $shop->shop_name          = $request->shop_name;
-      $shop->street_address     = $request->street_address;
-      $shop->postal_code        = $request->postal_code;
-      $shop->city               = $request->city;
-      $shop->country            = $request->country;
-      $shop->phone              = $request->phone;
-      $shop->email              = $request->email;
-      $shop->url                = $request->url;
-      $shop->vat_number         = $request->vat_number;
-      $shop->shopCurrency       = $request->shopCurrency;
-      $shop->shopSchemaCurrency = $request->shopSchemaCurrency;
-      $shop->stripe_api         = $request->stripe_api;
-      $shop->shopPrefix         = $request->shopPrefix;
-      $shop->cookie_msg         = $request->shopCookieConsentMsg;
+      $shop->shop_name              = $request->shop_name;
+      $shop->street_address         = $request->street_address;
+      $shop->postal_code            = $request->postal_code;
+      $shop->city                   = $request->city;
+      $shop->country                = $request->country;
+      $shop->phone                  = $request->phone;
+      $shop->email                  = $request->email;
+      $shop->url                    = $request->url;
+      $shop->vat_number             = $request->vat_number;
+      $shop->shopCurrency           = $request->shopCurrency;
+      $shop->shopSchemaCurrency     = $request->shopSchemaCurrency;
+      $shop->stripe_publishable_key = $request->stripe_publishable_key;
+      $shop->shopPrefix             = $request->shopPrefix;
+      $shop->cookie_msg             = $request->shopCookieConsentMsg;
       $shop->update();
 
       /*

@@ -26,6 +26,7 @@ class MonkCommerceServiceProvider extends ServiceProvider
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShopSettingController');
+      $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController');
       // Load Views
@@ -57,8 +58,12 @@ class MonkCommerceServiceProvider extends ServiceProvider
           // Seeds
           __DIR__.'/../../database/seeds' => base_path('database/seeds'),
           // Styles
-          __DIR__.'/../../resources/assets/sass/monkcommerce-style.css' => public_path('monkcommerce/css/monkcommerce-style.css'),
-          __DIR__.'/../../resources/assets/sass/monkcommerce-style.css.map' => public_path('monkcommerce/css/monkcommerce-style.css.map'),
+          __DIR__.'/../../resources/assets/sass/dashboard/monkcommerce-style.css' => public_path('monkcommerce/css/dashboard/monkcommerce-style.css'),
+          __DIR__.'/../../resources/assets/sass/dashboard/monkcommerce-style.css.map' => public_path('monkcommerce/css/dashboard/monkcommerce-style.css.map'),
+          __DIR__.'/../../resources/assets/sass/storefront/basis/basis-style.css' => public_path('monkcommerce/css/storefront/basis-style.css'),
+          __DIR__.'/../../resources/assets/sass/storefront/basis/basis-style.css.map' => public_path('monkcommerce/css/storefront/basis-style.css.map'),
+          // JavaScript
+          //__DIR__.'/../../resources/assets/js/' => public_path('monkcommerce/js/'),
           // Product Images
           __DIR__.'/../../resources/images/' => public_path('monkcommerce/images/'),
           // StoreFont View

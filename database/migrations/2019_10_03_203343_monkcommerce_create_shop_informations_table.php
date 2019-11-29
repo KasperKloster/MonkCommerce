@@ -24,8 +24,8 @@ class MonkCommerceCreateShopInformationsTable extends Migration
           $table->string('email')->nullable();
           $table->string('url')->nullable()->comment('Your website domain. With http(s)://');
           $table->string('vat_number')->nullable();
-          $table->string('shopCurrency')->nullable();
-          $table->string('stripe_api')->nullable();
+          $table->string('shopCurrency')->default('KR')->nullable();
+          $table->string('stripe_publishable_key')->nullable();
           $table->string('shopSchemaCurrency')->default('DKK')->nullable();
           $table->string('shopPrefix')->nullable();
           $table->string('cookie_msg')->default('This website uses cookies in order to offer you the most relevant information. Please accept cookies for optimal performance')->nullable();

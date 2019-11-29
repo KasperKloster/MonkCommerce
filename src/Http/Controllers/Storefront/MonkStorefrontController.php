@@ -58,12 +58,16 @@ class MonkStorefrontController extends Controller
     */
     function addToCart(Request $request, $id)
     {
-      // Find Product
+      $request->validate([
+        'quant' => 'required|array',
+      ]);
+      // Find Product and quantity
       $product = MonkCommerceProduct::findOrFail($id);
+      $quantity = $request->quant[1];
       // Add to Cart Model and Session
       $oldCart = Session::has('cart') ? Session::get('cart') : null;
       $cart = New MonkCommerceCart($oldCart);
-      $cart->add($product, $product->id);
+      $cart->add($product, $product->id, $quantity);
       Session::put('cart', $cart);
       Session::flash('success', 'Product has been added to cart');
       return redirect()->back();

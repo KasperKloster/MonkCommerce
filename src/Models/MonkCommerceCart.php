@@ -25,7 +25,7 @@ class MonkCommerceCart
     }
   }
 
-  public function add($item, $id)
+  public function add($item, $id, $quantity)
   {
     $storedItem =
     [

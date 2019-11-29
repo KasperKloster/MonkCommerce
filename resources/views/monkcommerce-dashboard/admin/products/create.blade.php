@@ -22,10 +22,6 @@
           <label for="productSku">SKU</label>
           <input type="text" class="form-control" id="productSku" name="productSku" value="{{ old('productSku') }}" required>
         </div>
-        <div class="col">
-          <label for="productQty">{{ ucwords(__('monkcommerce-dashboard.products.quantity')) }}</label>
-          <input type="text" class="form-control" id="productQty" name="productQty" value="{{ old('productQty') }}" required>
-        </div>
       </div>
 
       <div class="form-group">
@@ -42,6 +38,24 @@
           <label for="productSpecialPrice">{{ ucwords(__('monkcommerce-dashboard.general-words.special_price')) }}</label>
           <input type="text" class="form-control" id="productSpecialPrice" name="productSpecialPrice" value="{{ old('productSpecialPrice') }}" placeholder="199">
         </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col">
+          <label for="productQty">{{ ucwords(__('monkcommerce-dashboard.products.quantity')) }}</label>
+          <input type="text" class="form-control" id="productQty" name="productQty" value="{{ old('productQty') }}" required>
+        </div>
+
+        <div class="col">
+          <label for="productWeight">Weight</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="productWeight" name="productWeight" placeholder="1000" aria-label="Weight" aria-describedby="weight-addon">
+            <div class="input-group-append">
+              <span class="input-group-text" id="weight-addon">Gram</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <hr/>

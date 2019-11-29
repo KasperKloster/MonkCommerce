@@ -23,3 +23,14 @@
     </button>
   </div>
 @endif
+
+{{-- @if ($storefrontShop->stripe_publishable_key == NULL)
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <h5 class="alert-heading"><b>Warning!</b></h5>
+    <hr/>
+    You need to insert Stripe Publishable Key
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+@endif --}}
