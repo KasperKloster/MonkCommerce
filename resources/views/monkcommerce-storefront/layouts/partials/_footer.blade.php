@@ -1,4 +1,4 @@
-  <footer class="fixed-bottom mt-auto py-3 bg-light">
+  <footer class="mt-auto py-3 bg-light">
     <div class="container">
       <address>
         <b>{{ $storefrontShop->shop_name }}</b><br>

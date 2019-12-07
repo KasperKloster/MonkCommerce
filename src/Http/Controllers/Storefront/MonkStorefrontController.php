@@ -56,28 +56,58 @@ class MonkStorefrontController extends Controller
     /*
     * Cart
     */
-    function addToCart(Request $request, $id)
+    public function getAddToCart(Request $request, $id)
     {
       $request->validate([
         'quant' => 'required|array',
       ]);
+
       // Find Product and quantity
-      $product = MonkCommerceProduct::findOrFail($id);
-      $quantity = $request->quant[1];
-      // Add to Cart Model and Session
-      $oldCart = Session::has('cart') ? Session::get('cart') : null;
-      $cart = New MonkCommerceCart($oldCart);
-      $cart->add($product, $product->id, $quantity);
+      $product = MonkCommerceProduct::with('images')->with('attributeValues')->findOrFail($id)->toArray();
+      // Get Quantity
+      $productQty = $request->quant[1];
+      // Cart
+      $oldCart = Session::has('cart') ? Session::get('cart') : NULL;
+      $cart = new MonkCommerceCart($oldCart);
+      $cart->add($product, $id, $productQty);
+      // Store in Session
       Session::put('cart', $cart);
+      // View
       Session::flash('success', 'Product has been added to cart');
+      return redirect()->back();
+    }
+
+    public function getRemoveFromCart($id)
+    {
+      // Cart
+      $oldCart = Session::has('cart') ? Session::get('cart') : NULL;
+      $cart = new MonkCommerceCart($oldCart);
+      $cart->remove($id);
+      // If Cart is completly empty. Remove Session
+      if(empty($cart->items))
+      {
+        Session::forget('cart');
+      }
+      else
+      {
+        Session::put('cart', $cart);
+      }
+
+      // View
+      Session::flash('success', 'Product has been removed from cart');
       return redirect()->back();
     }
 
     public function getCartIndex()
     {
-      $oldCart = Session::get('cart');
-      $cart = new MonkCommerceCart($oldCart);
-      return view('monkcommerce::monkcommerce-storefront.shop.cart.cart-index',['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+      if (!Session::has('cart'))
+      {
+        return view('monkcommerce::monkcommerce-storefront.shop.cart.cart-index');
+      }
+      // Get items
+      $cart = Session::get('cart');
+      //$cart = json_decode(json_encode($items), true);
+      return view('monkcommerce::monkcommerce-storefront.shop.cart.cart-index', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
     public function getCheckout()
@@ -90,7 +120,7 @@ class MonkStorefrontController extends Controller
       $oldCart = Session::get('cart');
       $cart = New MonkCommerceCart($oldCart);
 
-      return view('monkcommerce::monkcommerce-storefront.shop.cart.checkout',['cart' => $cart, 'products' => $cart->items]);
+      return view('monkcommerce::monkcommerce-storefront.shop.cart.checkout',['products' => $cart->items]);
     }
 
     public function postCheckout(Request $request)
