@@ -24,10 +24,15 @@
 
       <div class="col-md-4">
         <h6 class="my-0"><a href="{{route('monk-shop-single-product', $product['item']['slug'])}}">{{ $product['item']['name'] }}</a></h6>
-        @for ($i = 0; $i < count($product['item']['attribute_values']); $i++)
-          | <small class="text-muted">{{ $product['item']['attribute_values'][$i]['value'] }}</small>
-        @endfor
-        <br/>
+        <small class="text-muted">
+          <ul class="list-inline">
+            @for ($i = 0; $i < count($product['item']['attribute_values']); $i++)
+            <li class="list-inline-item vertical-divider mr-0">
+              <span class="mr-1">{{ $product['item']['attribute_values'][$i]['value'] }}</span>
+            </li>
+            @endfor
+          </ul>
+        </small>
         @if ($product['item']['special_price'])
           <span class="text-muted"><small><s>{{ showPrice($product['item']['price']) }}</s></small></span>
           <br/>
@@ -38,19 +43,22 @@
       </div>
 
       <div>
-        <form class="form-inline" action="#" id="quant_{{ $product['item']['id'] }}">
+        <form class="form-inline" action="{{ route('monk-shop-add-to-cart', $product['item']['id']) }}" id="quant_{{ $product['item']['id'] }}">
           @csrf
           <div class="col-md-5">
             <div class="input-group">
               <div class="input-group-prepend">
                 <button type="button" class="btn btn-outline-secondary btn-sm btn-number" data-type="minus" data-field="quant[1]">&minus;</button>
               </div>
-              <input type="text" name="quant[1]" class="form-control input-number text-center" value="{{ $product['qty'] }}" min="1" max="{{ $product['item']['qty'] }}" aria-label="plus/minus">
+              <input id="input-number-{{ $product['item']['id'] }}" type="text" name="quant[1]" class="form-control input-number text-center" value="{{ $product['qty'] }}" min="1" max="{{ $product['item']['qty'] }}" aria-label="plus/minus">
               <div class="input-group-append">
                 <button type="button" class="btn btn-outline-secondary btn-sm btn-number" data-type="plus" data-field="quant[1]">&plus;</button>
               </div>
             </div>
           </div>
+          <button class="btn btn-outline-secondary btn-sm mat-inline-center" type="submit">
+            <i class="material-icons">cached</i>
+          </button>
         </form>
       </div>
 
@@ -64,9 +72,8 @@
   </ul>
   @endforeach
 
-  <hr class="mb-4">
-  <div class="float-right">
-    <h6>Total: <b>{{ showPrice($totalPrice) }}</b></h6>
+  <div class="float-right mt-4">
+    <h6><b>Total:</b> <u>{{ showPrice($totalPrice) }}</u></h6>
     <a href="{{ route('monk-shop-checkout') }}" class="btn btn-success">Proceed to Checkout</a>
   </div>
 
@@ -81,43 +88,40 @@
 @section('scripts')
 <script>
 
-// // Increase / Decrease Field
-// $('.btn-number').click(function(e){
-//     e.preventDefault();
-// //  var id = $(this).closest('.input-group').find('input').first().attr('id');
-// //  console.log($(this).closest('.input-group').find('input').first().val());
-//
-//     fieldName = $(this).attr('data-field');
-//     type      = $(this).attr('data-type');
-//     //var input = $(this).closest('.input-group').find('input').first().attr('id');
-//     var input = $("input[name='"+fieldName+"']");
-//     var currentVal = parseInt(input.val());
-//
-//
-//     if (!isNaN(currentVal)) {
-//         if(type == 'minus') {
-//
-//             if(currentVal > input.attr('min')) {
-//                 input.val(currentVal - 1).change();
-//             }
-//             if(parseInt(input.val()) == input.attr('min')) {
-//                 $(this).attr('disabled', true);
-//             }
-//
-//         } else if(type == 'plus') {
-//
-//             if(currentVal < input.attr('max')) {
-//                 input.val(currentVal + 1).change();
-//             }
-//             if(parseInt(input.val()) == input.attr('max')) {
-//                 $(this).attr('disabled', true);
-//             }
-//
-//         }
-//     } else {
-//         input.val(0);
-//     }
-// });
+// Increase / Decrease Field
+$('.btn-number').click(function(e){
+    e.preventDefault();
+    // Find clicked Item by ID
+    let inputId = $(this).closest('.input-group').find('input').first().attr('id');
+    // Max In stock
+    let inputMax = $(this).closest('.input-group').find('input').first().attr('max');
+    // Minus or plus?
+    let type = $(this).attr('data-type');
+
+    if (type == 'minus')
+    {
+      let currValue = $(this).closest('.input-group').find('input').first().val();
+      // Decrement current value
+      let newValue = currValue - 1;
+      // Set new Value if greater than 1
+      if (newValue > 0)
+      {
+        $(this).closest('.input-group').find('input').first().val(newValue);
+      }
+    }
+
+    if (type == 'plus')
+    {
+      let currValue = $(this).closest('.input-group').find('input').first().val();
+      // Increment
+      let newValue = currValue++;
+      if (newValue < inputMax)
+      {
+          $(this).closest('.input-group').find('input').first().val(currValue++);
+      }
+
+    }
+});
 
 </script>
 @stop

@@ -42,12 +42,16 @@ class MonkCommerceCart
       // Does the item already Exists? Update
       if (array_key_exists($id, $this->items))
       {
-        $storedItem               = $this->items[$id];
-        $storedItem['qty']        = $productQty;
-        $storedItem['totalPrice'] = ($item['special_price']) ? $item['special_price'] * $storedItem['qty'] : $item['price'] * $storedItem['qty'];
+        $storedItem                = $this->items[$id];
+        $storedItem['qty']         = $productQty;
+        $storedItem['totalPrice']  = ($item['special_price']) ? $item['special_price'] * $storedItem['qty'] : $item['price'] * $storedItem['qty'];
+        // Remove from totalQty and totalPrice
+        $this->totalQty = $this->totalQty - $this->items[$id]['qty'];
+        $this->totalPrice = $this->totalPrice - $this->items[$id]['totalPrice'];
       }
     }
-    // Main
+
+    // Main Arr
     $this->items[$id]   = $storedItem;
     $this->totalPrice   += $storedItem['totalPrice'];
     $this->totalQty     += $storedItem['qty'];

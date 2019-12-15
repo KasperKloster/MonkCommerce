@@ -6,3 +6,16 @@ h1 {
   font-size: 1.3em;
   font-weight: 400;
 }
+
+.vertical-divider {
+   border-right: 1px solid #ccc;
+}
+
+.vertical-divider:last-child {
+  border: none;
+}
+
+.mat-inline-center {
+  display: inline-flex;
+  align-items: center;
+}

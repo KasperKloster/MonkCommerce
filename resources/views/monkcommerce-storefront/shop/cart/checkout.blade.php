@@ -10,7 +10,10 @@
 <div class="container mb-5">
   <div class="py-5 text-center">
     <h2>Checkout</h2>
-    <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+    <p class="lead">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
   </div>
 
   <div class="row">
@@ -20,15 +23,20 @@
         <span class="text-muted">Your cart</span>
         <span class="badge badge-secondary badge-pill">{{ $cart->totalQty }}</span>
       </h4>
+
       @foreach($products as $product)
       <ul class="list-group mb-3">
         <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
-            <h6 class="my-0">{{ $product['item']['name'] }}</h6>
+            <h6 class="my-0"><a href="{{route('monk-shop-single-product', $product['item']['slug'])}}">{{ $product['item']['name'] }}</a></h6>
             <small class="text-muted">
-            @for ($i = 0; $i < count($product['item']['attributeValues']); $i++)
-              | {{ $product['item']['attributeValues'][$i]['value'] }}
-            @endfor
+              <ul class="list-inline">
+                @for ($i = 0; $i < count($product['item']['attribute_values']); $i++)
+                  <li class="list-inline-item vertical-divider mr-0">
+                    <span class="mr-1">{{ $product['item']['attribute_values'][$i]['value'] }}<span>
+                  </li>
+                @endfor
+              </ul>
             </small>
           </div>
           @if ($product['item']['special_price'])
@@ -39,6 +47,7 @@
           @endif
         </li>
         @endforeach
+
         <!-- Promo Code Success -->
         {{-- <li class="list-group-item d-flex justify-content-between bg-light">
           <div class="text-success">

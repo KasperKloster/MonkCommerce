@@ -70,6 +70,7 @@ class MonkStorefrontController extends Controller
       $oldCart = Session::has('cart') ? Session::get('cart') : NULL;
       $cart = new MonkCommerceCart($oldCart);
       $cart->add($product, $id, $productQty);
+      
       // Store in Session
       Session::put('cart', $cart);
       // View
@@ -120,7 +121,7 @@ class MonkStorefrontController extends Controller
       $oldCart = Session::get('cart');
       $cart = New MonkCommerceCart($oldCart);
 
-      return view('monkcommerce::monkcommerce-storefront.shop.cart.checkout',['products' => $cart->items]);
+      return view('monkcommerce::monkcommerce-storefront.shop.cart.checkout', ['products' => $cart->items, 'cart' => $cart]);
     }
 
     public function postCheckout(Request $request)

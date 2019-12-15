@@ -11,3 +11,8 @@ function showPrice($price)
     return $price . ' ' . $currency->shopCurrency;
   }
 }
+
+function divider()
+{
+  
+}
