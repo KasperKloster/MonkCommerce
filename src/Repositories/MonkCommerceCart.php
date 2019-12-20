@@ -1,6 +1,6 @@
 <?php
 
-namespace KasperKloster\MonkCommerce\Models;
+namespace KasperKloster\MonkCommerce\Repositories;
 
 // use Illuminate\Database\Eloquent\Model;
 // Models

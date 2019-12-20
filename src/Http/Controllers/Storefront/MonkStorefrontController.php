@@ -12,8 +12,8 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
 use KasperKloster\MonkCommerce\Models\MonkCommerceStaticPages;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
-use KasperKloster\MonkCommerce\Models\MonkCommerceCart;
-
+// Classes
+use KasperKloster\MonkCommerce\Repositories\MonkCommerceCart;
 
 class MonkStorefrontController extends Controller
 {
@@ -70,7 +70,7 @@ class MonkStorefrontController extends Controller
       $oldCart = Session::has('cart') ? Session::get('cart') : NULL;
       $cart = new MonkCommerceCart($oldCart);
       $cart->add($product, $id, $productQty);
-      
+
       // Store in Session
       Session::put('cart', $cart);
       // View

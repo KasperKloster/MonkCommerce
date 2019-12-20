@@ -35,6 +35,7 @@ class MonkCommerceServiceProvider extends ServiceProvider
       $this->app->register(MonkCommerceEventServiceProvider::class);
       // Helpers
       $this->app->register(HelperServiceProvider::class);
+      // Repositories / Classes
     }
 
     /**
