@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMonkCommerceShippingsTable extends Migration
+class CreateMonkCommerceShippingCouriersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateMonkCommerceShippingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mc_shipping_settings', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('mc_ship_couriers', function (Blueprint $table) {
+          $table->bigIncrements('id');
+          $table->string('courier');
         });
     }
 
@@ -25,6 +26,6 @@ class CreateMonkCommerceShippingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mc_shipping_settings');
+        Schema::dropIfExists('mc_ship_couriers');
     }
 }

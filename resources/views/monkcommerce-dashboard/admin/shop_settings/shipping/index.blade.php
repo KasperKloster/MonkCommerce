@@ -9,48 +9,36 @@
 @stop
 
 @section('card-btn')
-<a href="#" class="btn btn-sm btn-success">Create New Shipping</a>
+<a href="{{ route('monk-admin-courier-create') }}" class="btn btn-sm btn-success">Create New Shipping</a>
 @stop
 
 @section('card-content')
 <table class="card-table table table-hover table-responsive-lg">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">SKU</th>
-      <th scope="col">Name</th>
-      <th scope="col">Price</th>
-      <th scope="col">Special Price</th>
-      <th scope="col">Quantity</th>
+      <th scope="col">Courier</th>
       <th>Buttons</th>
     </tr>
   </thead>
   <tbody>
 
+      @foreach($couriers as $courier)
       <tr>
-        <td>#</td>
-        <td>#</td>
-        <td>#</td>
-        <td>#</td>
-        <td>#</td>
-        <td>#</td>
+        <td>{{ $courier->courier }}</td>
         <td>
           <div class="btn-group" role="group" aria-label="Basic example">
-            <!-- edit -->
-            <a href="#" class="btn btn-sm btn-info mat-inline-center">
+            <!-- Edit -->
+            <a href="{{ route('monk-admin-courier-edit', $courier->id) }}" class="btn btn-sm btn-info mat-inline-center">
               <i class="material-icons">edit</i>{{ ucwords(__('monkcommerce-dashboard.general-words.edit')) }}
             </a>
-            <!-- show in shop -->
-            <a href="#" class="btn btn-sm btn-outline-secondary mat-inline-center" target="_blank">
-              {{ ucwords(__('monkcommerce-dashboard.general-words.show_in_shop')) }}<i class="material-icons">open_in_new</i>
-            </a>
-            <!-- Delete Category -->
-            <a href="#" class="btn btn-sm btn-danger mat-inline-center">
+            <!-- Delete -->
+            <a href="{{ route('monk-admin-courier-destroy', $courier->id) }}" class="btn btn-sm btn-danger mat-inline-center">
               <i class="material-icons">delete_forever</i> {{ ucwords(__('monkcommerce-dashboard.general-words.delete')) }}
             </a>
           </div>
         </td>
       </tr>
+      @endforeach
 
   </tbody>
 </table>

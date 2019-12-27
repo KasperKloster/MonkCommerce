@@ -8,7 +8,6 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
 
-
 class MonkCommerceProductAttribute extends Model
 {
   // Name of the Table

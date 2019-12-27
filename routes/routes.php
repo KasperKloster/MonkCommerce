@@ -14,11 +14,11 @@ Route::group(['middleware' => ['web']], function () {
 	  	'prefix'	=> 'categories'
 	  ], function() {
 	    Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController@index')->name('monk-admin-categories-home');
-	    Route::get('/create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController@create')->name('monk-admin-create-category');
-			Route::post('/create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController@store')->name('monk-admin-store-category');
-			Route::get('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController@edit')->name('monk-admin-edit-category');
-			Route::post('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController@update')->name('monk-admin-update-category');
-			Route::get('/delete/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController@destroy')->name('monk-admin-destroy-category');
+	    Route::get('create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController@create')->name('monk-admin-create-category');
+			Route::post('create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController@store')->name('monk-admin-store-category');
+			Route::get('edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController@edit')->name('monk-admin-edit-category');
+			Route::post('edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController@update')->name('monk-admin-update-category');
+			Route::get('delete/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController@destroy')->name('monk-admin-destroy-category');
 	  });
 
 	  // Products
@@ -26,21 +26,21 @@ Route::group(['middleware' => ['web']], function () {
 	  	'prefix'	=> 'products'
 	  ], function() {
 	    Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@index')->name('monk-admin-products-home');
-	    Route::get('/create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@create')->name('monk-admin-create-product');
-			Route::post('/create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@store')->name('monk-admin-store-product');
-			Route::get('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@edit')->name('monk-admin-edit-product');
-			Route::post('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@update')->name('monk-admin-update-product');
-			Route::get('/delete/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@destroy')->name('monk-admin-destroy-product');
+	    Route::get('create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@create')->name('monk-admin-create-product');
+			Route::post('create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@store')->name('monk-admin-store-product');
+			Route::get('edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@edit')->name('monk-admin-edit-product');
+			Route::post('edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@update')->name('monk-admin-update-product');
+			Route::get('delete/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController@destroy')->name('monk-admin-destroy-product');
 				// Attributes
 				Route::group([
 					'prefix'	=> 'attributes'
 				], function() {
 					Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@index')->name('monk-admin-products-attr-home');
-					Route::get('/create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@create')->name('monk-admin-products-attr-create');
-					Route::post('/create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@store')->name('monk-admin-products-attr-store');
-					Route::get('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@edit')->name('monk-admin-products-attr-edit');
-					Route::post('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@update')->name('monk-admin-products-attr-update');
-					Route::get('/delete/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@destroy')->name('monk-admin-products-attr-destroy');
+					Route::get('create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@create')->name('monk-admin-products-attr-create');
+					Route::post('create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@store')->name('monk-admin-products-attr-store');
+					Route::get('edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@edit')->name('monk-admin-products-attr-edit');
+					Route::post('edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@update')->name('monk-admin-products-attr-update');
+					Route::get('delete/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController@destroy')->name('monk-admin-products-attr-destroy');
 				});
 	  });
 
@@ -55,6 +55,11 @@ Route::group(['middleware' => ['web']], function () {
 				'prefix'	=> 'shipping'
 			], function() {
 				Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController@index')->name('monk-admin-ship-index');
+				Route::get('create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController@create')->name('monk-admin-courier-create');
+				Route::post('store', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController@store')->name('monk-admin-courier-store');
+				Route::get('edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController@edit')->name('monk-admin-courier-edit');
+				Route::post('edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController@update')->name('monk-admin-courier-update');
+				Route::get('delete/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController@destroy')->name('monk-admin-courier-destroy');
 			});
 
 		});
@@ -63,11 +68,11 @@ Route::group(['middleware' => ['web']], function () {
 			'prefix'	=> 'pages'
 		], function() {
 			Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@index')->name('monk-admin-pages-index');
-			Route::get('/create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@create')->name('monk-admin-create-page');
-			Route::post('/create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@store')->name('monk-admin-store-page');
-			Route::get('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@edit')->name('monk-admin-edit-page');
-			Route::post('/edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@update')->name('monk-admin-update-page');
-			Route::get('/delete/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@destroy')->name('monk-admin-destroy-page');
+			Route::get('create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@create')->name('monk-admin-create-page');
+			Route::post('create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@store')->name('monk-admin-store-page');
+			Route::get('edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@edit')->name('monk-admin-edit-page');
+			Route::post('edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@update')->name('monk-admin-update-page');
+			Route::get('delete/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@destroy')->name('monk-admin-destroy-page');
 		});
 
 	});
