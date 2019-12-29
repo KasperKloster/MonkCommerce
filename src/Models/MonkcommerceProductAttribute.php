@@ -12,7 +12,7 @@ class MonkCommerceProductAttribute extends Model
 {
   // Name of the Table
   protected $table = 'mc_prod_attr';
-
+  // No timestamps
   public $timestamps = false;
 
   /*

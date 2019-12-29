@@ -2,6 +2,9 @@
 body {
   font-family: 'Open Sans'; }
 
+.underline {
+  text-decoration: underline; }
+
 .admin-navbar {
   background: #ffffff;
   border-bottom: 1px solid #e8e9ed;

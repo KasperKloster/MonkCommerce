@@ -15,8 +15,4 @@ class MonkCommerceProductMainImage extends Model
     'product_id',
     'filename',
   ];
-
-  /*
-  * Relationships
-  */
 }

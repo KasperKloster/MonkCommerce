@@ -44,6 +44,14 @@ Route::group(['middleware' => ['web']], function () {
 				});
 	  });
 
+		// Orders
+		Route::group([
+			'prefix' => 'orders'
+		], function(){
+				Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminOrdersController@index')->name('monk-admin-orders-index');
+				Route::get('order/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminOrdersController@show')->name('monk-admin-orders-order');
+		});
+
 	  // Shop Settings
 	  Route::group([
 	    'prefix'	=> 'shop-settings'
