@@ -6,6 +6,10 @@ body {
   text-decoration: underline;
 }
 
+.breadcrumb{
+  background-color: transparent;
+}
+
 // Admin Navbar (Top)
 .admin-navbar {
   background: $white;
@@ -75,7 +79,7 @@ body {
 
 // Content
 .right-panel {
-  background-color: $grey;
+  background-color: #FAF9F7;
   margin-left: 280px;
   padding-right: 25px;
   min-height: 120vh;
@@ -100,6 +104,12 @@ body {
 .mat-inline-center {
   display: inline-flex;
   align-items: center;
+}
+
+// Tables
+.table-image {
+  width: 150px;
+  height: 150px;
 }
 
 footer {

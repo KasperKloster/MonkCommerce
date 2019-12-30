@@ -7,56 +7,45 @@ use Illuminate\Http\Request;
 use Redirect;
 use Str;
 use Session;
+
 // Models
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrder;
+use KasperKloster\MonkCommerce\Models\MonkCommerceOrderStatus;
 
 class MonkAdminOrdersController extends Controller
 {
     public function index()
     {
       $orders = MonkCommerceOrder::paginate(5);
-
       return view('monkcommerce::monkcommerce-dashboard.admin.orders.index')
               ->with('orders', $orders);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-    //     //
-    // }
-    //
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
-
     public function show($id)
     {
-      $order = MonkCommerceOrder::find($id)->with('customer')->first();
-      //$category = MonkCommerceProductCategory::where('slug', $slug)->with('products')->first();
-      return view('monkcommerce::monkcommerce-dashboard.admin.orders.order')
-              ->with('order', $order);
-    }
+      $status = MonkCommerceOrderStatus::all();
+      $order = MonkCommerceOrder::find($id)->with('orderCustomer')->with('orderProduct')->first();
 
-    public function edit($id)
-    {
-        //
+      return view('monkcommerce::monkcommerce-dashboard.admin.orders.order')
+              ->with('order', $order)
+              ->with('status', $status);
     }
 
     public function update(Request $request, $id)
     {
-        //
+      $request->validate([
+        'status'  => 'required|integer',
+      ]);
+
+      // Find Order
+      $order = MonkCommerceOrder::findOrFail($id)->first();
+      $order->order_status_id = $request->status;
+      $order->updated_at      = NOW();
+      $order->update();
+
+      /* Message and Redirect */
+      Session::flash('success', 'Order Has Been Updated');
+      return Redirect::route('monk-admin-orders-index');
     }
 
     public function destroy($id)

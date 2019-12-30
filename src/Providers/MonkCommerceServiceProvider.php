@@ -5,11 +5,14 @@ namespace KasperKloster\MonkCommerce\Providers;
 use Illuminate\Support\ServiceProvider;
 
 use View;
+use DB;
+
 // Models
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductCategory;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductSubcategory;
 use KasperKloster\MonkCommerce\Models\MonkCommerceShop;
 use KasperKloster\MonkCommerce\Models\MonkCommerceStaticPages;
+use KasperKloster\MonkCommerce\Models\MonkCommerceOrder;
 
 class MonkCommerceServiceProvider extends ServiceProvider
 {
@@ -28,6 +31,7 @@ class MonkCommerceServiceProvider extends ServiceProvider
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShopSettingController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages');
+      $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminOrdersController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController');
       // Load Views
       $this->loadViewsFrom(__DIR__.'/../../resources/views', 'monkcommerce');
@@ -74,8 +78,14 @@ class MonkCommerceServiceProvider extends ServiceProvider
           // __DIR__.'/../Listeners/'  => base_path('app/Listeners/'),
         ], 'monkcommerce');
 
-        // For all Views
-        // Storefront Navbar
+        /*
+        * For all Views
+        */
+
+        /* Admin Left Panel */
+        // Orders where status is New (1)
+        $newLeftPanelOrders = MonkCommerceOrder::where('order_status_id', 1)->count();
+        /* Storefront Navbar */
         // Shop Categories
         $storefrontNavbarCategories = MonkCommerceProductCategory::whereNull('category_id')
                                       ->where('show_in_menu', 1)
@@ -86,6 +96,8 @@ class MonkCommerceServiceProvider extends ServiceProvider
         // Static Pages
         $storefrontStaticPages = MonkCommerceStaticPages::where('show_in_menu', 1)->get();
 
+        /* Share the views */
+        View::share('newLeftPanelOrders', $newLeftPanelOrders);
         View::share('storefrontNavbarCategories', $storefrontNavbarCategories);
         View::share('storefrontShop', $storefrontShop);
         View::share('storefrontStaticPages', $storefrontStaticPages);

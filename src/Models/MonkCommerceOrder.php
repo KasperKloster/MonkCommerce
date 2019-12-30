@@ -4,6 +4,9 @@ namespace KasperKloster\MonkCommerce\Models;
 use Illuminate\Database\Eloquent\Model;
 // Models
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrderCustomer;
+use KasperKloster\MonkCommerce\Models\MonkCommerceOrderStatus;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
+
 
 class MonkCommerceOrder extends Model
 {
@@ -12,14 +15,19 @@ class MonkCommerceOrder extends Model
   /*
   * Relationships
   */
-
-  public function customer()
+  public function orderCustomer()
   {
-    //return $this->belongsToMany(MonkCommerceProductCategory::class, 'mc_category_product', 'product_id', 'category_id');
-
-    return $this->hasOne(MonkCommerceOrderCustomer::class, 'order_id');
+    return $this->belongsTo(MonkCommerceOrderCustomer::class);
   }
 
+  public function orderStatus()
+  {
+    return $this->belongsTo(MonkCommerceOrderStatus::class);
+  }
 
+  public function orderProduct()
+  {
+    return $this->belongsToMany(MonkCommerceProduct::class, 'mc_orders_products', 'order_id', 'product_id');
+  }
 
 }

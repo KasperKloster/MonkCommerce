@@ -13,10 +13,12 @@ class CreateMonkcommerceOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('mc_orders', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
-        });
+      Schema::create('mc_orders', function (Blueprint $table) {
+        $table->increments('id');
+        $table->integer('order_status_id')->default('1');
+        $table->unsignedBigInteger('order_customer_id')->default('1');
+        $table->timestamps();
+      });
     }
 
     /**

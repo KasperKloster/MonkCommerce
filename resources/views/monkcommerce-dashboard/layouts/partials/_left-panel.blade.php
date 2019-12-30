@@ -3,7 +3,9 @@
   <nav class="navbar">
 
     <div class="sidebar-menu-header">
-      <span class="menu-title">Dashboard</span>
+      <span class="menu-title">
+        <a class="text-decoration-none" href="{{route('monk-admin-home')}}">Dashboard</a>
+      </span>
     </div>
     <ul id="sidebar-menu" class="list-unstyled">
       <li class="menu-title">{{ ucwords(__('monkcommerce-dashboard.left-panel.categories')) }}</li>
@@ -29,7 +31,7 @@
       <li class="menu-title">{{ ucwords(__('monkcommerce-dashboard.left-panel.orders')) }}</li>
       <li>
         <a href="{{ route('monk-admin-orders-index') }}">
-          All Orders <span class="badge badge-secondary">2 New</span> <i class="material-icons float-right">chevron_right</i>
+          All Orders <span class="badge badge-success">@if($newLeftPanelOrders >= 1){{ $newLeftPanelOrders }} New @endif</span> <i class="material-icons float-right">chevron_right</i>
         </a>
       </li>
       <li class="menu-title">{{ ucwords(__('monkcommerce-dashboard.left-panel.settings')) }}</li>

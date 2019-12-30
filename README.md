@@ -23,4 +23,6 @@ $this->call(MonkcommerceProductAttributeValuesTableSeeder::class);
 $this->call(MonkCommerceProductAttrProductAttrValueTableSeeder::class);
 $this->call(MonkcommerceShipmentCouriersTableSeeder::class);
 $this->call(MonkcommerceOrdersStatusSeeder::class);
+$this->call(MonkCommerceOrdersCustomerSeeder::class);
+$this->call(MonkcommerceOrdersTableSeeder::class);
 ```

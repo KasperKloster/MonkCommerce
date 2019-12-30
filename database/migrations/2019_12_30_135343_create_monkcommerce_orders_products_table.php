@@ -13,10 +13,12 @@ class CreateMonkcommerceOrdersProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mc_orders_products', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
-        });
+      Schema::create('mc_orders_products', function (Blueprint $table) {
+        $table->increments('id');
+        $table->integer('order_id')->unsigned();
+        $table->integer('product_id')->unsigned();
+        $table->integer('qty')->unsigned()->default('0');
+      });
     }
 
     /**

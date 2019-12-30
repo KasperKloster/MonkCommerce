@@ -13,10 +13,10 @@ class CreateMonkcommerceOrdersStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('mc_orders_status', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('status');
-        });
+      Schema::create('mc_orders_status', function (Blueprint $table) {
+          $table->increments('id');
+          $table->string('status');
+      });
     }
 
     /**

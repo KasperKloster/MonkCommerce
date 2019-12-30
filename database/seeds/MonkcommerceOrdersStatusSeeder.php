@@ -15,19 +15,19 @@ class MonkcommerceOrdersStatusSeeder extends Seeder
       \DB::table('mc_orders_status')->insert(array (
           0 =>
           array (
-              'status'   => 'new',
+              'status'   => 'New',
           ),
           1 =>
           array (
-              'status'   => 'pending',
+              'status'   => 'Pending',
           ),
           2 =>
           array (
-              'status'    => 'declined',
+              'status'    => 'Declined',
           ),
           3 =>
           array (
-              'status'    => 'sent',
+              'status'    => 'Sent',
           ),
       ));
     }

@@ -23,21 +23,21 @@
     @foreach($orders as $order)
     <tr>
       <td>
-        <a href="{{ route('monk-admin-orders-order', $order->id) }}">{{ $order->id }}</a>
+        <a href="{{ route('monk-admin-orders-show', $order->id) }}">{{ $order->id }}</a>
       </td>
-
-      <td>First and Last Name</td>
-      <td>Date</td>
-      <td class="text-success">
+      <td>{{ ucwords($order->orderCustomer->first_name . ' ' . $order->orderCustomer->last_name) }}</td>
+      <td>{{ $order->created_at }}</td>
+      <!-- Status -->
+      <td>
         <div class="badge badge-success text-wrap">
-        Status
+          {{ $order->orderStatus->status }}
         </div>
       </td>
-
+      <!-- Buttons -->
       <td>
         <div class="btn-group" role="group" aria-label="Basic example">
           <!-- View -->
-          <a href="{{ route('monk-admin-orders-order', $order->id) }}" class="btn btn-sm btn-info mat-inline-center">
+          <a href="{{ route('monk-admin-orders-show', $order->id) }}" class="btn btn-sm btn-info mat-inline-center">
             View
           </a>
         </div>

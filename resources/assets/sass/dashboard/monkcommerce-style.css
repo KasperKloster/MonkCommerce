@@ -5,6 +5,9 @@ body {
 .underline {
   text-decoration: underline; }
 
+.breadcrumb {
+  background-color: transparent; }
+
 .admin-navbar {
   background: #ffffff;
   border-bottom: 1px solid #e8e9ed;
@@ -63,7 +66,7 @@ body {
   text-decoration: none; }
 
 .right-panel {
-  background-color: #F7F8F9;
+  background-color: #FAF9F7;
   margin-left: 280px;
   padding-right: 25px;
   min-height: 120vh; }
@@ -84,6 +87,10 @@ body {
 .mat-inline-center {
   display: inline-flex;
   align-items: center; }
+
+.table-image {
+  width: 150px;
+  height: 150px; }
 
 footer {
   background-color: #ffffff;
