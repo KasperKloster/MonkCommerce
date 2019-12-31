@@ -24,6 +24,18 @@ class MonkCommerceOrdersCustomerSeeder extends Seeder
               'phone'           => '12 34 56 78',
               'email'           => 'name@example.com',
           ),
+
+          1 =>
+          array (
+              'first_name'      => 'SecondFirstname',
+              'last_name'       => 'SecondLastname',
+              'street_address'  => 'Secondstreet',
+              'postal_code'     => '1000',
+              'city'            => 'cityname',
+              'country'         => 'Denmark',
+              'phone'           => '12 34 56 78',
+              'email'           => 'name@example.com',
+          ),
       ));
     }
 }

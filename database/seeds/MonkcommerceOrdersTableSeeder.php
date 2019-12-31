@@ -15,7 +15,18 @@ class MonkcommerceOrdersTableSeeder extends Seeder
       \DB::table('mc_orders')->insert(array (
           0 =>
           array (
-              'id'        => '1',
+              'id'                  => '1',
+              'order_status_id'     => '1',
+              'order_customer_id'   => '1',
+              'shipping'            => '100',
+          ),
+
+          1 =>
+          array (
+              'id'                  => '2',
+              'order_status_id'     => '2',
+              'order_customer_id'   => '2',
+              'shipping'            => '15',
           ),
       ));
 
@@ -25,6 +36,22 @@ class MonkcommerceOrdersTableSeeder extends Seeder
               'id'          => '1',
               'order_id'    => '1',
               'product_id'  => '1',
+              'qty'         => '2'
+          ),
+          1 =>
+          array (
+              'id'          => '2',
+              'order_id'    => '1',
+              'product_id'  => '2',
+              'qty'         => '3'
+          ),
+
+          2 =>
+          array (
+              'id'          => '3',
+              'order_id'    => '2',
+              'product_id'  => '2',
+              'qty'         => '1'
           ),
       ));
     }

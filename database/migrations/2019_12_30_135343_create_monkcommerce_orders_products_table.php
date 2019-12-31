@@ -17,7 +17,7 @@ class CreateMonkcommerceOrdersProductsTable extends Migration
         $table->increments('id');
         $table->integer('order_id')->unsigned();
         $table->integer('product_id')->unsigned();
-        $table->integer('qty')->unsigned()->default('0');
+        $table->integer('qty')->unsigned()->nullable();
       });
     }
 

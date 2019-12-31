@@ -15,8 +15,9 @@ class CreateMonkcommerceOrdersTable extends Migration
     {
       Schema::create('mc_orders', function (Blueprint $table) {
         $table->increments('id');
-        $table->integer('order_status_id')->default('1');
-        $table->unsignedBigInteger('order_customer_id')->default('1');
+        $table->unsignedInteger('order_status_id')->nullable();
+        $table->unsignedBigInteger('order_customer_id')->nullable();
+        $table->unsignedInteger('shipping')->nullable();
         $table->timestamps();
       });
     }

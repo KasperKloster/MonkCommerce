@@ -8,6 +8,7 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceProductCategory;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductImage;
+use KasperKloster\MonkCommerce\Models\MonkCommerceOrder;
 
 class MonkCommerceProduct extends Model
 {

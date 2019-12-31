@@ -146,9 +146,9 @@
                     @endif
                   @endforeach
                 </td>
-                <td>{{$product->sku}}</td>
-                <td>{{ $product->name }}</td>
-                <td>{{ $product->qty }}</td>
+                <td>{{ $product->sku }}</td>
+                <td><a href="{{ route('monk-shop-single-product', $product->slug) }}" target="_blank">{{ $product->name }}</a></td>
+                <td>{{ $product->pivot->qty}}</td>
               </tr>
               @endforeach
             </tbody>
@@ -174,7 +174,7 @@
                     </tr>
                     <tr>
                       <th scope="row">Shipping</th>
-                      <td>{{ showPrice(5) }}</td>
+                      <td>{{ showPrice($order->shipping) }}</td>
                     </tr>
                     <tr class="underline">
                       <th scope="row">Subtotal</th>

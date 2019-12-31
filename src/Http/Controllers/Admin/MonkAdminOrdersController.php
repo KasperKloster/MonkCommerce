@@ -23,9 +23,13 @@ class MonkAdminOrdersController extends Controller
 
     public function show($id)
     {
+      // Find Order
+      $order = MonkCommerceOrder::with('orderCustomer')
+                ->with('orderProduct')
+                ->findOrFail($id);
+      // For Status Select
       $status = MonkCommerceOrderStatus::all();
-      $order = MonkCommerceOrder::find($id)->with('orderCustomer')->with('orderProduct')->first();
-
+      // Return View
       return view('monkcommerce::monkcommerce-dashboard.admin.orders.order')
               ->with('order', $order)
               ->with('status', $status);
