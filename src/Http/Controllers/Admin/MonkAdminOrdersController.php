@@ -42,7 +42,7 @@ class MonkAdminOrdersController extends Controller
       ]);
 
       // Find Order
-      $order = MonkCommerceOrder::findOrFail($id)->first();
+      $order = MonkCommerceOrder::findOrFail($id);
       $order->order_status_id = $request->status;
       $order->updated_at      = NOW();
       $order->update();

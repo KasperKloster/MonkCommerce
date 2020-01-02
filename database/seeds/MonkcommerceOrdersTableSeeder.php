@@ -19,6 +19,7 @@ class MonkcommerceOrdersTableSeeder extends Seeder
               'order_status_id'     => '1',
               'order_customer_id'   => '1',
               'shipping'            => '100',
+              'created_at'          =>  NOW(),
           ),
 
           1 =>
@@ -27,6 +28,7 @@ class MonkcommerceOrdersTableSeeder extends Seeder
               'order_status_id'     => '2',
               'order_customer_id'   => '2',
               'shipping'            => '15',
+              'created_at'          => NOW(),
           ),
       ));
 
