@@ -101,6 +101,7 @@ Route::group(['middleware' => 'web'], function (){
 	Route::get('remove-from-cart/{id}','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getRemoveFromCart')->name('monk-shop-remove-from-cart');
 	Route::get('checkout','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getCheckout')->name('monk-shop-checkout');
 	Route::post('checkout','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@postCheckout')->name('monk-shop-checkout');
+	Route::get('checkout/success','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getCheckoutSuccess')->name('monk-shop-checkout-success');
 	// Static pages
 	Route::get('page/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSinglePage')->name('monk-shop-single-page');
 });

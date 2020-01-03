@@ -1,7 +1,1 @@
-{
-"version": 3,
-"mappings": "AAAA,EAAG;EACD,KAAK,ECDC,OAAO;;ADIf,WAAY;EACV,SAAS,EAAE,KAAK;EAChB,WAAW,EAAE,GAAG;;AAGlB,iBAAkB;EACf,YAAY,EAAE,cAAc;;AAG/B,4BAA6B;EAC3B,MAAM,EAAE,IAAI;;AAGd,kBAAmB;EACjB,OAAO,EAAE,WAAW;EACpB,WAAW,EAAE,MAAM",
-"sources": ["basis.scss","_variables.scss"],
-"names": [],
-"file": "basis-style.css"
-}
+{"version":3,"sourceRoot":"","sources":["basis.scss","_variables.scss"],"names":[],"mappings":"AAAA;EACE,OCDM;;;ADIR;EACE;EACA;;;AAGF;EACG;;;AAGH;EACE;;;AAGF;EACE;EACA;;;AAGF;EACE;EACA","file":"basis-style.css"}

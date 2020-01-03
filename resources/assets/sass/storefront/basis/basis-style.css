@@ -1,18 +1,28 @@
 h1 {
-  color: #373a35; }
+  color: #373a35;
+}
 
 .show-price {
   font-size: 1.3em;
-  font-weight: 400; }
+  font-weight: 400;
+}
 
 .vertical-divider {
-  border-right: 1px solid #ccc; }
+  border-right: 1px solid #ccc;
+}
 
 .vertical-divider:last-child {
-  border: none; }
+  border: none;
+}
 
 .mat-inline-center {
   display: inline-flex;
-  align-items: center; }
+  align-items: center;
+}
+
+.table-image {
+  width: 150px;
+  height: 150px;
+}
 
 /*# sourceMappingURL=basis-style.css.map */
