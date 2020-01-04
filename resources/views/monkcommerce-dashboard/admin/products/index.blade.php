@@ -31,7 +31,7 @@
       <tr>
         <td>{{ $product->id }}</td>
         <td>{{ $product->sku }}</td>
-        <td>{{ $product->name }}</td>
+        <td><a href="{{ route('monk-admin-edit-product', $product->id) }}">{{ $product->name }}</a></td>
         <td>{{ showPrice($product->price) }}</td>
         <td>{{ showPrice($product->special_price) }}</td>
         <td>{{ $product->qty }}</td>

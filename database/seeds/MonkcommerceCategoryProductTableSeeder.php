@@ -23,6 +23,21 @@ class MonkcommerceCategoryProductTableSeeder extends Seeder
               'category_id'   => '2',
               'product_id'    => '1',
           ),
+          2 =>
+          array (
+              'category_id'   => '2',
+              'product_id'    => '2',
+          ),
+          3 =>
+          array (
+              'category_id'   => '2',
+              'product_id'    => '2',
+          ),
+          4 =>
+          array (
+              'category_id'   => '3',
+              'product_id'    => '3',
+          ),
       ));
     }
 }

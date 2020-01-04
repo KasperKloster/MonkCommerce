@@ -132,6 +132,7 @@
               <th scope="col">Image</th>
               <th scope="col">SKU</th>
               <th scope="col">Name</th>
+              <th scope="col">Price</th>
               <th scope="col">Quantity</th>
             </tr>
             </thead>
@@ -147,7 +148,8 @@
                   @endforeach
                 </td>
                 <td>{{ $product->sku }}</td>
-                <td><a href="{{ route('monk-shop-single-product', $product->slug) }}" target="_blank">{{ $product->name }}</a></td>
+                <td><a href="{{ route('monk-admin-edit-product', $product->id) }}">{{ $product->name }}</a></td>
+                <td>{{ showPrice(($product->special_price ? $product->special_price : $product->price)) }}</td>
                 <td>{{ $product->pivot->qty}}</td>
               </tr>
               @endforeach
@@ -170,7 +172,7 @@
                   <tbody>
                     <tr>
                       <th scope="row">Total</th>
-                      <td>{{ showPrice(10) }}</td>
+                      <td>{{ showPrice($productPrice) }}</td>
                     </tr>
                     <tr>
                       <th scope="row">Shipping</th>
@@ -178,8 +180,12 @@
                     </tr>
                     <tr class="underline">
                       <th scope="row">Subtotal</th>
-                      <td><b>{{ showPrice(15) }}</b></td>
+                      <td><b>{{ showPrice($productPrice + $order->shipping) }}</b></td>
                     </tr>
+                    <tr>
+                    PAYED NOT PAYED
+                    </tr>
+
                   </tbody>
                 </table>
               </div>

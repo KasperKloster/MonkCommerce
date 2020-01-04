@@ -29,7 +29,7 @@
       <td>{{ $order->created_at }}</td>
       <!-- Status -->
       <td>
-        <div class="badge badge-success text-wrap">
+        <div class="badge {{ badgeStatus($order->order_status_id) }} text-wrap">
           {{ $order->orderStatus->status }}
         </div>
       </td>

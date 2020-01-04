@@ -50,13 +50,27 @@ class MonkCommerceProcessOrder
       $dbProduct->save();
     }
     // Events Mails
+    
+
 
     // To New Session (orderUser)
     $this->order_id = $order->id;
   }
 
-  public function declineOrder()
+  public function declineOrder($id)
   {
-    return 'none';
+    // Finding Order
+    $order = MonkCommerceOrder::findOrFail($id);
+    $orderProducts = $order->orderProduct()
+        ->wherePivot('order_id', '=', $id)
+        ->get(); // execute the query
+    // Find each $dbProduct and update qty back
+    foreach($orderProducts as $orderProduct)
+    {
+      $dbProduct = MonkCommerceProduct::find($orderProduct->id);
+      $dbProduct->qty = $orderProduct->qty + $orderProduct->pivot->qty;
+      $dbProduct->update();
+    }
+
   }
 }

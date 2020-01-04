@@ -166,19 +166,15 @@ class MonkStorefrontController extends Controller
 
     public function getCheckoutSuccess()
     {
-      if (Session::has('orderUser'))
+      // If Session Exists, Get it. Else Redirect Back.
+      $orderUser = Session::has('orderUser') ? Session::get('orderUser') : redirect()->back();
+      // Loop through User Session
+      foreach($orderUser as $order)
       {
-        $orderUser = Session::get('orderUser');
-        foreach($orderUser as $order)
-        {
-          // Find Order From DB
-          $dbOrder = MonkCommerceOrder::where('id', $order)->with('orderCustomer')->with('orderProduct')->first();
-        }
-        return view('monkcommerce::monkcommerce-storefront.shop.cart.checkout-success')->with('dbOrder', $dbOrder);
+        // Find Order From DB
+        $dbOrder = MonkCommerceOrder::where('id', $order)->with('orderCustomer')->with('orderProduct')->first();
       }
-      else
-      {
-        return redirect()->back();
-      }
+      // Return View
+      return view('monkcommerce::monkcommerce-storefront.shop.cart.checkout-success')->with('dbOrder', $dbOrder);
     }
 }

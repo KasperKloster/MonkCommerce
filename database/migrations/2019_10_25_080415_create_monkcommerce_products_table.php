@@ -22,7 +22,7 @@ class CreateMonkCommerceProductsTable extends Migration
             $table->decimal('price')->nullable();
             $table->decimal('special_price')->nullable();
             $table->integer('weight')->nullable()->comment('in gram');
-            $table->integer('qty')->nullable();
+            $table->integer('qty')->unsigned()->nullable();
             $table->timestamps();
         });
     }

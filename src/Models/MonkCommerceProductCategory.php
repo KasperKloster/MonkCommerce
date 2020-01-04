@@ -12,12 +12,6 @@ class MonkCommerceProductCategory extends Model
     // Name of the Table
     protected $table = 'mc_product_categories';
 
-    // protected $fillable = [
-    //     'category_name',
-    //     'category_description',
-    //     'show_in_menu',
-    // ];
-
     /*
     * Relationships
     */
@@ -37,11 +31,4 @@ class MonkCommerceProductCategory extends Model
     {
       return $this->belongsToMany(MonkCommerceProduct::class, 'mc_category_product', 'category_id', 'product_id');
     }
-
-    //public BelongsToMany belongsToMany(
-    // string $related,
-    // string $table = null,
-    // string $foreignKey = null,
-    // string $otherKey = null,
-    // string $relation = null)
 }
