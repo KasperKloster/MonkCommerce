@@ -10,6 +10,12 @@
   <div class="card">
     <div class="card-header">
       {{ ucwords(__('monkcommerce-dashboard.products.edit_product')) }}
+      <br/>
+      <small>
+        <a href="{{ route('monk-shop-single-product', $product->slug)}}" target="_blank">
+          Show in Shop
+        </a>
+      </small>
     </div>
     <div class="card-body">
 

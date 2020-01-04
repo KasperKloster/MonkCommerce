@@ -63,7 +63,7 @@ class MonkAdminOrdersController extends Controller
         'status'  => 'required|integer',
       ]);
 
-      // Find Order
+      // Find Order Status
       $orderStatus = MonkCommerceOrder::where('id', $id)->with('orderProduct')->select('id', 'order_status_id')->get();
       // Loop Through Status
       foreach($orderStatus as $order)

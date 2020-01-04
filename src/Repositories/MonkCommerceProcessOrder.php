@@ -2,6 +2,9 @@
 
 namespace KasperKloster\MonkCommerce\Repositories;
 use Session;
+use Illuminate\Support\Facades\Mail;
+use KasperKloster\MonkCommerce\Mail\NewOrderMail;
+
 // use Illuminate\Database\Eloquent\Model;
 // Models
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrderCustomer;
@@ -49,9 +52,8 @@ class MonkCommerceProcessOrder
       $dbProduct->qty = $dbProduct->qty - $product['qty'];
       $dbProduct->save();
     }
-    // Events Mails
-    
-
+    // Send New Order Mail
+    Mail::to($request->email)->send(new NewOrderMail());
 
     // To New Session (orderUser)
     $this->order_id = $order->id;

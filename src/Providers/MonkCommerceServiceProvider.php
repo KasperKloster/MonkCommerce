@@ -81,7 +81,6 @@ class MonkCommerceServiceProvider extends ServiceProvider
         /*
         * For all Views
         */
-
         /* Admin Left Panel */
         // Orders where status is New (1)
         $newLeftPanelOrders = MonkCommerceOrder::where('order_status_id', 1)->count();

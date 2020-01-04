@@ -23,7 +23,7 @@ class MonkcommerceOrdersStatusSeeder extends Seeder
           ),
           2 =>
           array (
-              'status'    => 'Declined',
+              'status'    => 'Decline',
           ),
           3 =>
           array (
