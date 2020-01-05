@@ -1,9 +1,5 @@
 <?php
 /** Admin Dashboard **/
-// Emails (Dev. Purpose)
-use KasperKloster\MonkCommerce\Mail\NewOrderMail;
-use Illuminate\Support\Facades\Mail;
-
 // Group because of session & csrf
 Route::group(['middleware' => ['web']], function () {
 
@@ -88,11 +84,7 @@ Route::group(['middleware' => ['web']], function () {
 			Route::get('delete/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages@destroy')->name('monk-admin-destroy-page');
 		});
 		// Emails (Dev. Purpose)
-		Route::get('email', function() {
-
-			//Mail::to('email@email.com')->send(new NewOrderMail());
-			return new NewOrderMail();
-		});
+		Route::get('/emails', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminController@getEmailTest');
 
 	});
 

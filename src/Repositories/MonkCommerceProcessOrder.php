@@ -2,8 +2,6 @@
 
 namespace KasperKloster\MonkCommerce\Repositories;
 use Session;
-use Illuminate\Support\Facades\Mail;
-use KasperKloster\MonkCommerce\Mail\NewOrderMail;
 
 // use Illuminate\Database\Eloquent\Model;
 // Models
@@ -11,6 +9,9 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceOrderCustomer;
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrder;
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrderProduct;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
+// Mail
+use Illuminate\Support\Facades\Mail;
+use KasperKloster\MonkCommerce\Mail\NewOrderConfirmationMail;
 
 class MonkCommerceProcessOrder
 {
@@ -37,7 +38,7 @@ class MonkCommerceProcessOrder
     $order->save();
 
     /* Create Products */
-    // Getting cart from Session (price, sku etc. is stored from DB / so not possible to alter with html)
+    // Getting cart from Session (price, sku etc. is stored from DB / so not possible to alter data with html)
     $cart = Session::get('cart');
     foreach ($cart->items as $product)
     {
@@ -52,8 +53,9 @@ class MonkCommerceProcessOrder
       $dbProduct->qty = $dbProduct->qty - $product['qty'];
       $dbProduct->save();
     }
+
     // Send New Order Mail
-    Mail::to($request->email)->send(new NewOrderMail());
+    Mail::to($customer->email)->send(new NewOrderConfirmationMail($customer->toArray(), $cart, $order));
 
     // To New Session (orderUser)
     $this->order_id = $order->id;

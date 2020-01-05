@@ -19,6 +19,9 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceOrder;
 use KasperKloster\MonkCommerce\Repositories\MonkCommerceCart;
 use KasperKloster\MonkCommerce\Repositories\MonkCommerceProcessOrder;
 
+// Mail
+use Illuminate\Support\Facades\Mail;
+use KasperKloster\MonkCommerce\Mail\NewOrderConfirmationMail;
 
 class MonkStorefrontController extends Controller
 {
@@ -150,6 +153,7 @@ class MonkStorefrontController extends Controller
       {
         $order = new MonkCommerceProcessOrder;
         $order->createOrder($request);
+
         // Flush Cart Session
         Session::flush('cart');
         // New Session for Success Page
