@@ -98,12 +98,17 @@ Route::group(['middleware' => 'web'], function (){
 	Route::get('category/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSingleCategory')->name('monk-shop-single-category');
 	Route::get('product/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSingleProduct')->name('monk-shop-single-product');
 	// Cart
-	Route::get('cart','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getCartIndex')->name('monk-shop-cart-index');
 	Route::get('add-to-cart/{id}','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getAddToCart')->name('monk-shop-add-to-cart');
 	Route::get('remove-from-cart/{id}','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getRemoveFromCart')->name('monk-shop-remove-from-cart');
-	Route::get('checkout','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getCheckout')->name('monk-shop-checkout');
-	Route::post('checkout','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@postCheckout')->name('monk-shop-checkout');
-	Route::get('checkout/success','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getCheckoutSuccess')->name('monk-shop-checkout-success');
+	// Cart and Checkout
+	Route::get('cart','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@getCartIndex')->name('monk-shop-cart-index');
+	Route::get('checkout/billing','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@getCheckoutBilling')->name('monk-shop-checkout-billing');
+	Route::post('checkout/billing','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@postCheckoutBilling')->name('monk-shop-checkout-billing-post');
+	Route::get('checkout/delivery','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@getCheckoutDelivery')->name('monk-shop-checkout-delivery');
+	Route::get('checkout/payment','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@getCheckoutPayment')->name('monk-shop-checkout-payment');
+
+	Route::post('checkout','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@postCheckout')->name('monk-shop-checkout');
+	Route::get('checkout/success','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@getCheckoutSuccess')->name('monk-shop-checkout-success');
 	// Static pages
 	Route::get('page/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSinglePage')->name('monk-shop-single-page');
 });

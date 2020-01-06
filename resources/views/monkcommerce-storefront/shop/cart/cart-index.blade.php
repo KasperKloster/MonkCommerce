@@ -74,7 +74,7 @@
 
   <div class="float-right mt-4">
     <h6><b>Total:</b> <u>{{ showPrice($totalPrice) }}</u></h6>
-    <a href="{{ route('monk-shop-checkout') }}" class="btn btn-success">Proceed to Checkout</a>
+    <a href="{{ route('monk-shop-checkout-billing') }}" class="btn btn-success">Proceed to Checkout</a>
   </div>
 
   @else

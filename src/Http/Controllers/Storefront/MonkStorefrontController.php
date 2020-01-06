@@ -17,11 +17,6 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceOrder;
 
 // Classes / Repos
 use KasperKloster\MonkCommerce\Repositories\MonkCommerceCart;
-use KasperKloster\MonkCommerce\Repositories\MonkCommerceProcessOrder;
-
-// Mail
-use Illuminate\Support\Facades\Mail;
-use KasperKloster\MonkCommerce\Mail\NewOrderConfirmationMail;
 
 class MonkStorefrontController extends Controller
 {
@@ -62,7 +57,7 @@ class MonkStorefrontController extends Controller
     }
 
     /*
-    * Cart
+    * Add / Remove Products from Cart
     */
     public function getAddToCart(Request $request, $id)
     {
@@ -102,83 +97,9 @@ class MonkStorefrontController extends Controller
       {
         Session::put('cart', $cart);
       }
-
       // View
       Session::flash('success', 'Product has been removed from cart');
       return redirect()->back();
     }
 
-    public function getCartIndex()
-    {
-      if (!Session::has('cart'))
-      {
-        return view('monkcommerce::monkcommerce-storefront.shop.cart.cart-index');
-      }
-      // Get items
-      $cart = Session::get('cart');
-      //$cart = json_decode(json_encode($items), true);
-      return view('monkcommerce::monkcommerce-storefront.shop.cart.cart-index', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
-    }
-
-    public function getCheckout()
-    {
-      if (!Session::has('cart'))
-      {
-        return view('monkcommerce::monkcommerce-storefront.shop.cart.cart-index');
-      }
-      // Get Cart
-      $oldCart = Session::get('cart');
-      $cart = New MonkCommerceCart($oldCart);
-
-      return view('monkcommerce::monkcommerce-storefront.shop.cart.checkout', ['products' => $cart->items, 'cart' => $cart]);
-    }
-
-    public function postCheckout(Request $request)
-    {
-      // Validate
-      // $request->validate([
-      //   'firstName'     => 'required|max:255',
-      //   'lastName'      => 'required|max:255',
-      //   'streetAddress' => 'required|max:555',
-      //   'postalCode'    => 'required|max:9999',
-      //   'city'          => 'required|max:355',
-      //   'country'       => 'required|max:555',
-      //   'phone'         => 'required|alpha_num',
-      //   'email'         => 'required|email',
-      // ]);
-
-      $response = TRUE;
-
-      if($response == True)
-      {
-        $order = new MonkCommerceProcessOrder;
-        $order->createOrder($request);
-
-        // Flush Cart Session
-        Session::flush('cart');
-        // New Session for Success Page
-        Session::put('orderUser', $order);
-        // Redirect
-        return Redirect::route('monk-shop-checkout-success');
-      }
-      else
-      {
-        return 'something as wrong...';
-      }
-
-    }
-
-    public function getCheckoutSuccess()
-    {
-      // If Session Exists, Get it. Else Redirect Back.
-      $orderUser = Session::has('orderUser') ? Session::get('orderUser') : redirect()->back();
-      // Loop through User Session
-      foreach($orderUser as $order)
-      {
-        // Find Order From DB
-        $dbOrder = MonkCommerceOrder::where('id', $order)->with('orderCustomer')->with('orderProduct')->first();
-      }
-      // Return View
-      return view('monkcommerce::monkcommerce-storefront.shop.cart.checkout-success')->with('dbOrder', $dbOrder);
-    }
 }

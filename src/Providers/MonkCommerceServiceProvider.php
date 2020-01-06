@@ -33,6 +33,7 @@ class MonkCommerceServiceProvider extends ServiceProvider
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminOrdersController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController');
+      $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController');
       // Load Views
       $this->loadViewsFrom(__DIR__.'/../../resources/views', 'monkcommerce');
       // Events
@@ -65,8 +66,10 @@ class MonkCommerceServiceProvider extends ServiceProvider
           // Styles
           __DIR__.'/../../resources/assets/sass/dashboard/monkcommerce-style.css' => public_path('monkcommerce/css/dashboard/monkcommerce-style.css'),
           __DIR__.'/../../resources/assets/sass/dashboard/monkcommerce-style.css.map' => public_path('monkcommerce/css/dashboard/monkcommerce-style.css.map'),
-          __DIR__.'/../../resources/assets/sass/storefront/basis/basis-style.css' => public_path('monkcommerce/css/storefront/basis-style.css'),
-          __DIR__.'/../../resources/assets/sass/storefront/basis/basis-style.css.map' => public_path('monkcommerce/css/storefront/basis-style.css.map'),
+          __DIR__.'/../../resources/assets/sass/storefront/basis/basis-style.css' => public_path('monkcommerce/css/storefront/basis/basis-style.css'),
+          __DIR__.'/../../resources/assets/sass/storefront/basis/basis-style.css.map' => public_path('monkcommerce/css/storefront/basis/basis-style.css.map'),
+          __DIR__.'/../../resources/assets/sass/storefront/checkout/checkout-style.css' => public_path('monkcommerce/css/storefront/checkout/checkout-style.css'),
+          __DIR__.'/../../resources/assets/sass/storefront/checkout/checkout-style.css.map' => public_path('monkcommerce/css/storefront/checkout/checkout-style.css.map'),
           // JavaScript
           //__DIR__.'/../../resources/assets/js/' => public_path('monkcommerce/js/'),
           // Product Images
