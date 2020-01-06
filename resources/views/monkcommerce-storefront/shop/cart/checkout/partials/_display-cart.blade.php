@@ -28,7 +28,7 @@
     @endforeach
     <li class="list-group-item d-flex justify-content-between bg-light font-weight-bold">
       <span>Shipping</span>
-      <i>Calculated later</i>
+      <i>Choose later</i>
     </li>
     <li class="list-group-item d-flex justify-content-between bg-light font-weight-bold">
       <span>Subtotal</span>

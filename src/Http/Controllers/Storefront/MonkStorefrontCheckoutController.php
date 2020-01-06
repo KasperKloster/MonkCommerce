@@ -52,22 +52,22 @@ class MonkStorefrontCheckoutController extends Controller
     $request->validate([
       'firstName'       => 'required|min:1|max:200',
       'lastName'        => 'required|min:1|max:200',
-      'streetAddress'   => 'required',
+      'streetAddress'   => 'required|max:555',
       'postalCode'      => 'required|integer|min:0000|max:9999',
-      'city'            => 'required',
-      'country'         => 'required',
+      'city'            => 'required|max:555',
+      'country'         => 'required|max:555',
       'email'           => 'required|email',
-      'phone'           => 'required|integer|min:00000000|max:99999999',
+      'phone'           => 'required|integer|min:00000000|max:99999999|alpha_num',
     ]);
-
-    /** User Session **/
-
+    // User input to session
+    Session::put('billing', $request->all());
+    // redirect to delivery
     return Redirect::route('monk-shop-checkout-delivery');
   }
 
   public function getCheckoutDelivery()
   {
-    if (!Session::has('cart'))
+    if (!Session::has('cart') && Session::get('billing'))
     {
       return view('monkcommerce::monkcommerce-storefront.shop.cart.cart-index');
     }
@@ -78,24 +78,36 @@ class MonkStorefrontCheckoutController extends Controller
     return view('monkcommerce::monkcommerce-storefront.shop.cart.checkout.checkout-delivery', ['products' => $cart->items, 'cart' => $cart]);
   }
 
+  public function postCheckoutDelivery(Request $request)
+  {
+    /** Validate **/
+    $request->validate([
+      'dfirstName'       => 'required|min:1|max:200',
+      'dlastName'        => 'required|min:1|max:200',
+      'dstreetAddress'   => 'required|max:555',
+      'dpostalCode'      => 'required|integer|min:0000|max:9999',
+      'dcity'            => 'required|max:555',
+      'dcountry'         => 'required|max:555',
+      'demail'           => 'required|email',
+      'dphone'           => 'required|integer|min:00000000|max:99999999|alpha_num',
+    ]);
+    Session::put('delivery', $request->all());
+
+    return Redirect::route('monk-shop-checkout-payment');
+  }
+
   public function getCheckoutPayment()
   {
-    return 'payment';
+    //return 'payment';
+
+    return Session::all();
   }
 
   public function postCheckout(Request $request)
   {
-    // Validate
-    // $request->validate([
-    //   'firstName'     => 'required|max:255',
-    //   'lastName'      => 'required|max:255',
-    //   'streetAddress' => 'required|max:555',
-    //   'postalCode'    => 'required|max:9999',
-    //   'city'          => 'required|max:355',
-    //   'country'       => 'required|max:555',
-    //   'phone'         => 'required|alpha_num',
-    //   'email'         => 'required|email',
-    // ]);
+    /*
+    * Validate
+    **/
 
     $response = TRUE;
 

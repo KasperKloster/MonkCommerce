@@ -105,6 +105,7 @@ Route::group(['middleware' => 'web'], function (){
 	Route::get('checkout/billing','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@getCheckoutBilling')->name('monk-shop-checkout-billing');
 	Route::post('checkout/billing','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@postCheckoutBilling')->name('monk-shop-checkout-billing-post');
 	Route::get('checkout/delivery','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@getCheckoutDelivery')->name('monk-shop-checkout-delivery');
+	Route::post('checkout/delivery','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@postCheckoutDelivery')->name('monk-shop-checkout-post');
 	Route::get('checkout/payment','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@getCheckoutPayment')->name('monk-shop-checkout-payment');
 
 	Route::post('checkout','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@postCheckout')->name('monk-shop-checkout');
