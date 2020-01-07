@@ -15,20 +15,22 @@ class MonkcommerceOrdersTableSeeder extends Seeder
       \DB::table('mc_orders')->insert(array (
           0 =>
           array (
-              'id'                  => '1',
-              'order_status_id'     => '1',
-              'order_customer_id'   => '1',
-              'shipping'            => '200',
-              'created_at'          =>  NOW(),
+              'id'                          => '1',
+              'order_status_id'              => '1',
+              'order_customer_id'            => '1',
+              'order_customer_delivery_id'   => '1',
+              'shipping'                     => '200',
+              'created_at'                   =>  NOW(),
           ),
 
           1 =>
           array (
-              'id'                  => '2',
-              'order_status_id'     => '2',
-              'order_customer_id'   => '2',
-              'shipping'            => '15',
-              'created_at'          => NOW(),
+              'id'                           => '2',
+              'order_status_id'              => '2',
+              'order_customer_id'            => '2',
+              'order_customer_delivery_id'   => '2',
+              'shipping'                     => '15',
+              'created_at'                   => NOW(),
           ),
       ));
 

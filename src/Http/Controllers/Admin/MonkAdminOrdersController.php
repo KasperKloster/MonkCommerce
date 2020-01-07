@@ -29,6 +29,7 @@ class MonkAdminOrdersController extends Controller
     {
       // Find Order
       $order = MonkCommerceOrder::with('orderCustomer')
+                ->with('orderCustomerDelivery')
                 ->with('orderProduct')
                 ->findOrFail($id);
 

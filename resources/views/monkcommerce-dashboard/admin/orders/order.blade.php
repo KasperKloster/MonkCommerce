@@ -93,25 +93,25 @@
             </table>
           </div>
         </div>
-        <!-- Shipping Address -->
+        <!-- Delivery Address -->
         <div class="card">
           <div class="card-header">
-            Shipping Address
+            Delivery Address
           </div>
           <div class="card-body">
             <table class="table table-borderless table-hover table-sm">
               <tbody>
                 <tr>
-                  <td>{{ucwords($order->orderCustomer->first_name . ' ' . $order->orderCustomer->last_name)}}</td>
+                  <td>{{ ucwords($order->orderCustomerDelivery->first_name . ' ' . $order->orderCustomerDelivery->last_name) }}</td>
                 </tr>
                 <tr>
-                  <td>{{ ucwords($order->orderCustomer->street_address) }}</td>
+                  <td>{{ ucwords($order->orderCustomerDelivery->street_address) }}</td>
                 </tr>
                 <tr>
-                  <td>{{ ucwords($order->orderCustomer->postal_code . ' ' . $order->orderCustomer->city) }}</td>
+                  <td>{{ ucwords($order->orderCustomerDelivery->postal_code . ' ' . $order->orderCustomerDelivery->city) }}</td>
                 </tr>
                 <tr>
-                  <td>{{ ucwords($order->orderCustomer->country) }}</td>
+                  <td>{{ ucwords($order->orderCustomerDelivery->country) }}</td>
                 </tr>
               </tbody>
             </table>

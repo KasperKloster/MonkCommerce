@@ -57,19 +57,19 @@ Thank you for you order.
                   <tbody align="left">
                     <tr>
                       <th>Name</th>
-                      <td>X</td>
+                      <td>{{ ucwords($customerDel['first_name'] . ' ' . $customerDel['last_name']) }}</td>
                     </tr>
                     <tr>
                       <th>Street Name</th>
-                      <td>X</td>
+                      <td>{{ ucwords($customerDel['street_address']) }}</td>
                     </tr>
                     <tr>
                       <th>Postalcode & City</th>
-                      <td>X</td>
+                      <td>{{ ucwords($customerDel['postal_code'] . ' ' . $customerDel['city']) }}</td>
                     </tr>
                     <tr>
                       <th>Country</th>
-                      <td>X</td>
+                      <td>{{ ucwords($customerDel['country']) }}</td>
                     </tr>
                   </tbody>
                 </table>

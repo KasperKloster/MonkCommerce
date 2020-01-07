@@ -11,7 +11,7 @@ class MonkCommerceOrdersCustomerSeeder extends Seeder
      */
     public function run()
     {
-      // Category Products
+      // Customers Billing
       \DB::table('mc_orders_customers')->insert(array (
           0 =>
           array (
@@ -35,6 +35,28 @@ class MonkCommerceOrdersCustomerSeeder extends Seeder
               'country'         => 'Denmark',
               'phone'           => '12 34 56 78',
               'email'           => 'name@example.com',
+          ),
+      ));
+
+      \DB::table('mc_orders_customers_delivery')->insert(array (
+          0 =>
+          array (
+              'first_name'      => 'Delivery Firstname',
+              'last_name'       => 'Delivery Lastname',
+              'street_address'  => 'Delivery street',
+              'postal_code'     => '2000',
+              'city'            => 'Delivery cityname',
+              'country'         => 'Delivery Denmark',
+          ),
+
+          1 =>
+          array (
+              'first_name'      => 'Second Delivery Firstname',
+              'last_name'       => 'Second Delivery Lastname',
+              'street_address'  => 'Second Delivery street',
+              'postal_code'     => '1000',
+              'city'            => 'city Delivery name',
+              'country'         => 'Delivery',
           ),
       ));
     }

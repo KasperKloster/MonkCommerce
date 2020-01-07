@@ -12,7 +12,7 @@
 @section('left')
 <div class="pt-4 mx-5">
   <h3>Checkout</h3>
-  @include('monkcommerce::monkcommerce-storefront.shop.cart.checkout.partials._checkout-steps', ['step2' => TRUE])
+  @include('monkcommerce::monkcommerce-storefront.shop.cart.checkout.partials._checkout-steps', ['step2' => TRUE, 'step3' => FALSE])
   <hr/>
 
   <form action="{{ route('monk-shop-checkout-post') }}" method="post" id="checkout-form">
@@ -27,7 +27,6 @@
           @error('dfirstName')
             <small class="text-danger">{{ $message }}</small>
           @enderror
-
         </div>
         <div class="col-md-6 mb-3">
           <label for="dlastName">Last name</label>
@@ -47,7 +46,7 @@
       </div>
       <!-- Postal, city -->
       <div class="row">
-        <div class="col-md-2 mb-3">
+        <div class="col-md-3 mb-3">
           <label for="dpostalCode">Postal Code</label>
           <input type="text" class="form-control form-control-sm @error('dpostalCode') is-invalid @enderror" id="dpostalCode" name="dpostalCode" value="{{ old('dpostalCode') }}" required>
           @error('dpostalCode')
@@ -63,7 +62,7 @@
           @enderror
         </div>
 
-        <div class="col-md-5 mb-3">
+        <div class="col-md-4 mb-3">
           <label for="dcountry">Country</label>
           <select class="d-block w-100 form-control form-control-sm @error('dcountry') is-invalid @enderror" id="dcountry" name="dcountry" value="{{ old('dcountry') }}" required>
             <option disabled>Choose...</option>
@@ -74,24 +73,10 @@
           @enderror
         </div>
       </div>
-      <!-- Info -->
-      <div class="row">
-        <div class="col-md-7 mb-3">
-          <label for="demail">Email</label>
-          <input type="demail" class="form-control form-control-sm @error('demail') is-invalid @enderror" id="demail" name="demail" value="{{ old('demail') }}" required>
-          @error('demail')
-            <small class="text-danger">{{ $message }}</small>
-          @enderror
-        </div>
-        <!-- phone -->
-        <div class="col-md-5 mb-3">
-          <label for="dphone">Phone</label>
-          <input type="tel" class="form-control form-control-sm @error('dphone') is-invalid @enderror" id="phone" name="dphone" value="{{ old('dphone') }}" required>
-          @error('phone')
-            <small class="text-danger">{{ $message }}</small>
-          @enderror
-        </div>
-      </div>
+      <hr/>
+      <h3>Shipping</h3>
+
+      <hr/>
       <!-- Buttons -->
       <div class="row d-flex justify-content-between">
         <div class="col-md-4">
@@ -102,6 +87,8 @@
         </div>
       </div>
   </form>
+
+
 </div>
 @stop
 

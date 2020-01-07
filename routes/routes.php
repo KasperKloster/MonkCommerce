@@ -107,8 +107,7 @@ Route::group(['middleware' => 'web'], function (){
 	Route::get('checkout/delivery','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@getCheckoutDelivery')->name('monk-shop-checkout-delivery');
 	Route::post('checkout/delivery','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@postCheckoutDelivery')->name('monk-shop-checkout-post');
 	Route::get('checkout/payment','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@getCheckoutPayment')->name('monk-shop-checkout-payment');
-
-	Route::post('checkout','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@postCheckout')->name('monk-shop-checkout');
+	Route::post('checkout','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@postCheckoutPayment')->name('monk-shop-checkout-payment-post');
 	Route::get('checkout/success','KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController@getCheckoutSuccess')->name('monk-shop-checkout-success');
 	// Static pages
 	Route::get('page/{slug}', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getSinglePage')->name('monk-shop-single-page');

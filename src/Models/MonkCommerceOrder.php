@@ -4,6 +4,7 @@ namespace KasperKloster\MonkCommerce\Models;
 use Illuminate\Database\Eloquent\Model;
 // Models
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrderCustomer;
+use KasperKloster\MonkCommerce\Models\MonkCommerOrderCustomerDelivery;
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrderStatus;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
 
@@ -19,6 +20,11 @@ class MonkCommerceOrder extends Model
   public function orderCustomer()
   {
     return $this->belongsTo(MonkCommerceOrderCustomer::class, 'order_customer_id');
+  }
+
+  public function orderCustomerDelivery()
+  {
+    return $this->belongsTo(MonkCommerOrderCustomerDelivery::class, 'order_customer_delivery_id');
   }
   //
   public function orderStatus()

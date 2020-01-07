@@ -6,6 +6,7 @@ use Session;
 // use Illuminate\Database\Eloquent\Model;
 // Models
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrderCustomer;
+use KasperKloster\MonkCommerce\Models\MonkCommerOrderCustomerDelivery;
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrder;
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrderProduct;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
@@ -17,24 +18,39 @@ class MonkCommerceProcessOrder
 {
   public function createOrder($request)
   {
-    /* Create Customer */
+    /* Create Customer / Billing */
+    $bilSession = Session::get('billing');
+
     $customer = new MonkCommerceOrderCustomer;
-    $customer->first_name     = $request->firstName;
-    $customer->last_name      = $request->lastName;
-    $customer->street_address = $request->streetAddress;
-    $customer->postal_code    = $request->postalCode;
-    $customer->city           = $request->city;
-    $customer->country        = $request->country;
-    $customer->phone          = $request->phone;
-    $customer->email          = $request->email;
+    $customer->first_name     = $bilSession['firstName'];
+    $customer->last_name      = $bilSession['lastName'];
+    $customer->street_address = $bilSession['streetAddress'];
+    $customer->postal_code    = $bilSession['postalCode'];
+    $customer->city           = $bilSession['city'];
+    $customer->country        = $bilSession['country'];
+    $customer->phone          = $bilSession['phone'];
+    $customer->email          = $bilSession['email'];
     $customer->save();
+
+    /* Create Customer / Delivery */
+    $delSession = Session::get('delivery');
+
+    $customerDel = new MonkCommerOrderCustomerDelivery;
+    $customerDel->first_name     = $delSession['dfirstName'];
+    $customerDel->last_name      = $delSession['dlastName'];
+    $customerDel->street_address = $delSession['dstreetAddress'];
+    $customerDel->postal_code    = $delSession['dpostalCode'];
+    $customerDel->city           = $delSession['dcity'];
+    $customerDel->country        = $delSession['dcountry'];
+    $customerDel->save();
 
     /* Create Order */
     $order = new MonkCommerceOrder;
     // new order is status code 1
-    $order->order_status_id = '1';
+    $order->order_status_id           = '1';
     // Get latest customer id (Created above)
-    $order->order_customer_id = $customer->id;
+    $order->order_customer_id          = $customer->id;
+    $order->order_customer_delivery_id = $customerDel->id;
     $order->save();
 
     /* Create Products */
@@ -55,7 +71,7 @@ class MonkCommerceProcessOrder
     }
 
     // Send New Order Mail
-    Mail::to($customer->email)->send(new NewOrderConfirmationMail($customer->toArray(), $cart, $order));
+    Mail::to($customer->email)->send(new NewOrderConfirmationMail($customer->toArray(), $customerDel->toArray(), $cart, $order));
 
     // To New Session (orderUser)
     $this->order_id = $order->id;

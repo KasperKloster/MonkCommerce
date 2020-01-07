@@ -26,16 +26,16 @@
       @endif
     </li>
     @endforeach
-    <li class="list-group-item d-flex justify-content-between bg-light font-weight-bold">
+    <li class="list-group-item d-flex justify-content-between bg-light">
       <span>Shipping</span>
       <i>Choose later</i>
     </li>
-    <li class="list-group-item d-flex justify-content-between bg-light font-weight-bold">
+    <li class="list-group-item d-flex justify-content-between bg-light">
       <span>Subtotal</span>
-      <u>{{ showPrice($cart->totalPrice) }}</u></strong>
+      {{ showPrice($cart->totalPrice) }}</strong>
     </li>
-    <li class="list-group-item d-flex justify-content-between bg-light font-weight-bold">
-      Total
+    <li class="list-group-item d-flex justify-content-between bg-light">
+      Total <b><u>{{ showPrice($cart->totalPrice) }}</u></b>
     </li>
   </ul>
 </div>

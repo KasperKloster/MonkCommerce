@@ -88,8 +88,6 @@ class MonkStorefrontCheckoutController extends Controller
       'dpostalCode'      => 'required|integer|min:0000|max:9999',
       'dcity'            => 'required|max:555',
       'dcountry'         => 'required|max:555',
-      'demail'           => 'required|email',
-      'dphone'           => 'required|integer|min:00000000|max:99999999|alpha_num',
     ]);
     Session::put('delivery', $request->all());
 
@@ -98,25 +96,37 @@ class MonkStorefrontCheckoutController extends Controller
 
   public function getCheckoutPayment()
   {
-    //return 'payment';
-
-    return Session::all();
+    if (!Session::has('cart') && Session::get('billing') && Session::get('delivery'))
+    {
+      return view('monkcommerce::monkcommerce-storefront.shop.cart.cart-index');
+    }
+    // Get Cart
+    $oldCart = Session::get('cart');
+    $cart = New MonkCommerceCart($oldCart);
+    // Return View
+    return view('monkcommerce::monkcommerce-storefront.shop.cart.checkout.checkout-payment', ['products' => $cart->items, 'cart' => $cart]);
   }
 
-  public function postCheckout(Request $request)
+  public function postCheckoutPayment(Request $request)
   {
-    /*
-    * Validate
-    **/
+    /** Validate **/
+    $request->validate([
+      'cc-name'       => 'required',
+      'cc-number'     => 'required',
+      'cc-expiration' => 'required',
+      'cc-cvv'        => 'required',
+    ]);
 
+    // DEVELOPMENT PAYMENT RESPONSE MAYBE NO SESSION
+    // Save to Session
+    Session::flash('payment', $request->all());
     $response = TRUE;
 
     if($response == True)
     {
       $order = new MonkCommerceProcessOrder;
       $order->createOrder($request);
-
-      // Flush Cart Session
+      // Flush Cart Session (ALL?)
       Session::flush('cart');
       // New Session for Success Page
       Session::put('orderUser', $order);

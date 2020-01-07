@@ -8,7 +8,7 @@
           1
         </div>
         <div class="checkout-step-text" data-text="Adresss">
-          Adress
+          Address
         </div>
       </div>
       </a>
@@ -31,7 +31,7 @@
 
     <li>
       <div class="checkout-step">
-        <div class="checkout-step-number step-color-default">
+        <div class="checkout-step-number @if($step3 == TRUE) step-color-active @else step-color-default @endif">
           3
         </div>
         <div class="checkout-step-text" data-text="Adresss">

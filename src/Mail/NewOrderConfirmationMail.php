@@ -14,6 +14,7 @@ class NewOrderConfirmationMail extends Mailable
     use Queueable, SerializesModels;
 
     public $customer;
+    public $customerDel;
     public $cart;
     public $order;
 
@@ -22,9 +23,10 @@ class NewOrderConfirmationMail extends Mailable
      *
      * @return void
      */
-    public function __construct($customer, $cart, $order)
+    public function __construct($customer, $customerDel, $cart, $order)
     {
         $this->customer = $customer;
+        $this->customerDel = $customerDel;
         $this->cart = $cart;
         $this->order = $order;
     }
