@@ -69,10 +69,8 @@ class MonkCommerceProcessOrder
       $dbProduct->qty = $dbProduct->qty - $product['qty'];
       $dbProduct->save();
     }
-
-    // Send New Order Mail
+    // Send New Order Mail // Not Cart
     Mail::to($customer->email)->send(new NewOrderConfirmationMail($customer->toArray(), $customerDel->toArray(), $cart, $order));
-
     // To New Session (orderUser)
     $this->order_id = $order->id;
   }

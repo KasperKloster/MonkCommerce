@@ -21,7 +21,7 @@ class MonkCommerceCreateShopInformationsTable extends Migration
           $table->string('city')->nullable();
           $table->string('country')->nullable();
           $table->string('phone')->nullable();
-          $table->string('email')->nullable();
+          $table->string('email')->default('mail@example.com');
           $table->string('url')->nullable()->comment('Your website domain. With http(s)://');
           $table->string('vat_number')->nullable();
           $table->string('shopCurrency')->default('KR')->nullable();

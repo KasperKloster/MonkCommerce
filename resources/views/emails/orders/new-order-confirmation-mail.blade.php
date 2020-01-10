@@ -1,12 +1,12 @@
 @component('mail::message')
 # We have recived your order
-Dear {{ ucwords($customer['first_name'] . ' ' . $customer['last_name']) }},
-Thank you for you order.
+Dear {{ ucwords($customer['first_name'] . ' ' . $customer['last_name']) }},<br/>
+We will let you know, when your order is on it's way.
 
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
   <tbody>
     <tr>
-      <td valign="top" width="50%">
+      <td valign="top" width="50%" style="padding : 20px;">
         <table cellspacing="0" cellpadding="0" border="0" width="100%">
           <tbody>
             <tr>
@@ -46,7 +46,7 @@ Thank you for you order.
         </table>
       </td>
 
-      <td valign="top" width="50%">
+      <td valign="top" width="50%" style="padding : 20px;">
         <table cellspacing="0" cellpadding="0" border="0" width="100%">
           <tbody>
             <tr>
@@ -83,13 +83,43 @@ Thank you for you order.
   </tbody>
 </table>
 
-#### Payment Method
 
+<table border="1" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top" width="50%" style="padding : 20px;">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <tbody>
+            <tr>
+              <td>
+                <b>Payment Method</b>
 
-#### Delivery Method
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
 
+      <td valign="top" width="50%" style="padding : 20px;">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+          <tbody>
+            <tr>
+              <td>
 
-#### Order ID: {{ $order->id }}
+                <b>Delivery Method</b>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br/><br/>
+<hr/>
+## Order Summary (Order ID: {{ $order->id }})
 @component('mail::table')
   | Product  | SKU   | Quantity | Price |
   | -------- |:-----:| --------:|------:|
@@ -114,7 +144,7 @@ Thank you for you order.
 {{-- @component('mail::button', ['url' => ''])
 Button Text
 @endcomponent --}}
-
+<br/><br/>
 Thanks,<br>
 {{ config('app.name') }}
 @endcomponent

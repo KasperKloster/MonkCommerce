@@ -84,6 +84,13 @@ class MonkcommerceProductsTableSeeder extends Seeder
           'filename'    => '/default.jpg',
           'main'        => TRUE,
         ),
+
+        4 =>
+        array (
+          'product_id'  => 1,
+          'filename'    => '/default.jpg',
+          'main'        => FALSE,
+        ),
       ));
     }
 }

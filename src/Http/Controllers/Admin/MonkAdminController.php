@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrder;
 use KasperKloster\MonkCommerce\Models\MonkCommerceShop;
 
+// Testing mails
 use KasperKloster\MonkCommerce\Mail\NewOrderConfirmationMail;
 use Illuminate\Support\Facades\Mail;
+use KasperKloster\MonkCommerce\Models\MonkCommerceOrderCustomer;
+use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
+use Session;
+
 
 class MonkAdminController extends Controller
 {
@@ -20,6 +25,11 @@ class MonkAdminController extends Controller
 
     public function getEmailTest()
     {
-      return 'none';
+
+      $customer = MonkCommerceOrderCustomer::first();
+      $customerDel  = MonkCommerceOrderCustomer::first();
+      $cart = Session::get('cart');
+      $order = MonkCommerceOrder::first();
+      return new NewOrderConfirmationMail($customer, $customerDel, $cart, $order);
     }
 }

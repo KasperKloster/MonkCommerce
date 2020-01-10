@@ -13,16 +13,33 @@
       <!-- Categories -->
       @foreach($storefrontNavbarCategories as $category)
         <div>
-        <li>
-          <a href="{{ route('monk-shop-single-category', $category->slug) }}">
-          {{ $category->name }}
-          </a>
-        </li>
-        @foreach ($category->productChildrenCategories as $childCategory)
-          <ul>
-          @include('monkcommerce::monkcommerce-storefront.layouts.partials._navbar-child-category', ['child_category' => $childCategory])
-          </ul>
-        @endforeach
+          <!-- Count child cats / if drop -->
+          @if(count($category->productChildrenCategories) > 0)
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ $category->name }}
+              </a>
+              <!-- Dropdown Menu -->
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <!-- First Drop / Main cat -->
+                <a class="dropdown-item" href="{{ route('monk-shop-single-category', $category->slug) }}">
+                  <h6 class="dropdown-header">{{ $category->name }}</h6>
+                </a>
+                <div class="dropdown-divider"></div>
+                <!-- Childs -->
+                @foreach ($category->productChildrenCategories as $childCategory)
+                  @include('monkcommerce::monkcommerce-storefront.layouts.partials._navbar-child-category', ['child_category' => $childCategory])
+                @endforeach
+              </div>
+          </li>
+          @else
+            <!-- Normal navitem -->
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('monk-shop-single-category', $category->slug) }}">
+              {{ $category->name }}
+              </a>
+            </li>
+          @endif
         </div>
       @endforeach
       <!-- Pages -->
@@ -33,8 +50,9 @@
       @endforeach
     </ul>
 
+    <!-- Right -->
     <ul class="nav justify-content-end">
-      <li class="nav-iten">
+      <li class="nav-item">
         <a class="nav-link" href="{{ route('monk-shop-cart-index') }}">
           <i class="material-icons">shopping_cart</i>Cart
           @if(Session::has('cart'))
@@ -45,8 +63,8 @@
         </a>
       </li>
 
-      <li>
-        <a href="{{ route('monk-admin-home') }}">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('monk-admin-home') }}">
           <i class="material-icons">account_circle</i>
         </a>
       </li>

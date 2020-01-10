@@ -1,9 +1,7 @@
 
-<li>
-  <a href="{{ route('monk-shop-single-category', $child_category->slug) }}">
+  <a class="dropdown-item" href="{{ route('monk-shop-single-category', $child_category->slug) }}">
     {{ $child_category->name }}
   </a>
-</li>
 
 @if ($child_category->productCategories)
     <ul>

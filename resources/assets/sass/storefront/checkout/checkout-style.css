@@ -48,8 +48,8 @@
   padding-top: 8px;
 }
 
-.cart-sidebar {
-  background-color: #F9F9F9;
+#cart-sidebar .product-img {
+  width: 100px;
 }
 
 /*# sourceMappingURL=checkout-style.css.map */
