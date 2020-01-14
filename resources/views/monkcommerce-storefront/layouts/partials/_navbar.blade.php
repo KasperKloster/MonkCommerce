@@ -62,12 +62,8 @@
           @endif
         </a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('monk-admin-home') }}">
-          <i class="material-icons">account_circle</i>
-        </a>
-      </li>
+      <!-- Login -->
+      @include('monkcommerce::monkcommerce-shared.partials._navbar-admin')
     </ul>
 
   </div>

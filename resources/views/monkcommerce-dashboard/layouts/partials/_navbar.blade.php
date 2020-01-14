@@ -13,12 +13,10 @@
       </li>
     </ul>
 
+    <!-- Login / admin -->
     <ul class="nav justify-content-end">
-      <li>
-        <a href="#">
-          <i class="material-icons">account_circle</i>
-        </a>
-      </li>
+      @include('monkcommerce::monkcommerce-shared.partials._navbar-admin')
     </ul>
+
   </div>
 </nav>
