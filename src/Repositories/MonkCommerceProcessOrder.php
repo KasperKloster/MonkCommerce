@@ -13,6 +13,7 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
 // Mail
 use Illuminate\Support\Facades\Mail;
 use KasperKloster\MonkCommerce\Mail\NewOrderConfirmationMail;
+use KasperKloster\MonkCommerce\Mail\SentOrderEmail;
 
 class MonkCommerceProcessOrder
 {
@@ -91,4 +92,25 @@ class MonkCommerceProcessOrder
     }
 
   }
+
+  public function sentOrder($id)
+  {
+    // Finding Order
+    $order = MonkCommerceOrder::findOrFail($id)->with('orderProduct')->first();
+    // Find Customer Email
+    $customer = MonkCommerceOrderCustomer::where('id', $order->order_customer_id)->select('id', 'email')->first();
+    // Products Array
+    $products = [];
+    foreach($order->orderProduct as $product)
+    {
+      $products[] = $product;
+    }
+    // Send Email
+    Mail::to($customer->email)->send(new SentOrderEmail($customer->toArray(), $order, $products));
+
+
+
+  }
+
+
 }

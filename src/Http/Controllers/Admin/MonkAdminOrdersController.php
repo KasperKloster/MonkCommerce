@@ -64,9 +64,24 @@ class MonkAdminOrdersController extends Controller
         'status'  => 'required|integer',
       ]);
 
+      // Different Stuff, Different Status Code
+      // If Declined. Update db qty back.
+      if($request->status == '3')
+      {
+        $proccessOrder = new MonkCommerceProcessOrder;
+        $proccessOrder->declineOrder($order->id);
+      }
+      // If Sent, send email
+      if($request->status == '4')
+      {
+        $proccessOrder = new MonkCommerceProcessOrder;
+        $proccessOrder->sentOrder($id);
+      }
+
+      /** Update Status Code in Backend **/
       // Find Order Status
       $orderStatus = MonkCommerceOrder::where('id', $id)->with('orderProduct')->select('id', 'order_status_id')->get();
-      // Loop Through Status
+      // Loop Through Status and set qty
       foreach($orderStatus as $order)
       {
         // If Status was Declined, Update Stock qty
@@ -92,14 +107,6 @@ class MonkAdminOrdersController extends Controller
       $order->order_status_id = $request->status;
       $order->updated_at      = NOW();
       $order->update();
-
-      // Different Stuff, Different Status Code
-      // If Declined. Update db qty back.
-      if($request->status == '3')
-      {
-        $proccessOrder = new MonkCommerceProcessOrder;
-        $proccessOrder->declineOrder($order->id);
-      }
 
       /* Message and Redirect */
       Session::flash('success', 'Order Has Been Updated');
