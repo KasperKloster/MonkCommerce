@@ -12,6 +12,21 @@ class MonkcommerceProductsTableSeeder extends Seeder
     public function run()
     {
       // Products
+      $faker = \Faker\Factory::create();
+      for($i=0; $i<=20; $i++):
+        DB::table('mc_products')
+            ->insert([
+                'sku'           => Str::random(10),
+                'name'          => Str::random(10),
+                'slug'          => Str::slug(Str::random(10)),
+                'description'   => Str::random(10),
+                'price'         => rand(0, 1000),
+                'special_price' => rand(0, 500),
+                'weight'        => rand(0, 5000),
+                'qty'           => rand(0, 1000),
+            ]);
+      endfor;
+
       \DB::table('mc_products')->insert(array (
         0 =>
         array (

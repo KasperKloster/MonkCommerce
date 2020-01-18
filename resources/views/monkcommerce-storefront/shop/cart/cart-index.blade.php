@@ -45,6 +45,7 @@
       <div>
         <form class="form-inline" action="{{ route('monk-shop-add-to-cart', $product['item']['id']) }}" id="quant_{{ $product['item']['id'] }}">
           @csrf
+          <input type="hidden" name="id" value="{{ $product['item']['id'] }}">
           <div class="col-md-5">
             <div class="input-group">
               <div class="input-group-prepend">

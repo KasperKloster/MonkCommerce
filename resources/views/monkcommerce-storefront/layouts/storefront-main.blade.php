@@ -1,6 +1,6 @@
 @include('monkcommerce::monkcommerce-storefront.layouts.partials._head')
 @include('monkcommerce::monkcommerce-storefront.layouts.partials._navbar')
-<main class="pb-5 vh-100">
+<main class="pb-5">
   <div class="container my-4">
   <!-- Messages -->
   @include('monkcommerce::monkcommerce-storefront.layouts.partials._messages')

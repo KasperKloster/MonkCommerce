@@ -35,72 +35,72 @@
   @stop
 
 @section('content')
-<section>
 
-    <div class="row">
-      <div class="col-md-6">
-        @foreach($product->images as $prodImage)
-          <img src="{{ url('monkcommerce/images/products/' . $prodImage->filename) }}" alt="{{ $product->name }}" />
+<section>
+  <div class="row">
+    <div class="col-md-6">
+      @foreach($product->images as $prodImage)
+        <img src="{{ url('monkcommerce/images/products/' . $prodImage->filename) }}" class="img-fluid" alt="{{ $product->name }}" />
+      @endforeach
+    </div>
+    <div class="col-md-6">
+      <h1>{{ $product->name }}</h1>
+      <p>
+      @if($product->special_price != NULL)
+      <span class="show-price">{{ showPrice($product->special_price) }}</span>
+      <s class="text-muted">{{ showPrice($product->price) }}</s>
+      @else
+      <span class="show-price">{{ showPrice($product->price) }}</span>
+      @endif
+      </p>
+      <hr/>
+      <p>{{ $product->description }}</p>
+      <hr/>
+      <!-- Loop Values -->
+      <div class="row">
+      @foreach($product->attributeValues as $attrVal)
+        <div class="col">
+        <!-- Loop Attr. -->
+        @foreach($attrVal->attributes as $attr)
+        <!-- Attr Name -->
+        <b>{{ $attr->name }}</b>
         @endforeach
-      </div>
-      <div class="col-md-6">
-        <h1>{{ $product->name }}</h1>
-        <p>
-        @if($product->special_price != NULL)
-        <span class="show-price">{{ showPrice($product->special_price) }}</span>
-        <s class="text-muted">{{ showPrice($product->price) }}</s>
-        @else
-        <span class="show-price">{{ showPrice($product->price) }}</span>
-        @endif
-        </p>
-        <hr/>
-        <p>{{ $product->description }}</p>
-        <hr/>
-        <!-- Loop Values -->
-        <div class="row">
-        @foreach($product->attributeValues as $attrVal)
-          <div class="col">
-          <!-- Loop Attr. -->
-          @foreach($attrVal->attributes as $attr)
-          <!-- Attr Name -->
-          <b>{{ $attr->name }}</b>
-          @endforeach
-          <br/>
-          <!-- Value Name -->
-          {{ $attrVal->value }}
-          </div>
-        @endforeach
+        <br/>
+        <!-- Value Name -->
+        {{ $attrVal->value }}
         </div>
-        <hr/>
-        <small>SKU: {{ $product->sku }} </small>
-        @if($product->qty < 1)
-        <p class="text-warning">Out of Stock</p>
-        <button class="btn btn-primary btn-block mat-inline-center">Request Item</button>
-        @else
-        <p class="text-success">In Stock</p>
-        <div class="row">
-          <form class="form-inline" action="{{ route('monk-shop-add-to-cart', ['id' => $product->id]) }}">
-            @csrf
-            <div class="col-md-4">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <button type="button" class="btn btn-outline-secondary btn-sm btn-number" data-type="minus" data-field="quant[1]">&minus;</button>
-                </div>
-                <input type="text" name="quant[1]" class="form-control input-number text-center" value="1" min="1" max="{{ $product->qty }}" aria-label="plus/minus">
-                <div class="input-group-append">
-                  <button type="button" class="btn btn-outline-secondary btn-sm btn-number" data-type="plus" data-field="quant[1]">&plus;</button>
-                </div>
+      @endforeach
+      </div>
+      <hr/>
+      <small>SKU: {{ $product->sku }} </small>
+      @if($product->qty < 1)
+      <p class="text-warning">Out of Stock</p>
+      <button class="btn btn-primary btn-block mat-inline-center">Request Item</button>
+      @else
+      <p class="text-success">In Stock</p>
+      <div class="row">
+        <form class="form-inline" action="{{ route('monk-shop-add-to-cart', ['id' => $product->id]) }}">
+          @csrf
+          <input type="hidden" name="id" value="{{ $product->id}}">
+          <div class="col-md-4">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <button type="button" class="btn btn-outline-secondary btn-sm btn-number" data-type="minus" data-field="quant[1]">&minus;</button>
+              </div>
+              <input type="text" name="quant[1]" class="form-control input-number text-center" value="1" min="1" max="{{ $product->qty }}" aria-label="plus/minus">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-outline-secondary btn-sm btn-number" data-type="plus" data-field="quant[1]">&plus;</button>
               </div>
             </div>
-            <div class="col">
-              <button type="submit" class="btn btn-success btn-block">Add to Cart</button>
-            </div>
-          </form>
-        </div>
-        @endif
+          </div>
+          <div class="col">
+            <button type="submit" class="btn btn-success btn-block">Add to Cart</button>
+          </div>
+        </form>
       </div>
-    </div> <!-- /.row -->
-
+      @endif
+    </div>
+  </div> <!-- /.row -->
 </section>
 @stop
 

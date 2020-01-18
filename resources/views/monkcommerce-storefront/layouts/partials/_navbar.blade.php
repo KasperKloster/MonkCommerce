@@ -53,8 +53,14 @@
     <!-- Right -->
     <ul class="nav justify-content-end">
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('monk-shop-cart-index') }}">
-          <i class="material-icons">shopping_cart</i>Cart
+        <a class="nav-link mat-inline-center" href="#">
+        <i class="material-icons">search</i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link mat-inline-center" href="{{ route('monk-shop-cart-index') }}">
+          <i class="material-icons">shopping_cart</i>
           @if(Session::has('cart'))
             <span class="badge badge-dark">
               {{Session::get('cart')->totalQty}}

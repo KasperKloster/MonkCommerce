@@ -11,6 +11,17 @@ class MonkcommerceCategoryProductTableSeeder extends Seeder
      */
     public function run()
     {
+
+      $faker = \Faker\Factory::create();
+      for($i=0; $i<=20; $i++):
+        DB::table('mc_category_product')
+            ->insert([
+              'category_id'   => rand(1, 2),
+              'product_id'    => rand(0, 25),
+            ]);
+      endfor;
+
+
       // Category Products
       \DB::table('mc_category_product')->insert(array (
           0 =>

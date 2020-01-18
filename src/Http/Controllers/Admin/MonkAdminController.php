@@ -22,14 +22,4 @@ class MonkAdminController extends Controller
       $pendingOrders = MonkCommerceOrder::where('order_status_id', 2)->count();
       return view('monkcommerce::monkcommerce-dashboard.admin.index')->with('pendingOrders', $pendingOrders);
     }
-
-    public function getEmailTest()
-    {
-
-      $customer = MonkCommerceOrderCustomer::first();
-      $customerDel  = MonkCommerceOrderCustomer::first();
-      $cart = Session::get('cart');
-      $order = MonkCommerceOrder::first();
-      return new NewOrderConfirmationMail($customer, $customerDel, $cart, $order);
-    }
 }

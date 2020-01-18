@@ -9,6 +9,7 @@ h1 {
 
 .vertical-divider {
   border-right: 1px solid #ccc;
+  line-height: 10px;
 }
 
 .vertical-divider:last-child {
@@ -33,6 +34,11 @@ h1 {
   font-size: 0.875rem;
   color: #6c757d;
   white-space: nowrap;
+}
+
+/** Cards **/
+.give-height {
+  min-height: 40px;
 }
 
 /*# sourceMappingURL=basis-style.css.map */

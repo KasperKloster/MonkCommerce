@@ -63,12 +63,12 @@
             <input type="url" class="form-control" id="url" name="url" value="{{ $shop->url }}">
           </div>
         </div>
-        <hr/>
         <div class="form-group">
           <label for="vat_number">{{ ucwords(__('monkcommerce-dashboard.shop-information.vat_number')) }}</label>
           <input type="text" class="form-control" id="vat_number" name="vat_number" value="{{ $shop->vat_number }}">
         </div>
 
+        <hr/>
         <div class="form-group row">
           <div class="col">
             <label for="shopCurrency">Currency</label>
@@ -79,12 +79,12 @@
           <div class="col">
             <label for="shopSchemaCurrency">Schema Currency</label>
             <input type="text" class="form-control" id="shopSchemaCurrency" name="shopSchemaCurrency" value="{{ $shop->shopSchemaCurrency }}" required>
-            <small id="shopshopCurrency" class="form-text text-muted"><a href="https://en.wikipedia.org/wiki/ISO_4217" target="_blank">ISO 4217 standard currency format.</a> Used for Stripe and structured data.</small>
+            <small id="shopshopCurrency" class="form-text text-muted"><a href="https://en.wikipedia.org/wiki/ISO_4217" target="_blank">ISO 4217 standard currency format.</a></small>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="stripe_publishable_key">Stripe Publishable Key</label>
+          <label for="stripe_publishable_key">Payment API</label>
           <input type="text" class="form-control" id="stripe_publishable_key" name="stripe_publishable_key" value="{{ $shop->stripe_publishable_key }}">
         </div>
 
@@ -96,6 +96,24 @@
         </div>
 
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Consent Message -->
+  <div class="card mt-3">
+    <div class="card-header">
+      Custom Scripts
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="customHeaderScripts">Header Scripts</label>
+          <textarea class="form-control" name="customHeaderScripts" id="customHeaderScripts" rows="3">#</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="customFooterScripts">Footer Scripts</label>
+          <textarea class="form-control" name="customFooterScripts" id="customFooterScripts" rows="3">#</textarea>
       </div>
     </div>
   </div>

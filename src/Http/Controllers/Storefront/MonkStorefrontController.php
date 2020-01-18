@@ -26,13 +26,47 @@ class MonkStorefrontController extends Controller
       return view('monkcommerce::monkcommerce-storefront.shop.index');
     }
 
-    public function getSingleCategory(Request $request, $slug)
+    public function anySingleCategory(Request $request, $slug)
     {
+
       // Find Category
+      //$category = MonkCommerceProductCategory::where('slug', $slug)->with('products')->first();
       $category = MonkCommerceProductCategory::where('slug', $slug)->with('products')->first();
+
+
+      // Products
+      // All Attributes with Values
+      $productAttributes = MonkCommerceProductAttribute::with('attributeValues')->get();
+      // Used if for checked in filter
+      $setAttr = [];
+      // If Not Filter
+      if (!$request->isMethod('post'))
+      {
+        $products = $category->products()
+                    ->with('images')
+                    ->with('attributeValues')
+                    ->paginate(10);
+      }
+      else
+      {
+        $request->validate([
+          'attributeValue'    => 'required|array',
+          'attributeValue.*'  => 'integer',
+        ]);
+
+        $setAttr = $request->attributeValue;
+
+        $products = $category->products()->whereHas('attributeValues', function ($query) use ($setAttr) {
+            $query->whereIn('product_attribute_value_id', $setAttr);
+        })->paginate(10);
+      }
+
       // Return View
       return view('monkcommerce::monkcommerce-storefront.shop.categories.single_category')
-              ->with('category', $category);
+              ->with('category', $category)
+              ->with('products', $products)
+              ->with('productAttributes', $productAttributes)
+              ->with('setAttr', $setAttr);
     }
 
     public function getSingleProduct(Request $request, $slug)
@@ -61,14 +95,36 @@ class MonkStorefrontController extends Controller
     */
     public function getAddToCart(Request $request, $id)
     {
+
+      // Validate
       $request->validate([
-        'quant' => 'required|array',
+        'id' => 'required|int',
       ]);
 
-      // Find Product and quantity
+      // Find Product
       $product = MonkCommerceProduct::with('images')->with('attributeValues')->findOrFail($id)->toArray();
+
+      // Check If Product is not in stock
+      $productStock = MonkCommerceProduct::where('id', $id)->select('id', 'qty', 'slug')->first();
+      if($productStock->qty <= '0')
+      {
+        return redirect()->route('monk-shop-single-product', $productStock->slug)->with('warning', 'Product is out of stock. Send us a message');
+      }
       // Get Quantity
-      $productQty = $request->quant[1];
+      if (!empty($request->quant[1]))
+      {
+        $request->validate([
+          'quant' => 'required|array',
+        ]);
+        // Get Quantity from form
+        $productQty = $request->quant[1];
+      }
+      else
+      {
+        // If not filled, set default qty to 1
+        $productQty = 1;
+      }
+
       // Cart
       $oldCart = Session::has('cart') ? Session::get('cart') : NULL;
       $cart = new MonkCommerceCart($oldCart);
