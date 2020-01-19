@@ -14,10 +14,16 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceStaticPages;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttribute;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProductAttributeValue;
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrder;
+use KasperKloster\MonkCommerce\Models\MonkCommerceShop;
 
 // Classes / Repos
 use KasperKloster\MonkCommerce\Repositories\MonkCommerceCart;
 use KasperKloster\MonkCommerce\Repositories\MonkCommerceFilterSearch;
+
+// Mails
+use Illuminate\Support\Facades\Mail;
+use KasperKloster\MonkCommerce\Mail\ContactFormMail;
+
 
 class MonkStorefrontController extends Controller
 {
@@ -78,9 +84,38 @@ class MonkStorefrontController extends Controller
     public function getSinglePage(Request $request, $slug)
     {
       $page = MonkCommerceStaticPages::where('slug', $slug)->first();
-      return view('monkcommerce::monkcommerce-storefront.static_pages.single_page')
-            ->with('page', $page);
+      if ($page->is_contact == TRUE)
+      {
+        return view('monkcommerce::monkcommerce-storefront.static_pages.contact')->with('page', $page);
+      }
+      else
+      {
+        return view('monkcommerce::monkcommerce-storefront.static_pages.single_page')
+              ->with('page', $page);
+      }
     }
+
+    public function postContactForm(Request $request)
+    {
+      /** Validate **/
+      $request->validate([
+        'firstName'       => 'required|min:1|max:200',
+        'lastName'        => 'required|min:1|max:200',
+        'email'           => 'required|email',
+        'phone'           => 'required|integer|min:00000000|max:99999999|alpha_num',
+        'subject'         => 'required|min:1|max:200',
+        'message'         => 'required|min:2|max:2000',
+      ]);
+
+      $store = MonkCommerceShop::select('email', 'shop_name')->first();
+
+      Mail::to($store->email)->send(new ContactFormMail($request, $store));
+
+
+      return back()->with('success', 'Your message has been sent');
+
+    }
+
 
     /*
     * Add / Remove Products from Cart
@@ -153,7 +188,7 @@ class MonkStorefrontController extends Controller
     {
       $search = new MonkCommerceFilterSearch;
       $searchResults = $search->navbarSearch($request);
-      
+
       return view('monkcommerce::monkcommerce-storefront.shop.search-results')->with('searchResults', $searchResults);
     }
 

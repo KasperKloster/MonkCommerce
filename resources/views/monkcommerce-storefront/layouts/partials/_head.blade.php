@@ -30,7 +30,7 @@
       "name": "{{ $storefrontShop->shop_name }}",
       "email": "{{ $storefrontShop->email }}",
       "url": "{{ $storefrontShop->url }}"
-    },
+    }
     </script>
 
     <script type="application/ld+json">

@@ -18,7 +18,8 @@ class CreateMonkcommerceStaticPages extends Migration
             $table->string('name')->unique();
             $table->string('slug');
             $table->string('description');
-            $table->boolean('show_in_menu')->nullable();
+            $table->boolean('show_in_menu')->nullable();            
+            $table->boolean('is_contact')->default(FALSE);
             $table->timestamps();
         });
     }

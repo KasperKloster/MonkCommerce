@@ -18,13 +18,31 @@ class MonkCommerceStaticPagesSeeder extends Seeder
               'slug'           => 'about',
               'description'    => 'about this site',
               'show_in_menu'   => TRUE,
+              'is_contact'     => FALSE,
           ),
           1 =>
+          array (
+              'name'           => 'Contact',
+              'slug'           => 'contact',
+              'description'    => 'contact',
+              'show_in_menu'   => TRUE,
+              'is_contact'     => TRUE,
+          ),
+          2 =>
           array (
               'name'           => 'Privacy and cookie policy',
               'slug'           => 'privacy-and-cookie-policy',
               'description'    => 'Privacy and cookie policy',
-              'show_in_menu'   => TRUE,
+              'show_in_menu'   => FALSE,
+              'is_contact'     => FALSE,
+          ),
+          3 =>
+          array (
+              'name'           => 'Terms and Conditions',
+              'slug'           => 'terms-and-conditions',
+              'description'    => 'Terms and Conditions',
+              'show_in_menu'   => FALSE,
+              'is_contact'     => FALSE,
           ),
       ));
     }

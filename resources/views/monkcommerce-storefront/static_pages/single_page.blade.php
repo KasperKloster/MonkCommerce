@@ -17,7 +17,11 @@
 
   @section('content')
   <div class="container">
-    <h1>{{ $page->name }}</h1>
-    <p class="lead">{{ $page->description }}</p>
+    <div class="row">
+      <div class="col-md-12">
+        <h1>{{ $page->name }}</h1>
+        <p class="lead">{{ $page->description }}</p>
+      </div>
+    </div>
   </div>
   @stop
