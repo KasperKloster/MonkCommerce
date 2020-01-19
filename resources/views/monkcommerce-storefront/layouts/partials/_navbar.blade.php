@@ -51,14 +51,22 @@
     </ul>
 
     <!-- Right -->
-    <ul class="nav justify-content-end">
-      <li class="nav-item">
-        <a class="nav-link mat-inline-center" href="#">
-        <i class="material-icons">search</i>
-        </a>
-      </li>
+    <!-- Search -->
 
-      <li class="nav-item">
+    <form method="get" action="{{ route('monk-shop-navbar-search') }}" class="form-inline my-2 my-lg-0 mr-4">
+
+      <div class="input-group">
+        <input type="text" class="form-control" name="q" placeholder="Search..." aria-label="Search.." aria-describedby="search" required>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary mat-inline-center" type="submit" id="search"><i class="material-icons">search</i></button>
+        </div>
+      </div>
+      @csrf
+    </form>
+
+    <!-- Cart -->
+    <ul class="nav justify-content-end">
+      <li class="nav-item border">
         <a class="nav-link mat-inline-center" href="{{ route('monk-shop-cart-index') }}">
           <i class="material-icons">shopping_cart</i>
           @if(Session::has('cart'))

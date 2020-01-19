@@ -13,10 +13,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ URL::asset('monkcommerce/css/storefront/basis/basis-style.css') }}">
     @yield('stylesheet')
-    
+
     @yield('schema')
     <script type="application/ld+json">
-      {
+    {
       "@context": "http://schema.org",
       "@type": "LocalBusiness",
       "address": {
@@ -30,7 +30,20 @@
       "name": "{{ $storefrontShop->shop_name }}",
       "email": "{{ $storefrontShop->email }}",
       "url": "{{ $storefrontShop->url }}"
+    },
+    </script>
+
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "{{ $storefrontShop->url }}",
+      "potentialAction": {
+      "@type": "SearchAction",
+      "target": "{{ $storefrontShop->url }}/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
       }
+    }
     </script>
 
   </head>

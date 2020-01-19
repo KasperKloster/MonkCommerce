@@ -17,6 +17,7 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceOrder;
 
 // Classes / Repos
 use KasperKloster\MonkCommerce\Repositories\MonkCommerceCart;
+use KasperKloster\MonkCommerce\Repositories\MonkCommerceFilterSearch;
 
 class MonkStorefrontController extends Controller
 {
@@ -33,39 +34,30 @@ class MonkStorefrontController extends Controller
       //$category = MonkCommerceProductCategory::where('slug', $slug)->with('products')->first();
       $category = MonkCommerceProductCategory::where('slug', $slug)->with('products')->first();
 
-
-      // Products
       // All Attributes with Values
-      $productAttributes = MonkCommerceProductAttribute::with('attributeValues')->get();
+      $allProductAttributes = MonkCommerceProductAttribute::with('attributeValues')->get();
+      // Products
+      $products = $category->products()
+                  ->with('images')
+                  ->with('attributeValues')
+                  ->paginate(10);
+
       // Used if for checked in filter
       $setAttr = [];
-      // If Not Filter
-      if (!$request->isMethod('post'))
+      // If Filter
+      if ($request->isMethod('post'))
       {
-        $products = $category->products()
-                    ->with('images')
-                    ->with('attributeValues')
-                    ->paginate(10);
-      }
-      else
-      {
-        $request->validate([
-          'attributeValue'    => 'required|array',
-          'attributeValue.*'  => 'integer',
-        ]);
-
-        $setAttr = $request->attributeValue;
-
-        $products = $category->products()->whereHas('attributeValues', function ($query) use ($setAttr) {
-            $query->whereIn('product_attribute_value_id', $setAttr);
-        })->paginate(10);
+          $filter = new MonkCommerceFilterSearch;
+          $filterReturn = $filter->productFilter($category, $request);
+          $setAttr = $filterReturn['0'];
+          $products = $filterReturn['1'];
       }
 
       // Return View
       return view('monkcommerce::monkcommerce-storefront.shop.categories.single_category')
               ->with('category', $category)
               ->with('products', $products)
-              ->with('productAttributes', $productAttributes)
+              ->with('allProductAttributes', $allProductAttributes)
               ->with('setAttr', $setAttr);
     }
 
@@ -95,7 +87,6 @@ class MonkStorefrontController extends Controller
     */
     public function getAddToCart(Request $request, $id)
     {
-
       // Validate
       $request->validate([
         'id' => 'required|int',
@@ -156,6 +147,14 @@ class MonkStorefrontController extends Controller
       // View
       Session::flash('success', 'Product has been removed from cart');
       return redirect()->back();
+    }
+
+    public function getSearchResults(Request $request)
+    {
+      $search = new MonkCommerceFilterSearch;
+      $searchResults = $search->navbarSearch($request);
+      
+      return view('monkcommerce::monkcommerce-storefront.shop.search-results')->with('searchResults', $searchResults);
     }
 
 }

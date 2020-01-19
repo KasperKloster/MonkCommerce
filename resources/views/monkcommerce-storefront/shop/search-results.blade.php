@@ -1,51 +1,17 @@
-@extends('monkcommerce::monkcommerce-storefront.layouts.storefront-left-side')
+@extends('monkcommerce::monkcommerce-storefront.layouts.storefront-main')
   @section('page-title')
-    {{ $category->name }}
+    Search Results
   @stop
-  @section('meta-desc'){{ Str::limit($category->description, $limit = 180, $end = '...') }}@stop
 
-@section('header')
-    <h1>{{ $category->name }}</h1>
-    <p class="lead">{{ $category->description }}</p>
-@stop
+  @section('content')
+  <section>
+	   <h1>Search Results</h1>
+  </section>
 
-@section('filter')
-<form action="{{ route('monk-shop-single-category', $category->slug) }}" method="post">
-  @csrf
-
-  @forelse($allProductAttributes as $attr)
-  <div class="form-group">
-    <label><b>{{$attr->name}}</b></label>
-      @foreach($attr->attributeValues as $value)
-      <div class="form-check">
-        <input class="form-check-input" name="attributeValue[]" type="checkbox" value="{{ $value->id }}" id="Check-{{$value->value}}"
-        @foreach($setAttr as $set)
-          @if($set == $value->id)
-            checked
-          @endif
-        @endforeach
-        >
-        <label class="form-check-label" for="Check-{{$value->value}}">
-          {{$value->value}}
-        </label>
-      </div>
-      @endforeach
-  </div>
-  <hr/>
-
-  @empty
-  <div></div>
-  @endforelse
-
-  <button type="submit" class="btn btn-success">Submit</button>
-</form>
-@stop
-
-@section('content')
-<section>
-  <div class="row">
-    @forelse($products as $product)
-    <div class="col-md-4 mb-4">
+  <section>
+    <div class="row">
+      @forelse($searchResults as $product)
+      <div class="col-md-3 mb-4">
         <div class="card h-100">
         @foreach($product->images as $image)
         @if($image->main == True)
@@ -93,26 +59,18 @@
         </div>
 
       </div> <!-- /. card -->
-    </div> <!-- /. col-md-4 -->
-
-    @if($loop->iteration / 3 == 1)
+      @empty
+        <p>No Results...</p>
+      @endforelse
     </div>
-    <div class="row">
-    @endif
-    @empty
-      No Products Found...
-  @endforelse
-  </div> <!-- /. row -->
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="d-flex justify-content-center">
-        {{ $products->links() }}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="d-flex justify-content-center">
+          {{ $searchResults->links() }}
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-
-
-@stop
+  </section>
+  @stop
