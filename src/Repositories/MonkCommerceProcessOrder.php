@@ -10,10 +10,13 @@ use KasperKloster\MonkCommerce\Models\MonkCommerOrderCustomerDelivery;
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrder;
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrderProduct;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
+//use KasperKloster\MonkCommerce\Models\MonkCommerceShop;
 // Mail
 use Illuminate\Support\Facades\Mail;
-use KasperKloster\MonkCommerce\Mail\NewOrderConfirmationMail;
 use KasperKloster\MonkCommerce\Mail\SentOrderEmail;
+
+// Events
+use KasperKloster\MonkCommerce\Events\CustomerPlacedOrderEvent;
 
 class MonkCommerceProcessOrder
 {
@@ -70,8 +73,10 @@ class MonkCommerceProcessOrder
       $dbProduct->qty = $dbProduct->qty - $product['qty'];
       $dbProduct->save();
     }
-    // Send New Order Mail // Not Cart
-    Mail::to($customer->email)->send(new NewOrderConfirmationMail($customer->toArray(), $customerDel->toArray(), $cart, $order));
+
+    /** Send Emails **/
+    event(new CustomerPlacedOrderEvent(shopEmail(), $customer, $customerDel, $cart, $order));
+
     // To New Session (orderUser)
     $this->order_id = $order->id;
   }

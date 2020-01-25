@@ -7,6 +7,10 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+// Events & Listeners
+use KasperKloster\MonkCommerce\Events\CustomerPlacedOrderEvent;
+use KasperKloster\MonkCommerce\Listeners\NewOrderListener;
+
 class MonkCommerceEventServiceProvider extends ServiceProvider
 {
     /**
@@ -15,12 +19,9 @@ class MonkCommerceEventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-      // 'KasperKloster\MonkCommerce\Events\SomeEvent' => [
-      //   'KasperKloster\MonkCommerce\Listeners\SomeListener',
-      // ],
-      // 'App\Events\SomeEvent' => [
-      //   'App\Listeners\SomeListener',
-      // ],
+      CustomerPlacedOrderEvent::class => [
+          NewOrderListener::class,
+      ],
     ];
 
     /**

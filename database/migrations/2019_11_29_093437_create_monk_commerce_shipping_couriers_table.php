@@ -15,7 +15,7 @@ class CreateMonkCommerceShippingCouriersTable extends Migration
     {
         Schema::create('mc_ship_couriers', function (Blueprint $table) {
           $table->bigIncrements('id');
-          $table->string('courier');
+          $table->string('name');
         });
     }
 

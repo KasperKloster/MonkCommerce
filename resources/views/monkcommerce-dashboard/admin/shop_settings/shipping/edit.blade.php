@@ -6,8 +6,9 @@
 
 
 @section('page-content')
-<form action="{{ route('monk-admin-courier-update', $courier->id) }}" class="needs-validation" method="post">
+<form action="{{ route('courier.update', $courier->id) }}" class="needs-validation" method="post">
   @csrf
+  @method('PUT')
   <div class="card">
     <div class="card-header">
     Edit Courier
@@ -16,10 +17,9 @@
     <div class="card-body">
 
       <div class="form-group">
-        <label for="courierName">Courier Name</label>
-        <input type="text" class="form-control" name="courierName" id="courierName" value="{{ $courier->courier }}" required>
+        <label for="name">Courier Name</label>
+        <input type="text" class="form-control" name="name" id="name" value="{{ $courier->name }}" required>
       </div>
-
 
     </div>
     <div class="card-footer">

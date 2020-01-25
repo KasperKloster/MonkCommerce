@@ -8,4 +8,7 @@ class MonkCommerceShippingCourier extends Model
 {
   protected $table = 'mc_ship_couriers';
   public $timestamps = false;
+
+  //protected $fillable = ['name'];
+  protected $guarded = [];
 }

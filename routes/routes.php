@@ -63,12 +63,7 @@ Route::group(['middleware' => ['web']], function () {
 			Route::group([
 				'prefix'	=> 'shipping'
 			], function() {
-				Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController@index')->name('monk-admin-ship-index');
-				Route::get('create', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController@create')->name('monk-admin-courier-create');
-				Route::post('store', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController@store')->name('monk-admin-courier-store');
-				Route::get('edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController@edit')->name('monk-admin-courier-edit');
-				Route::post('edit/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController@update')->name('monk-admin-courier-update');
-				Route::get('delete/{id}', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController@destroy')->name('monk-admin-courier-destroy');
+				Route::resource('courier', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController')->except(['show']);
 			});
 
 		});

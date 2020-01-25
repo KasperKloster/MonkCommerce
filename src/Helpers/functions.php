@@ -1,6 +1,11 @@
 <?php
 use KasperKloster\MonkCommerce\Models\MonkCommerceShop;
 
+function shopEmail()
+{
+  $storeEmail = MonkCommerceShop::select('email')->first();
+  return $storeEmail;
+}
 
 function showPrice($price)
 {

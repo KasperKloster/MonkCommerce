@@ -76,9 +76,6 @@ class MonkCommerceServiceProvider extends ServiceProvider
           __DIR__.'/../../resources/images/' => public_path('monkcommerce/images/'),
           // StoreFont View
           __DIR__.'/../../resources/views/monkcommerce-storefront/' => base_path('resources/views/monkcommerce-storefront/'),
-          // Events & Listeners
-          // __DIR__.'/../Events/'     => base_path('app/Events/'),
-          // __DIR__.'/../Listeners/'  => base_path('app/Listeners/'),
         ], 'monkcommerce');
 
         /*

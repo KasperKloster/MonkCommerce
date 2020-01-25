@@ -6,7 +6,7 @@
 
 
 @section('page-content')
-<form action="{{ route('monk-admin-courier-store') }}" class="needs-validation" method="post">
+<form action="{{ route('courier.store') }}" class="needs-validation" method="post">
   @csrf
   <div class="card">
     <div class="card-header">
@@ -16,8 +16,8 @@
     <div class="card-body">
 
       <div class="form-group">
-        <label for="courierName">Courier Name</label>
-        <input type="text" class="form-control" name="courierName" id="courierName" placeholder="Eg. Fedex" required>
+        <label for="name">Courier Name</label>
+        <input type="text" class="form-control" name="name" id="name" placeholder="Eg. Fedex" required>
       </div>
 
 

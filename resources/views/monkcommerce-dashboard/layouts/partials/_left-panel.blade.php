@@ -42,7 +42,7 @@
       </li>
 
       <li>
-        <a href="{{ route('monk-admin-ship-index') }}">
+        <a href="{{ route('courier.index') }}">
           Shipping Settings<i class="material-icons float-right">chevron_right</i>
         </a>
       </li>

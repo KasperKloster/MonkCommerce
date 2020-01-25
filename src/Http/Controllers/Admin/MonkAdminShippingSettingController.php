@@ -23,59 +23,44 @@ class MonkAdminShippingSettingController extends Controller
         return view('monkcommerce::monkcommerce-dashboard.admin.shop_settings.shipping.create');
     }
 
-    public function store(Request $request)
+    public function store()
     {
-        /* Validate */
-        $request->validate([
-          'courierName' => 'required|max:255|unique:mc_ship_couriers,courier',
-        ]);
-
         /* Store Courier Name */
-        $courier = new MonkCommerceShippingCourier;
-        $courier->courier = $request->courierName;
-        $courier->save();
+        MonkCommerceShippingCourier::create($this->validateRequest());
 
         /* Message and Redirect */
         Session::flash('success', 'Courier Has Been Created');
-        return Redirect::route('monk-admin-ship-index');
+        return Redirect::route('courier.index');
     }
 
-    public function edit($id)
+    public function edit(MonkCommerceShippingCourier $courier)
     {
-      // Find Courier
-      $courier = MonkCommerceShippingCourier::where('id', $id)->first();
-
-      return view('monkcommerce::monkcommerce-dashboard.admin.shop_settings.shipping.edit')
-              ->with('courier', $courier);
-
+      return view('monkcommerce::monkcommerce-dashboard.admin.shop_settings.shipping.edit', compact('courier'));
     }
 
-    public function update(Request $request, $id)
+    public function update(MonkCommerceShippingCourier $courier)
     {
-      /* Validate */
-      $request->validate([
-        'courierName' => 'required|max:255|unique:mc_ship_couriers,courier',
-      ]);
-
-      /* Store Courier Name */
-      $courier = MonkCommerceShippingCourier::find($id);
-      $courier->courier = $request->courierName;
-      $courier->update();
+      /* Update Courier Name */
+      $courier->update($this->validateRequest());
 
       /* Message and Redirect */
       Session::flash('success', 'Courier Has Been Updated');
-      return Redirect::route('monk-admin-ship-index');
+      return Redirect::route('courier.index');
     }
 
-    public function destroy($id)
+    public function destroy(MonkCommerceShippingCourier $courier)
     {
-      // Find Given Courier
-      $courier = MonkCommerceShippingCourier::find($id);
       // Delete
-      $courier->destroy($id);
-
+      $courier->delete();
       // Message
       Session::flash('success', 'Courier Has Been Deleted');
-      return Redirect::route('monk-admin-ship-index');
+      return Redirect::route('courier.index');
+    }
+
+    private function validateRequest()
+    {
+      return request()->validate([
+        'name' => 'required|max:255|unique:mc_ship_couriers,name',
+      ]);
     }
 }

@@ -9,7 +9,7 @@
 @stop
 
 @section('card-btn')
-<a href="{{ route('monk-admin-courier-create') }}" class="btn btn-sm btn-success">Create New Shipping</a>
+<a href="{{ route('courier.create') }}" class="btn btn-sm btn-success">Create New Shipping</a>
 @stop
 
 @section('card-content')
@@ -24,17 +24,18 @@
 
       @foreach($couriers as $courier)
       <tr>
-        <td>{{ $courier->courier }}</td>
+        <td>{{ $courier->name }}</td>
         <td>
           <div class="btn-group" role="group" aria-label="Basic example">
             <!-- Edit -->
-            <a href="{{ route('monk-admin-courier-edit', $courier->id) }}" class="btn btn-sm btn-info mat-inline-center">
+            <a href="{{ route('courier.edit', $courier->id) }}" class="btn btn-sm btn-info mat-inline-center">
               <i class="material-icons">edit</i>{{ ucwords(__('monkcommerce-dashboard.general-words.edit')) }}
             </a>
             <!-- Delete -->
-            <a href="{{ route('monk-admin-courier-destroy', $courier->id) }}" class="btn btn-sm btn-danger mat-inline-center">
-              <i class="material-icons">delete_forever</i> {{ ucwords(__('monkcommerce-dashboard.general-words.delete')) }}
-            </a>
+            <form action="{{ route('courier.destroy', $courier->id) }}" class="needs-validation" method="post">
+              @method('DELETE')
+              @csrf
+            </form>
           </div>
         </td>
       </tr>
