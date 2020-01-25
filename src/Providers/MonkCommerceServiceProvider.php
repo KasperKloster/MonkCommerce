@@ -64,11 +64,11 @@ class MonkCommerceServiceProvider extends ServiceProvider
           // Seeds
           __DIR__.'/../../database/seeds' => base_path('database/seeds'),
           // Styles
-          __DIR__.'/../../resources/assets/sass/dashboard/monkcommerce-style.css' => public_path('monkcommerce/css/dashboard/monkcommerce-style.css'),
+          __DIR__.'/../../resources/assets/sass/dashboard/monkcommerce-style.min.css' => public_path('monkcommerce/css/dashboard/monkcommerce-style.min.css'),
           __DIR__.'/../../resources/assets/sass/dashboard/monkcommerce-style.css.map' => public_path('monkcommerce/css/dashboard/monkcommerce-style.css.map'),
-          __DIR__.'/../../resources/assets/sass/storefront/basis/basis-style.css' => public_path('monkcommerce/css/storefront/basis/basis-style.css'),
+          __DIR__.'/../../resources/assets/sass/storefront/basis/basis-style.min.css' => public_path('monkcommerce/css/storefront/basis/basis-style.min.css'),
           __DIR__.'/../../resources/assets/sass/storefront/basis/basis-style.css.map' => public_path('monkcommerce/css/storefront/basis/basis-style.css.map'),
-          __DIR__.'/../../resources/assets/sass/storefront/checkout/checkout-style.css' => public_path('monkcommerce/css/storefront/checkout/checkout-style.css'),
+          __DIR__.'/../../resources/assets/sass/storefront/checkout/checkout-style.min.css' => public_path('monkcommerce/css/storefront/checkout/checkout-style.min.css'),
           __DIR__.'/../../resources/assets/sass/storefront/checkout/checkout-style.css.map' => public_path('monkcommerce/css/storefront/checkout/checkout-style.css.map'),
           // JavaScript
           //__DIR__.'/../../resources/assets/js/' => public_path('monkcommerce/js/'),

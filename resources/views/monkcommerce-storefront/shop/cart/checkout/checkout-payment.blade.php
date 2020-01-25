@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex, nofollow">
   @stop
   @section('stylesheet')
-  <link rel="stylesheet" href="{{ URL::asset('monkcommerce/css/storefront/checkout/checkout-style.css') }}">
+  <link rel="stylesheet" href="{{ URL::asset('monkcommerce/css/storefront/checkout/checkout-style.min.css') }}">
   @stop
 
 @section('left')
