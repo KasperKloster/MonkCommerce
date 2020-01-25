@@ -150,7 +150,7 @@ class MonkAdminProductController extends Controller
       * Message and Redirect
       */
       Session::flash('success', 'Product Has Been Created');
-      return Redirect::route('monk-admin-products-home');
+      return Redirect::route('products.index');
     }
 
     /**
@@ -320,7 +320,7 @@ class MonkAdminProductController extends Controller
       * Message and Redirect
       */
       Session::flash('success', 'Product Has Been Updated');
-      return Redirect::route('monk-admin-products-home');
+      return Redirect::route('products.index');
     }
 
     /**
@@ -352,6 +352,6 @@ class MonkAdminProductController extends Controller
       * Message and Redirect
       */
       Session::flash('success', 'Product Has Been Deleted');
-      return Redirect::route('monk-admin-products-home');
+      return Redirect::route('products.index');
     }
 }

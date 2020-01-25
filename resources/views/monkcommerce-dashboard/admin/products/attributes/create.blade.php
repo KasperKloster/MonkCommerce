@@ -5,13 +5,15 @@
 @extends('monkcommerce::monkcommerce-dashboard.layouts.dashboard-form')
 
 @section('page-content')
-<form action="{{ route('monk-admin-products-attr-store') }}" method="post">
+<form action="{{ route('product-attribute.store') }}" method="post">
+  @csrf
+  @method('POST')
   <div class="card">
     <div class="card-header">
       {{ ucwords(__('monkcommerce-dashboard.attr.create_new_attr')) }}
     </div>
     <div class="card-body">
-      @csrf
+
       <div class="form-group">
         <label for="attrName">{{ ucwords(__('monkcommerce-dashboard.general-words.name')) }}</label>
         <input type="text" class="form-control" id="attrName" name="attrName" value="{{old('attrName')}}" placeholder="{{ ucwords(__('monkcommerce-dashboard.general-words.name')) }}" required>

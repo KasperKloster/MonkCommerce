@@ -80,7 +80,7 @@ class MonkAdminProductAttributeController extends Controller
       * Message and Redirect
       */
       Session::flash('success', 'Product Attribute Has Been Created');
-      return Redirect::route('monk-admin-products-attr-home');
+      return Redirect::route('product-attribute.index');
     }
 
     /**
@@ -172,7 +172,7 @@ class MonkAdminProductAttributeController extends Controller
       * Message and Redirect
       */
       Session::flash('success', 'Product Attribute Has Been Updated');
-      return Redirect::route('monk-admin-products-attr-home');
+      return Redirect::route('product-attribute.index');
     }
 
     /**
@@ -199,6 +199,6 @@ class MonkAdminProductAttributeController extends Controller
       * Message and Redirect
       */
       Session::flash('success', 'Product Attribute Has Been Deleted');
-      return Redirect::route('monk-admin-products-attr-home');
+      return Redirect::route('product-attribute.index');
     }
 }

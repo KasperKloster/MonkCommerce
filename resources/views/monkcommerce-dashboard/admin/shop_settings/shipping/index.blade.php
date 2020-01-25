@@ -35,6 +35,7 @@
             <form action="{{ route('courier.destroy', $courier->id) }}" class="needs-validation" method="post">
               @method('DELETE')
               @csrf
+              <button class="btn btn-sm btn-danger mat-inline-center" type="submit"><i class="material-icons">delete_forever</i> Delete</button>
             </form>
           </div>
         </td>

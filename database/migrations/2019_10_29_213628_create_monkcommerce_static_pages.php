@@ -16,9 +16,9 @@ class CreateMonkcommerceStaticPages extends Migration
         Schema::create('mc_static_pages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
-            $table->string('slug');
+            $table->string('slug')->nullable()->unique();
             $table->string('description');
-            $table->boolean('show_in_menu')->nullable();            
+            $table->boolean('show_in_menu')->default(FALSE);
             $table->boolean('is_contact')->default(FALSE);
             $table->timestamps();
         });

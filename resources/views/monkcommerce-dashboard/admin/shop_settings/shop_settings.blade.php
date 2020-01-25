@@ -10,7 +10,7 @@
 
 @section('page-content')
 
-<form action="{{ route('monk-admin-store-shop-informations') }}" method="post">
+<form action="{{ route('shop-setting.store') }}" method="post">
   @csrf
 
   <div class="row">

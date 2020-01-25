@@ -10,33 +10,33 @@
     <ul id="sidebar-menu" class="list-unstyled">
       <li class="menu-title">{{ ucwords(__('monkcommerce-dashboard.left-panel.categories')) }}</li>
       <li>
-        <a href="{{ route('monk-admin-categories-home') }}">
+        <a href="{{ route('categories.index') }}">
           {{ ucwords(__('monkcommerce-dashboard.categories.all_categories')) }}<i class="material-icons float-right">chevron_right</i>
         </a>
       </li>
 
       <li class="menu-title">{{ ucwords(__('monkcommerce-dashboard.left-panel.products')) }}</li>
       <li>
-        <a href="{{ route('monk-admin-products-home') }}">
+        <a href="{{ route('products.index') }}">
           {{ ucwords(__('monkcommerce-dashboard.left-panel.all_products')) }}<i class="material-icons float-right">chevron_right</i>
         </a>
       </li>
 
       <li>
-        <a href="{{ route('monk-admin-products-attr-home') }}">
+        <a href="{{ route('product-attribute.index') }}">
           {{ ucwords(__('monkcommerce-dashboard.left-panel.product_attributes')) }}<i class="material-icons float-right">chevron_right</i>
         </a>
       </li>
 
       <li class="menu-title">{{ ucwords(__('monkcommerce-dashboard.left-panel.orders')) }}</li>
       <li>
-        <a href="{{ route('monk-admin-orders-index') }}">
+        <a href="{{ route('orders.index') }}">
           All Orders <span class="badge badge-success">@if($newLeftPanelOrders >= 1){{ $newLeftPanelOrders }} New @endif</span> <i class="material-icons float-right">chevron_right</i>
         </a>
       </li>
       <li class="menu-title">{{ ucwords(__('monkcommerce-dashboard.left-panel.settings')) }}</li>
       <li>
-        <a href="{{ route('monk-admin-shop-settings') }}">
+        <a href="{{ route('shop-setting.index') }}">
           {{ ucwords(__('monkcommerce-dashboard.left-panel.shop_settings')) }}<i class="material-icons float-right">chevron_right</i>
         </a>
       </li>
@@ -49,7 +49,7 @@
 
       <li class="menu-title">{{ ucwords(__('monkcommerce-dashboard.left-panel.pages')) }}</li>
       <li>
-        <a href="{{ route('monk-admin-pages-index') }}">
+        <a href="{{ route('static-page.index') }}">
           {{ ucwords(__('monkcommerce-dashboard.pages.all_pages')) }}<i class="material-icons float-right">chevron_right</i>
         </a>
       </li>

@@ -14,140 +14,67 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceStaticPages;
 
 class MonkAdminStaticPages extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-      $pages = MonkCommerceStaticPages::paginate(10);
+      $staticPages = MonkCommerceStaticPages::paginate(10);
 
-      return view('monkcommerce::monkcommerce-dashboard.admin.static_pages.index')->with('pages', $pages);
+      return view('monkcommerce::monkcommerce-dashboard.admin.static_pages.index')->with('staticPages', $staticPages);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
       return view('monkcommerce::monkcommerce-dashboard.admin.static_pages.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-      // Validation
-      $request->validate([
-        'pageName'        => 'required|string|max:150|unique:mc_static_pages,name',
-        'pageDescription' => 'required|string',
-        'showInMenu'      => 'nullable',
-      ]);
+      /* Create Pages */
+      $staticPage = MonkCommerceStaticPages::create($this->validateRequest());
 
-      // Getting Checkbox
-      if($request->showInMenu == 'on')
-      {
-        $request->showInMenu = 1;
-      }
-      else
-      {
-        $request->showInMenu = NULL;
-      }
+      // Slug
+      $pageSlug = MonkCommerceStaticPages::find($staticPage->id);
+      $pageSlug->slug = Str::slug($request->name);
+      $pageSlug->update();
 
-      /*
-      * Create Pages
-      */
-      $category = new MonkCommerceStaticPages;
-      $category->name         = $request->pageName;
-      $category->slug         = Str::slug($request->pageName);
-      $category->description  = $request->pageDescription;
-      $category->show_in_menu = $request->showInMenu;
-      $category->save();
-
-      /*
-      * Message and Redirect
-      */
+      /* Message and Redirect */
       Session::flash('success', 'Page Has Been Created');
-      return Redirect::route('monk-admin-pages-index');
+      return Redirect::route('static-page.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(MonkCommerceStaticPages $staticPage)
     {
-      $page = MonkCommerceStaticPages::find($id);
-      return view('monkcommerce::monkcommerce-dashboard.admin.static_pages.edit')->with('page', $page);
-
+      return view('monkcommerce::monkcommerce-dashboard.admin.static_pages.edit', compact('staticPage'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, MonkCommerceStaticPages $staticPage)
     {
-      // Validation
-      $request->validate([
-        'pageName'        => 'required|string|max:150|unique:mc_static_pages,name',
-        'pageDescription' => 'required|string',
-        'showInMenu'      => 'nullable',
-      ]);
+      /* Update Pages */
+      $staticPage->update($this->validateRequest());
+      // Slug
+      $pageSlug = MonkCommerceStaticPages::find($staticPage->id);
+      $pageSlug->slug = Str::slug($request->name);
+      $pageSlug->update();
 
-      // Getting Checkbox
-      if($request->showInMenu == 'on')
-      {
-        $request->showInMenu = 1;
-      }
-      else
-      {
-        $request->showInMenu = NULL;
-      }
-
-      /*
-      * Create Pages
-      */
-      $category = new MonkCommerceStaticPages;
-      $category->name         = $request->pageName;
-      $category->slug         = Str::slug($request->pageName);
-      $category->description  = $request->pageDescription;
-      $category->show_in_menu = $request->showInMenu;
-      $category->update();
-
-      /*
-      * Message and Redirect
-      */
+      /* Message and Redirect */
       Session::flash('success', 'Page Has Been Updated');
-      return Redirect::route('monk-admin-pages-index');
+      return Redirect::route('static-page.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(MonkCommerceStaticPages $staticPage)
     {
-      $page = MonkCommerceStaticPages::find($id);
-      $page->delete();
-      /*
-      * Message and Redirect
-      */
+      $staticPage->delete();
+
+      /* Message and Redirect */
       Session::flash('success', 'Page Has Been Deleted');
-      return Redirect::route('monk-admin-pages-index');
+      return Redirect::route('static-page.index');
+    }
+
+    private function validateRequest()
+    {
+      return request()->validate([
+        'name'            => 'required|string|max:150|unique:mc_static_pages,name',
+        'description'     => 'required|string',
+        'show_in_menu'    => 'nullable|boolean',
+      ]);
     }
 }

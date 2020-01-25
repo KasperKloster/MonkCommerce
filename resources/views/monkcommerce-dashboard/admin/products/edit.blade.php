@@ -5,8 +5,9 @@
 @extends('monkcommerce::monkcommerce-dashboard.layouts.dashboard-form')
 
 @section('page-content')
-<form action="{{ route('monk-admin-update-product', $product->id) }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
   @csrf
+  @method('PATCH')
   <div class="card">
     <div class="card-header">
       {{ ucwords(__('monkcommerce-dashboard.products.edit_product')) }}

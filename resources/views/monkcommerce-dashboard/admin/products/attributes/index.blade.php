@@ -9,7 +9,7 @@
 @stop
 
 @section('card-btn')
-<a href="{{ route('monk-admin-products-attr-create') }}" class="btn btn-sm btn-success">{{ ucwords(__('monkcommerce-dashboard.attr.create_new_attr')) }}</a>
+<a href="{{ route('product-attribute.create') }}" class="btn btn-sm btn-success">{{ ucwords(__('monkcommerce-dashboard.attr.create_new_attr')) }}</a>
 @stop
 
 @section('card-content')
@@ -20,14 +20,20 @@
       <tr>
         <td>{{ $attr->name }}</td>
         <td>
-          <!-- value -->
-          <a href="{{ route('monk-admin-products-attr-edit', $attr->id) }}" class="btn btn-sm btn-info mat-inline-center">
-            <i class="material-icons">edit</i>{{ ucwords(__('monkcommerce-dashboard.general-words.edit')) }}
-          </a>
-          <!-- Delete Category -->
-          <a href="{{ route('monk-admin-products-attr-destroy', $attr->id) }}" class="btn btn-sm btn-danger mat-inline-center">
-            <i class="material-icons">delete_forever</i> {{ ucwords(__('monkcommerce-dashboard.general-words.delete')) }}
-          </a>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <!-- value -->
+            <a href="{{ route('product-attribute.edit', $attr->id) }}" class="btn btn-sm btn-info mat-inline-center">
+              <i class="material-icons">edit</i>{{ ucwords(__('monkcommerce-dashboard.general-words.edit')) }}
+            </a>
+            <!-- Delete Category -->
+            <form action="{{ route('product-attribute.destroy', $attr->id) }}" method="post">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-sm btn-danger mat-inline-center">
+                <i class="material-icons">delete_forever</i> {{ ucwords(__('monkcommerce-dashboard.general-words.delete')) }}
+              </button>
+            </form>
+          </div>
         </td>
       </tr>
     @endforeach

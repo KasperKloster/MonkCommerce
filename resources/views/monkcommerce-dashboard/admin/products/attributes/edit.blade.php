@@ -5,13 +5,14 @@
 @extends('monkcommerce::monkcommerce-dashboard.layouts.dashboard-form')
 
 @section('page-content')
-<form action="{{ route('monk-admin-products-attr-update', $attr->id) }}" method="post">
+<form action="{{ route('product-attribute.update', $attr->id) }}" method="post">
+  @csrf
+  @method('PATCH')
   <div class="card">
     <div class="card-header">
       Edit Attr
     </div>
     <div class="card-body">
-      @csrf
       <div class="form-group">
         <label for="attrName">{{ ucwords(__('monkcommerce-dashboard.general-words.name')) }}</label>
         <input type="text" class="form-control" id="attrName" name="attrName" value="{{ $attr->name }}" required>

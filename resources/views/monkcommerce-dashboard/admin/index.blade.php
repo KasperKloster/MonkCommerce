@@ -9,7 +9,7 @@
     <h1>Admin Panel</h1>
     <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
     <p>
-      <a href="{{ route('monk-admin-orders-index') }}" class="btn btn-primary my-2">Go to Orders</a>
+      <a href="{{ route('orders.index') }}" class="btn btn-primary my-2">Go to Orders</a>
     </p>
   </div>
 </section>
@@ -26,7 +26,7 @@
         <p class="lead text-muted">New Orders</p>
       </div>
       <div class="card-footer d-flex justify-content-end">
-        <a href="{{ route('monk-admin-orders-index') }}" class="btn btn-primary btn-sm">Go to Orders</a>
+        <a href="{{ route('orders.index') }}" class="btn btn-primary btn-sm">Go to Orders</a>
       </div>
     </div>
 
@@ -39,7 +39,7 @@
         <p class="lead text-muted">Pending Orders</p>
       </div>
       <div class="card-footer d-flex justify-content-end">
-        <a href="{{ route('monk-admin-orders-index') }}" class="btn btn-primary btn-sm">Go to Orders</a>
+        <a href="{{ route('orders.index') }}" class="btn btn-primary btn-sm">Go to Orders</a>
       </div>
     </div>
 

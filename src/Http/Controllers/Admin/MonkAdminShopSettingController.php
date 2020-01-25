@@ -21,7 +21,7 @@ class MonkAdminShopSettingController extends Controller
               ->with('shop', $shop);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, MonkCommerceShop $shopSetting)
     {
       // Validation
       $request->validate([
@@ -66,7 +66,7 @@ class MonkAdminShopSettingController extends Controller
       * Message and Redirect
       */
       Session::flash('success', 'Shop Information has been updated');
-      return Redirect::route('monk-admin-shop-settings');
+      return Redirect::route('shop-setting.index');
 
     }
 }

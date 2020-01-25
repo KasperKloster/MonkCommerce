@@ -5,7 +5,7 @@
 @extends('monkcommerce::monkcommerce-dashboard.layouts.dashboard-form')
 
 @section('page-content')
-<form action="{{ route('monk-admin-store-page') }}" method="post">
+<form action="{{ route('static-page.store') }}" method="post">
 @csrf
   <div class="card">
     <div class="card-header">
@@ -13,21 +13,21 @@
     </div>
     <div class="card-body">
       <div class="form-group">
-        <label for="pageName">{{ ucwords(__('monkcommerce-dashboard.pages.page_name')) }}</label>
-        <input type="text" class="form-control" id="pageName" name="pageName" aria-describedby="pageNameHelpBlock" value="{{old('pageName')}}" placeholder="{{ ucwords(__('monkcommerce-dashboard.pages.page_name')) }}" required>
+        <label for="name">{{ ucwords(__('monkcommerce-dashboard.pages.page_name')) }}</label>
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelpBlock" value="{{ old('name') }}" placeholder="{{ ucwords(__('monkcommerce-dashboard.pages.page_name')) }}" required>
         <small id="pageNameHelpBlock" class="form-text text-muted">
           {{ ucfirst(__('monkcommerce-dashboard.pages.pageNameHelp')) }}
         </small>
       </div>
 
       <div class="form-group">
-        <label for="pageDescription">{{ ucwords(__('monkcommerce-dashboard.general-words.description')) }}</label>
-        <textarea class="form-control" id="pageDescription" name="pageDescription" rows="3">{{old('pageDescription')}}</textarea>
+        <label for="description">{{ ucwords(__('monkcommerce-dashboard.general-words.description')) }}</label>
+        <textarea class="form-control" id="description" name="description" rows="3">{{old('description')}}</textarea>
       </div>
 
       <div class="form-check">
-        <input type="checkbox" class="form-check-input" name="showInMenu" id="showInMenu">
-        <label class="form-check-label" for="showInMenu">{{ ucwords(__('monkcommerce-dashboard.general-words.show_in_menu')) }}</label>
+        <input type="checkbox" class="form-check-input" name="show_in_menu" id="show_in_menu" value="1">
+        <label class="form-check-label" for="show_in_menu">{{ ucwords(__('monkcommerce-dashboard.general-words.show_in_menu')) }}</label>
       </div>
     </div>
 

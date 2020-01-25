@@ -23,7 +23,7 @@
     @foreach($orders as $order)
     <tr>
       <td>
-        <a href="{{ route('monk-admin-orders-show', $order->id) }}">{{ $order->id }}</a>
+        <a href="{{ route('orders.show', $order->id) }}">{{ $order->id }}</a>
       </td>
       <td>{{ ucwords($order->orderCustomer->first_name . ' ' . $order->orderCustomer->last_name) }}</td>
       <td>{{ $order->created_at }}</td>
@@ -37,7 +37,7 @@
       <td>
         <div class="btn-group" role="group" aria-label="Basic example">
           <!-- View -->
-          <a href="{{ route('monk-admin-orders-show', $order->id) }}" class="btn btn-sm btn-info mat-inline-center">
+          <a href="{{ route('orders.show', $order->id) }}" class="btn btn-sm btn-info mat-inline-center">
             View
           </a>
         </div>

@@ -9,19 +9,19 @@
 @stop
 
 @section('card-btn')
-  <a href="{{ route('monk-admin-create-page') }}" class="btn btn-sm btn-success">{{ ucwords(__('monkcommerce-dashboard.pages.create_new_page')) }}</a>
+  <a href="{{ route('static-page.create') }}" class="btn btn-sm btn-success">{{ ucwords(__('monkcommerce-dashboard.pages.create_new_page')) }}</a>
 @stop
 
 @section('card-content')
 <!-- Table List -->
 <table class="card-table table table-hover table-responsive-lg">
   <tbody>
-    @foreach($pages as $page)
+    @foreach($staticPages as $page)
       <tr>
         <td>{{ $page->name }}</td>
         <td>
           <!-- edit -->
-          <a href="{{ route('monk-admin-edit-page', $page->id) }}" class="btn btn-sm btn-info mat-inline-center">
+          <a href="{{ route('static-page.edit', $page->id) }}" class="btn btn-sm btn-info mat-inline-center">
             <i class="material-icons">edit</i>{{ ucwords(__('monkcommerce-dashboard.general-words.edit')) }}
           </a>
           <!-- show in shop -->
@@ -29,9 +29,11 @@
             {{ ucwords(__('monkcommerce-dashboard.general-words.show_in_shop')) }}<i class="material-icons">open_in_new</i>
           </a>
           <!-- Delete Category -->
-          <a href="{{ route('monk-admin-destroy-page', $page->id) }}" class="btn btn-sm btn-danger mat-inline-center">
-            <i class="material-icons">delete_forever</i> {{ ucwords(__('monkcommerce-dashboard.general-words.delete')) }}
-          </a>
+          <form action="{{ route('static-page.destroy', $page->id) }}" method="post">
+            @method('DELETE')
+            @csrf
+            <button class="btn btn-sm btn-danger mat-inline-center" type="submit"><i class="material-icons">delete_forever</i> Delete</button>
+          </form>
         </td>
       </tr>
     @endforeach
@@ -42,7 +44,7 @@
 <div class="row pt-3">
   <div class="col-md-12">
     <div class="d-flex justify-content-center">
-    {{ $pages->links() }}
+    {{ $staticPages->links() }}
     </div>
   </div>
 </div>

@@ -9,7 +9,7 @@
 @stop
 
 @section('card-btn')
-<a href="{{ route('monk-admin-create-category') }}" class="btn btn-sm btn-success">{{ ucwords(__('monkcommerce-dashboard.categories.create_new_category')) }}</a>
+<a href="{{ route('categories.create') }}" class="btn btn-sm btn-success">{{ ucwords(__('monkcommerce-dashboard.categories.create_new_category')) }}</a>
 @stop
 
 @section('card-content')
@@ -19,10 +19,16 @@
       @foreach ($productCategories as $category)
       <b>{{ $category->name }}</b>
       <div class="btn-group" role="group" aria-label="Basic example">
-        <a href="{{ route('monk-admin-edit-category', $category->id) }}" class="btn btn-sm btn-info mat-inline-center"><i class="material-icons">edit</i>{{ ucwords(__('monkcommerce-dashboard.general-words.edit')) }}</a>
-        <a href="{{ route('monk-admin-create-category', ['parentCat' => $category->id])}}" class="btn btn-sm btn-success mat-inline-center"><i class="material-icons">add</i> {{ ucwords(__('monkcommerce-dashboard.categories.create_subcategory')) }}</a>
+        <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-sm btn-info mat-inline-center"><i class="material-icons">edit</i>{{ ucwords(__('monkcommerce-dashboard.general-words.edit')) }}</a>
+        <a href="{{ route('categories.create', ['parentCat' => $category->id])}}" class="btn btn-sm btn-success mat-inline-center"><i class="material-icons">add</i> {{ ucwords(__('monkcommerce-dashboard.categories.create_subcategory')) }}</a>
         <a href="{{ route('monk-shop-single-category', $category->slug )}}" class="btn btn-sm btn-outline-secondary mat-inline-center">{{ ucwords(__('monkcommerce-dashboard.general-words.show_in_shop')) }}<i class="material-icons">open_in_new</i></a>
-        <a href="{{ route('monk-admin-destroy-category', $category->id) }}" class="btn btn-sm btn-danger mat-inline-center"><i class="material-icons">delete_forever</i> {{ ucwords(__('monkcommerce-dashboard.general-words.delete')) }}</a>
+        <form action="{{route('categories.destroy', $category->id)}}" method="post">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="btn btn-sm btn-danger mat-inline-center">
+            <i class="material-icons">delete_forever</i> {{ ucwords(__('monkcommerce-dashboard.general-words.delete')) }}
+          </button>
+        </form>
       </div>
 
         @foreach ($category->productChildrenCategories as $childCategory)

@@ -10,7 +10,7 @@
       </div>
     </a>
 
-    <a class="dropdown-item" href="{{ route('monk-admin-orders-index') }}">
+    <a class="dropdown-item" href="{{ route('orders.index') }}">
       <div class="mat-inline-center">
         <i class="material-icons mr-2">label</i> Orders <span class="badge badge-success ml-1">@if($newLeftPanelOrders >= 1){{ $newLeftPanelOrders }} New @endif</span>
       </div>

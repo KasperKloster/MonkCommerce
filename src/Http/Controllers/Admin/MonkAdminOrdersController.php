@@ -110,7 +110,7 @@ class MonkAdminOrdersController extends Controller
 
       /* Message and Redirect */
       Session::flash('success', 'Order Has Been Updated');
-      return Redirect::route('monk-admin-orders-index');
+      return Redirect::route('orders.index');
     }
 
     public function destroy($id)

@@ -6,7 +6,7 @@
 
 
 @section('page-content')
-<form action="{{ route('monk-admin-store-category') }}" class="needs-validation" method="post">
+<form action="{{ route('categories.store') }}" class="needs-validation" method="post">
   @csrf
   <div class="card">
     <div class="card-header">

@@ -9,10 +9,11 @@ class MonkCommerceStaticPages extends Model
     protected $table = 'mc_static_pages';
 
     //  mass-assignable
-    protected $fillable = [
-      'name',
-      'slug',
-      'description',
-      'show_in_menu'
-    ];
+    // protected $fillable = [
+    //   'name',
+    //   'slug',
+    //   'description',
+    //   'show_in_menu'
+    // ];
+    protected $guarded = [];
 }

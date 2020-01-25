@@ -10,8 +10,9 @@
 @stop
 
 @section('page-content')
-<form action="{{ route('monk-admin-orders-update', $order->id) }}" method="post">
+<form action="{{ route('orders.update', $order->id) }}" method="post">
   @csrf
+  @method('PATCH')
   <div class="card">
     <div class="p-3">
       <!-- First info -->
@@ -148,7 +149,7 @@
                   @endforeach
                 </td>
                 <td>{{ $product->sku }}</td>
-                <td><a href="{{ route('monk-admin-edit-product', $product->id) }}">{{ $product->name }}</a></td>
+                <td><a href="{{ route('products.edit', $product->id) }}">{{ $product->name }}</a></td>
                 <td>{{ showPrice(($product->special_price ? $product->special_price : $product->price)) }}</td>
                 <td>{{ $product->pivot->qty}}</td>
               </tr>

@@ -88,7 +88,7 @@ class MonkAdminProductCategoryController extends Controller
         * Message and Redirect
         */
         Session::flash('success', 'Maincategory Has Been Created');
-        return Redirect::route('monk-admin-categories-home');
+        return Redirect::route('categories.index');
     }
 
     /**
@@ -158,7 +158,7 @@ class MonkAdminProductCategoryController extends Controller
         * Message and Redirect
         */
         Session::flash('success', 'Category Has Been Updated');
-        return Redirect::route('monk-admin-categories-home');
+        return Redirect::route('categories.index');
     }
 
     /**
@@ -189,6 +189,6 @@ class MonkAdminProductCategoryController extends Controller
       * Message and Redirect
       */
       Session::flash('success', 'Category Has Been Deleted');
-      return Redirect::route('monk-admin-categories-home');
+      return Redirect::route('categories.index');
     }
 }

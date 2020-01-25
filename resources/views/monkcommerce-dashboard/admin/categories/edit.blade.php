@@ -10,8 +10,9 @@
     {{ ucwords(__('monkcommerce-dashboard.categories.edit_category')) }}
   </div>
   <div class="card-body">
-    <form action="{{ route('monk-admin-update-category', $category->id) }}" method="post">
+    <form action="{{ route('categories.update', $category->id) }}" method="post">
       @csrf
+      @method('PATCH')
       <div class="form-group">
         <label for="categoryName">{{ ucwords(__('monkcommerce-dashboard.categories.category_name')) }}</label>
         <input type="text" class="form-control" name="categoryName" id="categoryName" value="{{ $category->name }}" required>

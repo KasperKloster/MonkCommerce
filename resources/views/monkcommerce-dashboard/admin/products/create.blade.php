@@ -5,7 +5,7 @@
 @extends('monkcommerce::monkcommerce-dashboard.layouts.dashboard-form')
 
 @section('page-content')
-<form method="post" action="{{ route('monk-admin-store-product') }}" enctype="multipart/form-data">
+<form method="post" action="{{ route('products.store') }}" enctype="multipart/form-data">
 @csrf
   <div class="card">
     <div class="card-header">
