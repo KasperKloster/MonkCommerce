@@ -69,7 +69,7 @@ class MonkAdminOrdersController extends Controller
       if($request->status == '3')
       {
         $proccessOrder = new MonkCommerceProcessOrder;
-        $proccessOrder->declineOrder($order->id);
+        $proccessOrder->declineOrder($id);
       }
       // If Sent, send email
       if($request->status == '4')

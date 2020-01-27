@@ -22,35 +22,35 @@
       <!-- Name -->
       <div class="row">
         <div class="col-md-6 mb-3">
-          <label for="firstName">First name</label>
-          <input type="text" class="form-control form-control-sm @error('firstName') is-invalid @enderror" id="firstName" name="firstName" value="{{ old('firstName') }}" required>
-          @error('firstName')
+          <label for="first_name">First name</label>
+          <input type="text" class="form-control form-control-sm @error('first_name') is-invalid @enderror" id="first_name" name="first_name" value="{{ old('first_name') }}" required>
+          @error('first_name')
             <small class="text-danger">{{ $message }}</small>
           @enderror
         </div>
 
         <div class="col-md-6 mb-3">
-          <label for="lastName">Last name</label>
-          <input type="text" class="form-control form-control-sm @error('lastName') is-invalid @enderror" id="lastName" name="lastName" value="{{ old('lastName') }}" required>
-          @error('lastName')
+          <label for="last_name">Last name</label>
+          <input type="text" class="form-control form-control-sm @error('last_name') is-invalid @enderror" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
+          @error('last_name')
             <small class="text-danger">{{ $message }}</small>
           @enderror
         </div>
       </div>
       <!-- Address -->
       <div class="mb-3">
-        <label for="address">Address</label>
-        <input type="text" class="form-control form-control-sm @error('streetAddress') is-invalid @enderror" id="streetAddress" name="streetAddress" value="{{ old('streetAddress') }}" required>
-        @error('streetAddress')
+        <label for="street_address">Address</label>
+        <input type="text" class="form-control form-control-sm @error('street_address') is-invalid @enderror" id="street_address" name="street_address" value="{{ old('street_address') }}" required>
+        @error('street_address')
           <small class="text-danger">{{ $message }}</small>
         @enderror
       </div>
       <!-- Postal, city -->
       <div class="row">
         <div class="col-md-3 mb-3">
-          <label for="postalCode">Postal Code</label>
-          <input type="text" class="form-control form-control-sm @error('postalCode') is-invalid @enderror" id="postalCode" name="postalCode" value="{{ old('postalCode') }}" required>
-          @error('postalCode')
+          <label for="postal_code">Postal Code</label>
+          <input type="text" class="form-control form-control-sm @error('postal_code') is-invalid @enderror" id="postal_code" name="postal_code" value="{{ old('postal_code') }}" required>
+          @error('postal_code')
             <small class="text-danger">{{ $message }}</small>
           @enderror
         </div>

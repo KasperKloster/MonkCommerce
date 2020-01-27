@@ -2,6 +2,7 @@
 
 namespace KasperKloster\MonkCommerce\Repositories;
 use Session;
+use PDF;
 
 // use Illuminate\Database\Eloquent\Model;
 // Models
@@ -10,7 +11,7 @@ use KasperKloster\MonkCommerce\Models\MonkCommerOrderCustomerDelivery;
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrder;
 use KasperKloster\MonkCommerce\Models\MonkCommerceOrderProduct;
 use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
-//use KasperKloster\MonkCommerce\Models\MonkCommerceShop;
+use KasperKloster\MonkCommerce\Models\MonkCommerceShop;
 // Mail
 use Illuminate\Support\Facades\Mail;
 use KasperKloster\MonkCommerce\Mail\SentOrderEmail;
@@ -24,37 +25,17 @@ class MonkCommerceProcessOrder
   {
     /* Create Customer / Billing */
     $bilSession = Session::get('billing');
-
-    $customer = new MonkCommerceOrderCustomer;
-    $customer->first_name     = $bilSession['firstName'];
-    $customer->last_name      = $bilSession['lastName'];
-    $customer->street_address = $bilSession['streetAddress'];
-    $customer->postal_code    = $bilSession['postalCode'];
-    $customer->city           = $bilSession['city'];
-    $customer->country        = $bilSession['country'];
-    $customer->phone          = $bilSession['phone'];
-    $customer->email          = $bilSession['email'];
-    $customer->save();
+    $customer = MonkCommerceOrderCustomer::create($bilSession);
 
     /* Create Customer / Delivery */
     $delSession = Session::get('delivery');
-
-    $customerDel = new MonkCommerOrderCustomerDelivery;
-    $customerDel->first_name     = $delSession['dfirstName'];
-    $customerDel->last_name      = $delSession['dlastName'];
-    $customerDel->street_address = $delSession['dstreetAddress'];
-    $customerDel->postal_code    = $delSession['dpostalCode'];
-    $customerDel->city           = $delSession['dcity'];
-    $customerDel->country        = $delSession['dcountry'];
-    $customerDel->save();
+    $delivery = MonkCommerOrderCustomerDelivery::create($delSession);
 
     /* Create Order */
     $order = new MonkCommerceOrder;
-    // new order is status code 1
-    $order->order_status_id           = '1';
     // Get latest customer id (Created above)
     $order->order_customer_id          = $customer->id;
-    $order->order_customer_delivery_id = $customerDel->id;
+    $order->order_customer_delivery_id = $delivery->id;
     $order->save();
 
     /* Create Products */
@@ -74,8 +55,17 @@ class MonkCommerceProcessOrder
       $dbProduct->save();
     }
 
+    /** Generate PDF **/
+    $shop = MonkCommerceShop::first();
+    $data = ['shop' => $shop, 'order' => $cart];
+    $pdf = PDF::loadView('monkcommerce::pdf.order', $data);
+    //$pdf->save(storage_path('orders/order/'. $order->id .'/invoice-'. $order->id .'.pdf'));
+    // Save PDF
+    $pdf->save(storage_path('invoice-'. $order->id .'.pdf'));
+
+
     /** Send Emails **/
-    event(new CustomerPlacedOrderEvent(shopEmail(), $customer, $customerDel, $cart, $order));
+    event(new CustomerPlacedOrderEvent(shopEmail(), $customer, $delivery, $cart, $order));
 
     // To New Session (orderUser)
     $this->order_id = $order->id;

@@ -14,6 +14,11 @@
   @csrf
   @method('PATCH')
   <div class="card">
+    <div class="card-header">
+      <div class="row justify-content-end">
+        <a href="#" class="btn btn-sm btn-primary">Download Order as PDF</a>
+      </div>
+    </div>
     <div class="p-3">
       <!-- First info -->
       <div class="card-deck mb-3">

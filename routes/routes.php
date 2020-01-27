@@ -8,6 +8,7 @@ Route::group(['middleware' => ['web']], function () {
 	], function() {
 	  // Admin Dashboard Home/Index
 	  Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminController@getAdminHomeIndex')->name('monk-admin-home');
+		Route::get('test', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminController@getTesting');
 		// Categories
 		Route::group([
 	  	'prefix'	=> 'categories'
@@ -50,8 +51,6 @@ Route::group(['middleware' => ['web']], function () {
 		], function() {
 				Route::resource('static-page', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages')->except(['show']);
 		});
-		// Emails (Dev. Purpose)
-		Route::get('/emails', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminController@getEmailTest');
 
 	});
 

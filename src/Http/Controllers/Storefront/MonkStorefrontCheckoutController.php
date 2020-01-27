@@ -29,7 +29,6 @@ class MonkStorefrontCheckoutController extends Controller
     }
     // Get items
     $cart = Session::get('cart');
-    //$cart = json_decode(json_encode($items), true);
     return view('monkcommerce::monkcommerce-storefront.shop.cart.cart-index', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
   }
 
@@ -50,10 +49,10 @@ class MonkStorefrontCheckoutController extends Controller
   {
     /** Validate **/
     $request->validate([
-      'firstName'       => 'required|min:1|max:200',
-      'lastName'        => 'required|min:1|max:200',
-      'streetAddress'   => 'required|max:555',
-      'postalCode'      => 'required|integer|min:0000|max:9999',
+      'first_name'       => 'required|min:1|max:200',
+      'last_name'        => 'required|min:1|max:200',
+      'street_address'   => 'required|max:555',
+      'postal_code'      => 'required|integer|min:0000|max:9999',
       'city'            => 'required|max:555',
       'country'         => 'required|max:555',
       'email'           => 'required|email',
@@ -82,12 +81,12 @@ class MonkStorefrontCheckoutController extends Controller
   {
     /** Validate **/
     $request->validate([
-      'dfirstName'       => 'required|min:1|max:200',
-      'dlastName'        => 'required|min:1|max:200',
-      'dstreetAddress'   => 'required|max:555',
-      'dpostalCode'      => 'required|integer|min:0000|max:9999',
-      'dcity'            => 'required|max:555',
-      'dcountry'         => 'required|max:555',
+      'first_name'       => 'required|min:1|max:200',
+      'last_name'        => 'required|min:1|max:200',
+      'street_address'   => 'required|max:555',
+      'postal_code'      => 'required|integer|min:0000|max:9999',
+      'city'             => 'required|max:555',
+      'country'          => 'required|max:555',
     ]);
     Session::put('delivery', $request->all());
 

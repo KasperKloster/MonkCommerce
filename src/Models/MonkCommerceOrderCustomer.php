@@ -8,4 +8,6 @@ class MonkCommerceOrderCustomer extends Model
 {
   protected $table = 'mc_orders_customers';
 
+  protected $guarded = [];
+
 }

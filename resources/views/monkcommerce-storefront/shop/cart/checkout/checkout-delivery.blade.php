@@ -22,53 +22,53 @@
       <!-- Name -->
       <div class="row">
         <div class="col-md-6 mb-3">
-          <label for="dfirstName">First name</label>
-          <input type="text" class="form-control form-control-sm @error('dfirstName') is-invalid @enderror" id="dfirstName" name="dfirstName" value="{{ old('dfirstName') }}" required>
-          @error('dfirstName')
+          <label for="first_name">First name</label>
+          <input type="text" class="form-control form-control-sm @error('first_name') is-invalid @enderror" id="first_name" name="first_name" value="{{ old('first_name') }}" required>
+          @error('first_name')
             <small class="text-danger">{{ $message }}</small>
           @enderror
         </div>
         <div class="col-md-6 mb-3">
-          <label for="dlastName">Last name</label>
-          <input type="text" class="form-control form-control-sm @error('dlastName') is-invalid @enderror" id="dlastName" name="dlastName" value="{{ old('dlastName') }}" required>
-          @error('dlastName')
+          <label for="last_name">Last name</label>
+          <input type="text" class="form-control form-control-sm @error('last_name') is-invalid @enderror" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
+          @error('last_name')
             <small class="text-danger">{{ $message }}</small>
           @enderror
         </div>
       </div>
       <!-- Address -->
       <div class="mb-3">
-        <label for="daddress">Address</label>
-        <input type="text" class="form-control form-control-sm @error('dstreetAddress') is-invalid @enderror" id="dstreetAddress" name="dstreetAddress" value="{{ old('dstreetAddress') }}" required>
-        @error('dstreetAddress')
+        <label for="street_address">Address</label>
+        <input type="text" class="form-control form-control-sm @error('street_address') is-invalid @enderror" id="street_address" name="street_address" value="{{ old('street_address') }}" required>
+        @error('street_address')
           <small class="text-danger">{{ $message }}</small>
         @enderror
       </div>
       <!-- Postal, city -->
       <div class="row">
         <div class="col-md-3 mb-3">
-          <label for="dpostalCode">Postal Code</label>
-          <input type="text" class="form-control form-control-sm @error('dpostalCode') is-invalid @enderror" id="dpostalCode" name="dpostalCode" value="{{ old('dpostalCode') }}" required>
-          @error('dpostalCode')
+          <label for="postal_code">Postal Code</label>
+          <input type="text" class="form-control form-control-sm @error('postal_code') is-invalid @enderror" id="postal_code" name="postal_code" value="{{ old('postal_code') }}" required>
+          @error('postal_code')
             <small class="text-danger">{{ $message }}</small>
           @enderror
         </div>
 
         <div class="col-md-5 mb-3">
-          <label for="dcity">City</label>
-          <input type="text" class="form-control form-control-sm @error('dcity') is-invalid @enderror" id="city" name="dcity" value="{{ old('dcity') }}" required>
-          @error('dcity')
+          <label for="city">City</label>
+          <input type="text" class="form-control form-control-sm @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city') }}" required>
+          @error('city')
             <small class="text-danger">{{ $message }}</small>
           @enderror
         </div>
 
         <div class="col-md-4 mb-3">
-          <label for="dcountry">Country</label>
-          <select class="d-block w-100 form-control form-control-sm @error('dcountry') is-invalid @enderror" id="dcountry" name="dcountry" value="{{ old('dcountry') }}" required>
+          <label for="country">Country</label>
+          <select class="d-block w-100 form-control form-control-sm @error('country') is-invalid @enderror" id="country" name="country" value="{{ old('country') }}" required>
             <option disabled>Choose...</option>
             <option>United States</option>
           </select>
-          @error('dcountry')
+          @error('country')
             <small class="text-danger">{{ $message }}</small>
           @enderror
         </div>

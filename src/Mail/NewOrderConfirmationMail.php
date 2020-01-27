@@ -42,6 +42,7 @@ class NewOrderConfirmationMail extends Mailable
 
       return $this->markdown('monkcommerce::emails.orders.new-order-confirmation-mail')
                   ->from($store->email, $store->shop_name)
-                  ->subject($store->shop_name . ' | Order Confirmation. Order ID: ' . $this->order->id);
+                  ->subject($store->shop_name . ' | Order Confirmation. Order ID: ' . $this->order->id)
+                  ->attach(storage_path('invoice-'. $this->order->id .'.pdf'));
     }
 }
