@@ -17,6 +17,9 @@
       <div class="form-group">
         <label for="attrName">{{ ucwords(__('monkcommerce-dashboard.general-words.name')) }}</label>
         <input type="text" class="form-control" id="attrName" name="attrName" value="{{old('attrName')}}" placeholder="{{ ucwords(__('monkcommerce-dashboard.general-words.name')) }}" required>
+        @error('attrName')
+          <small class="text-danger">{{ $message }}</small>
+        @enderror
       </div>
 
       <div id="valueGroup">
@@ -24,6 +27,9 @@
           <div class="col-md-1"></div>
           <div class="col">
             <input type="text" class="form-control" id="attrValueName" name="attrValueName[]" value="{{old('attrValueName')}}" placeholder="Value" required>
+            @error('attrValueName')
+              <small class="text-danger">{{ $message }}</small>
+            @enderror
           </div>
           <div class="col">
             <button class="btn btn-primary addBtn">{{ ucwords(__('monkcommerce-dashboard.general-words.add')) }}</button>

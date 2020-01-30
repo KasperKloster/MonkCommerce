@@ -18,6 +18,9 @@
       <div class="form-group">
         <label for="name">Courier Name</label>
         <input type="text" class="form-control" name="name" id="name" placeholder="Eg. Fedex" required>
+        @error('name')
+          <small class="text-danger">{{ $message }}</small>
+        @enderror
       </div>
 
 

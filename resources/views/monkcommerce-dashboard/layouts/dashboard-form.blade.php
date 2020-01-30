@@ -12,7 +12,7 @@
 <!-- Header -->
 <h1>@yield('header')</h1>
 <!-- Messages -->
-@include('monkcommerce::monkcommerce-dashboard.layouts.partials._messages')
+{{-- @include('monkcommerce::monkcommerce-dashboard.layouts.partials._messages') --}}
 
 <!-- Page Content -->
 <section>

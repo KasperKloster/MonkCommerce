@@ -16,6 +16,9 @@
       <div class="form-group">
         <label for="attrName">{{ ucwords(__('monkcommerce-dashboard.general-words.name')) }}</label>
         <input type="text" class="form-control" id="attrName" name="attrName" value="{{ $attr->name }}" required>
+        @error('attrName')
+          <small class="text-danger">{{ $message }}</small>
+        @enderror
       </div>
 
       <div class="form-group">

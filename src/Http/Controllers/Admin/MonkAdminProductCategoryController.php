@@ -191,4 +191,14 @@ class MonkAdminProductCategoryController extends Controller
       Session::flash('success', 'Category Has Been Deleted');
       return Redirect::route('categories.index');
     }
+
+    private function validateRequest($id)
+    {
+      return request()->validate([
+        'name'          => 'required|min:1|max:40|unique:mc_product_categories,name,' . $id,
+        'description'   => 'nullable|max:1000',
+        'show_in_menu'  => 'nullable',
+        'mainCategory'  => 'nullable|integer'
+      ]);
+    }
 }

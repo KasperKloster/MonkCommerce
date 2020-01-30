@@ -29,7 +29,7 @@ class MonkAdminStaticPages extends Controller
     public function store(Request $request)
     {
       /* Create Pages */
-      $staticPage = MonkCommerceStaticPages::create($this->validateRequest());
+      $staticPage = MonkCommerceStaticPages::create($this->validateRequest(null));
 
       // Slug
       $pageSlug = MonkCommerceStaticPages::find($staticPage->id);
@@ -49,7 +49,7 @@ class MonkAdminStaticPages extends Controller
     public function update(Request $request, MonkCommerceStaticPages $staticPage)
     {
       /* Update Pages */
-      $staticPage->update($this->validateRequest());
+      $staticPage->update($this->validateRequest($staticPage->id));
       // Slug
       $pageSlug = MonkCommerceStaticPages::find($staticPage->id);
       $pageSlug->slug = Str::slug($request->name);
@@ -69,10 +69,10 @@ class MonkAdminStaticPages extends Controller
       return Redirect::route('static-page.index');
     }
 
-    private function validateRequest()
+    private function validateRequest($id)
     {
       return request()->validate([
-        'name'            => 'required|string|max:150|unique:mc_static_pages,name',
+        'name'            => 'required|string|max:150|unique:mc_static_pages,name,' . $id,
         'description'     => 'required|string',
         'show_in_menu'    => 'nullable|boolean',
       ]);

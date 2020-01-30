@@ -81,24 +81,22 @@ class MonkCommerceServiceProvider extends ServiceProvider
         /*
         * For all Views
         */
-        /* Admin Left Panel */
-        // Orders where status is New (1)
-        $newLeftPanelOrders = MonkCommerceOrder::where('order_status_id', 1)->count();
-        /* Storefront Navbar */
-        // Shop Categories
-        $storefrontNavbarCategories = MonkCommerceProductCategory::whereNull('category_id')
-                                      ->where('show_in_menu', 1)
-                                      ->with('productChildrenCategories')
-                                      ->get();
-        // Shop information
-        $storefrontShop = MonkCommerceShop::first();
-        // Static Pages
-        $storefrontStaticPages = MonkCommerceStaticPages::where('show_in_menu', 1)->get();
+        View::composer('*', function($view)
+        {
+          // Shop Info
+          $view->with('storefrontShop', MonkCommerceShop::first());
+          // Navbar Categories
+          $view->with('storefrontNavbarCategories',
+                  MonkCommerceProductCategory::whereNull('category_id')
+                    ->where('show_in_menu', 1)
+                    ->with('productChildrenCategories')
+                    ->get());
+          // Static Pages
+          $view->with('storefrontStaticPages', MonkCommerceStaticPages::where('show_in_menu', 1)->get());
+          // Admin New Orders
+          $view->with('newLeftPanelOrders', MonkCommerceOrder::where('order_status_id', 1)->count());
 
-        /* Share the views */
-        View::share('newLeftPanelOrders', $newLeftPanelOrders);
-        View::share('storefrontNavbarCategories', $storefrontNavbarCategories);
-        View::share('storefrontShop', $storefrontShop);
-        View::share('storefrontStaticPages', $storefrontStaticPages);
+        });
+
     }
 }

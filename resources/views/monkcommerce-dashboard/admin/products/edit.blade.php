@@ -21,46 +21,67 @@
     <div class="card-body">
 
       <div class="form-group">
-        <label for="productName">{{ ucwords(__('monkcommerce-dashboard.products.product_name')) }}</label>
-        <input type="text" class="form-control" id="productName" name="productName" value="{{ $product->name }}" required>
+        <label for="name">{{ ucwords(__('monkcommerce-dashboard.products.product_name')) }}</label>
+        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $product->name }}" required>
+        @error('name')
+          <small class="text-danger">{{ $message }}</small>
+        @enderror
       </div>
 
       <div class="form-group row">
         <div class="col">
-          <label for="productSku">SKU</label>
-          <input type="text" class="form-control" id="productSku" name="productSku" value="{{ $product->sku }}" required>
+          <label for="sku">SKU</label>
+          <input type="text" class="form-control @error('sku') is-invalid @enderror" id="sku" name="sku" value="{{ $product->sku }}" required>
+          @error('sku')
+            <small class="text-danger">{{ $message }}</small>
+          @enderror
         </div>
       </div>
 
       <div class="form-group">
-        <label for="productDescription">{{ ucwords(__('monkcommerce-dashboard.general-words.description')) }}</label>
-        <textarea class="form-control" id="productDescription" name="productDescription" rows="3">{{ $product->description }}</textarea>
+        <label for="description">{{ ucwords(__('monkcommerce-dashboard.general-words.description')) }}</label>
+        <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3">{{ $product->description }}</textarea>
+        @error('description')
+          <small class="text-danger">{{ $message }}</small>
+        @enderror
       </div>
 
       <div class="form-group row">
         <div class="col">
-          <label for="productPrice">{{ ucwords(__('monkcommerce-dashboard.general-words.price')) }}</label>
-          <input type="text" class="form-control" id="productPrice" name="productPrice" value="{{ $product->price }}" required>
+          <label for="price">{{ ucwords(__('monkcommerce-dashboard.general-words.price')) }}</label>
+          <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ $product->price }}" required>
+          @error('price')
+            <small class="text-danger">{{ $message }}</small>
+          @enderror
         </div>
         <div class="col">
-          <label for="productSpecialPrice">{{ ucwords(__('monkcommerce-dashboard.general-words.special_price')) }}</label>
-          <input type="text" class="form-control" id="productSpecialPrice" name="productSpecialPrice" value="{{ $product->special_price }}">
+          <label for="special_price">{{ ucwords(__('monkcommerce-dashboard.general-words.special_price')) }}</label>
+          <input type="text" class="form-control @error('special_price') is-invalid @enderror" id="special_price" name="special_price" value="{{ $product->special_price }}">
+          @error('special_price')
+            <small class="text-danger">{{ $message }}</small>
+          @enderror
         </div>
       </div>
 
       <div class="form-group row">
         <div class="col">
-          <label for="productQty">{{ ucwords(__('monkcommerce-dashboard.products.quantity')) }}</label>
-          <input type="text" class="form-control" id="productQty" name="productQty" value="{{ $product->qty }}" required>
+          <label for="qty">{{ ucwords(__('monkcommerce-dashboard.products.quantity')) }}</label>
+          <input type="text" class="form-control @error('qty') is-invalid @enderror" id="qty" name="qty" value="{{ $product->qty }}" required>
+          @error('qty')
+            <small class="text-danger">{{ $message }}</small>
+          @enderror
         </div>
 
         <div class="col">
-          <label for="productWeight">Weight</label>
+          <label for="weight">Weight</label>
           <div class="input-group">
-            <input type="text" class="form-control" id="productWeight" name="productWeight" value="{{ $product->weight }}" aria-label="Weight" aria-describedby="weight-addon">
+            <input type="text" class="form-control @error('weight') is-invalid @enderror" id="weight" name="weight" value="{{ $product->weight }}" aria-label="Weight" aria-describedby="weight-addon">
             <div class="input-group-append">
               <span class="input-group-text" id="weight-addon">Gram</span>
             </div>
+            @error('weight')
+              <small class="text-danger">{{ $message }}</small>
+            @enderror
           </div>
         </div>
       </div>
