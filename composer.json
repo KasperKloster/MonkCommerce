@@ -11,7 +11,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "barryvdh/laravel-dompdf": "^0.8.5",
+        "barryvdh/laravel-dompdf": "^0.8.5"
     },
     "autoload": {
       "psr-4": {
@@ -23,10 +23,10 @@
       "laravel": {
         "providers": [
           "KasperKloster\\MonkCommerce\\MonkCommerceServiceProvider",
-           Barryvdh\DomPDF\ServiceProvider::class,
+          "Barryvdh\\DomPDF\\ServiceProvider::class"
         ],
         "aliases": {
-          'PDF' => Barryvdh\DomPDF\Facade::class,
+          "PDF": "Barryvdh\\DomPDF\\Facade::class"
         }
       }
     }
