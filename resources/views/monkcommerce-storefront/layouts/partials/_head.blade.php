@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>@yield('page-title') {{ $storefrontShop->shopPrefix }}</title>
+    <title>@yield('page-title') {{ $storefrontShop->prefix }}</title>
     <meta name="description" content="@yield('meta-desc')">
     @yield('seo-robots')
     <!-- Fonts -->
@@ -27,7 +27,7 @@
         "postalCode": "{{ $storefrontShop->postal_code }}",
         "telephone": "{{ $storefrontShop->phone }}"
       },
-      "name": "{{ $storefrontShop->shop_name }}",
+      "name": "{{ $storefrontShop->name }}",
       "email": "{{ $storefrontShop->email }}",
       "url": "{{ $storefrontShop->url }}"
     }

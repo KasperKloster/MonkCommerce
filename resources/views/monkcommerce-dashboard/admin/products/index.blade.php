@@ -35,6 +35,7 @@
         <td>{{ showPrice($product->price) }}</td>
         <td>{{ showPrice($product->special_price) }}</td>
         <td>{{ $product->qty }}</td>
+
         <td>
           <div class="btn-group" role="group" aria-label="Basic example">
             <!-- edit -->

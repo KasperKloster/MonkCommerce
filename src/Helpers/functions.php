@@ -9,11 +9,11 @@ function shopEmail()
 
 function showPrice($price)
 {
-  $currency = MonkCommerceShop::select('shopCurrency')->first();
+  $currency = MonkCommerceShop::select('currency')->first();
 
   if($price != NULL)
   {
-    return $price . ' ' . $currency->shopCurrency;
+    return $price . ' ' . $currency->currency;
   }
 }
 

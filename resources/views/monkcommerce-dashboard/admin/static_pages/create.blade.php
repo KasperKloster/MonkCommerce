@@ -14,7 +14,7 @@
     <div class="card-body">
       <div class="form-group">
         <label for="name">{{ ucwords(__('monkcommerce-dashboard.pages.page_name')) }}</label>
-        <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelpBlock" value="{{ old('name') }}" placeholder="{{ ucwords(__('monkcommerce-dashboard.pages.page_name')) }}" required>
+        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" aria-describedby="nameHelpBlock" value="{{ old('name') }}" placeholder="{{ ucwords(__('monkcommerce-dashboard.pages.page_name')) }}" required>
         <small id="pageNameHelpBlock" class="form-text text-muted">
           {{ ucfirst(__('monkcommerce-dashboard.pages.pageNameHelp')) }}
         </small>
@@ -22,7 +22,7 @@
 
       <div class="form-group">
         <label for="description">{{ ucwords(__('monkcommerce-dashboard.general-words.description')) }}</label>
-        <textarea class="form-control" id="description" name="description" rows="3">{{old('description')}}</textarea>
+        <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="3">{{old('description')}}</textarea>
       </div>
 
       <div class="form-check">

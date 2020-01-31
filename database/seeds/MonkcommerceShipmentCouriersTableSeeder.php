@@ -15,7 +15,7 @@ class MonkcommerceShipmentCouriersTableSeeder extends Seeder
       \DB::table('mc_ship_couriers')->insert(array (
           0 =>
           array (
-              'name'    => 'Fedex',
+              'name'    => 'GLS',
           ),
       ));
     }
