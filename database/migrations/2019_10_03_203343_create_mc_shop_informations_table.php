@@ -31,15 +31,6 @@ class CreateMcShopInformationsTable extends Migration
           $table->string('cookie_msg')->default('This website uses cookies in order to offer you the most relevant information. Please accept cookies for optimal performance')->nullable();
           $table->timestamps();
       });
-
-      // Insert init. row
-      DB::table('mc_shop_informations')->insert(
-        array(
-         'name' => config('app.name'),
-         'url'  => config('app.url')
-        )
-      );
-
     }
 
     /**

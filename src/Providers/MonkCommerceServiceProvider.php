@@ -42,9 +42,7 @@ class MonkCommerceServiceProvider extends ServiceProvider
       // Helpers
       $this->app->register(HelperServiceProvider::class);
       // Commands
-      $this->commands(['KasperKloster\MonkCommerce\Console\Commands\AddAdmin',]);
-
-
+      $this->commands(['KasperKloster\MonkCommerce\Console\Commands\AddAdmin', 'KasperKloster\MonkCommerce\Console\Commands\AddShop']);
     }
 
     /**

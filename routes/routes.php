@@ -1,67 +1,62 @@
 <?php
 /** Users Dashboards **/
 Route::group(['middleware' => ['web', 'auth']], function () {
-
-	Route::group([
-		'prefix'	=> 'admin'
-	], function() {
-	  // Admin Dashboard Home/Index
-	  Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminController@getAdminHomeIndex')->name('monk-admin-home');
-		Route::get('test', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminController@getTesting');
-		// Categories
+	//Route::group(['middleware' => ['admin']], function () {
 		Route::group([
-	  	'prefix'	=> 'categories'
-	  ], function() {
-			Route::resource('categories', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController')->except(['show']);
-	  });
-
-	  // Products
-		Route::group(['middleware' => ['admin']], function () {
-	  Route::group([
-	  	'prefix'	=> 'products'
-	  ], function() {
-				Route::resource('products', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController')->except(['show']);
-				// Attributes
-				Route::group([
-					'prefix'	=> 'attributes'
-				], function() {
-					Route::resource('product-attribute', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController')->except(['show']);
-				});
-	  });
-
-		});
-		Route::group([
-			'prefix'	=> 'users'
+			'prefix'	=> 'admin'
 		], function() {
-				Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminUserController@index')->name('users.index');
-		});
-		// Orders
-		Route::group([
-			'prefix' => 'orders'
-		], function(){
-				Route::resource('orders', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminOrdersController')->only(['index', 'show', 'update']);
-		});
-	  // Shop Settings
-	  Route::group([
-	    'prefix'	=> 'shop-settings'
-	  ], function() {
-			Route::resource('shop-setting', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShopSettingController')->only(['index', 'store']);
-			// Shipping
+		  // Admin Dashboard Home/Index
+		  Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminController@getAdminHomeIndex')->name('monk-admin-home');
+			Route::get('test', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminController@getTesting');
+			// Categories
 			Route::group([
-				'prefix'	=> 'shipping'
+		  	'prefix'	=> 'categories'
+		  ], function() {
+				Route::resource('categories', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController')->except(['show']);
+		  });
+		  // Products
+		  Route::group([
+		  	'prefix'	=> 'products'
+		  ], function() {
+					Route::resource('products', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductController')->except(['show']);
+					// Attributes
+					Route::group([
+						'prefix'	=> 'attributes'
+					], function() {
+						Route::resource('product-attribute', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController')->except(['show']);
+					});
+		  });
+			Route::group([
+				'prefix'	=> 'users'
 			], function() {
-					Route::resource('courier', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController')->except(['show']);
+					Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminUserController@index')->name('users.index');
+			});
+			// Orders
+			Route::group([
+				'prefix' => 'orders'
+			], function(){
+					Route::resource('orders', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminOrdersController')->only(['index', 'show', 'update']);
+			});
+		  // Shop Settings
+		  Route::group([
+		    'prefix'	=> 'shop-settings'
+		  ], function() {
+				Route::resource('shop-setting', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShopSettingController')->only(['index', 'store']);
+				// Shipping
+				Route::group([
+					'prefix'	=> 'shipping'
+				], function() {
+						Route::resource('courier', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController')->except(['show']);
+				});
+			});
+			// Pages
+			Route::group([
+				'prefix'	=> 'pages'
+			], function() {
+					Route::resource('static-page', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages')->except(['show']);
 			});
 		});
-		// Pages
-		Route::group([
-			'prefix'	=> 'pages'
-		], function() {
-				Route::resource('static-page', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages')->except(['show']);
-		});
-
-	});
-
+	//});
 });
 
 /** Frontend **/

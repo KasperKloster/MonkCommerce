@@ -8,6 +8,7 @@
 - Run php artisan vendor:publish --tag=monkcommerce
 - Update seeder and run php artisan db:seed
 - Create an admin: Run ```php artisan monkcommerce:admin```
+- Create shop information: Run ```php artisan monkcommerce:shop```
 - Register admin middleware under app/kernel, routeMiddleware, ```'admin' => \KasperKloster\MonkCommerce\Middleware\AdminMiddleware::class,```
 
 ## Views

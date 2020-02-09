@@ -14,9 +14,6 @@ class MonkAdminUserController extends Controller
     {
       $users = MonkcommereUser::with('roles')->paginate(10);
 
-      // echo '<pre>';
-      // var_dump($users);
-      // echo '<pre>';
       //
       // foreach($users as $user){
       //   echo $user->roles;
