@@ -32,6 +32,7 @@ class MonkCommerceServiceProvider extends ServiceProvider
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminShippingSettingController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminOrdersController');
+      $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminUserController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController');
       $this->app->make('KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontCheckoutController');
       // Load Views
@@ -40,7 +41,10 @@ class MonkCommerceServiceProvider extends ServiceProvider
       $this->app->register(MonkCommerceEventServiceProvider::class);
       // Helpers
       $this->app->register(HelperServiceProvider::class);
-      // Repositories / Classes
+      // Commands
+      $this->commands(['KasperKloster\MonkCommerce\Console\Commands\AddAdmin',]);
+
+
     }
 
     /**

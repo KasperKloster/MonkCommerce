@@ -1,7 +1,7 @@
 <?php
 /** Users Dashboards **/
 Route::group(['middleware' => ['web', 'auth']], function () {
-	//Route::group(['middleware' => ['admin']], function () { });
+
 	Route::group([
 		'prefix'	=> 'admin'
 	], function() {
@@ -16,6 +16,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 	  });
 
 	  // Products
+		Route::group(['middleware' => ['admin']], function () {
 	  Route::group([
 	  	'prefix'	=> 'products'
 	  ], function() {
@@ -27,6 +28,13 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 					Route::resource('product-attribute', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductAttributeController')->except(['show']);
 				});
 	  });
+
+		});
+		Route::group([
+			'prefix'	=> 'users'
+		], function() {
+				Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminUserController@index')->name('users.index');
+		});
 		// Orders
 		Route::group([
 			'prefix' => 'orders'

@@ -38,7 +38,7 @@
 
       <li class="menu-title">Users</li>
         <li>
-          <a href="#">All Users<i class="material-icons float-right">chevron_right</i></a>
+          <a href="{{route('users.index')}}">All Users<i class="material-icons float-right">chevron_right</i></a>
         </li>
         <li>
           <a href="#">All Customers<i class="material-icons float-right">chevron_right</i></a>

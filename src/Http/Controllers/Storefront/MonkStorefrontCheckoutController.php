@@ -49,14 +49,15 @@ class MonkStorefrontCheckoutController extends Controller
   {
     /** Validate **/
     $request->validate([
-      'first_name'       => 'required|min:1|max:200',
-      'last_name'        => 'required|min:1|max:200',
-      'street_address'   => 'required|max:555',
-      'postal_code'      => 'required|integer|min:0000|max:9999',
-      'city'            => 'required|max:555',
-      'country'         => 'required|max:555',
-      'email'           => 'required|email',
-      'phone'           => 'required|integer|min:00000000|max:99999999|alpha_num',
+      'first_name'        => 'required|min:1|max:200',
+      'last_name'         => 'required|min:1|max:200',
+      'street_address'    => 'required|max:555',
+      'postal_code'       => 'required|integer|min:0000|max:9999',
+      'city'              => 'required|max:555',
+      'country'           => 'required|max:555',
+      'email'             => 'required|email',
+      'phone'             => 'required|integer|min:00000000|max:99999999|alpha_num',
+      'user'              => 'int|max:1',
     ]);
     // User input to session
     Session::put('billing', $request->all());
@@ -79,6 +80,7 @@ class MonkStorefrontCheckoutController extends Controller
 
   public function postCheckoutDelivery(Request $request)
   {
+
     /** Validate **/
     $request->validate([
       'first_name'       => 'required|min:1|max:200',

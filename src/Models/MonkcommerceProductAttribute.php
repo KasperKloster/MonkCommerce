@@ -15,9 +15,7 @@ class MonkCommerceProductAttribute extends Model
   // No timestamps
   public $timestamps = false;
 
-  /*
-  * Relationships
-  */
+  /* Relationships */
   public function attributeValues()
   {
     return $this->belongsToMany(MonkCommerceProductAttributeValue::class, 'mc_prod_attr_prod_values', 'product_attribute_id', 'product_attribute_value_id');

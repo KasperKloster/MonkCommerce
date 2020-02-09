@@ -77,6 +77,7 @@
       <h3>Shipping</h3>
 
       <hr/>
+
       <!-- Buttons -->
       <div class="row d-flex justify-content-between">
         <div class="col-md-4">

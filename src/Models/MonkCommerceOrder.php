@@ -14,9 +14,7 @@ class MonkCommerceOrder extends Model
   protected $table = 'mc_orders';
   protected $primaryKey = 'id';
 
-  /*
-  * Relationships
-  */
+  /* Relationships */
   public function orderCustomer()
   {
     return $this->belongsTo(MonkCommerceOrderCustomer::class, 'order_customer_id');

@@ -102,9 +102,6 @@ class MonkCommerceProcessOrder
     }
     // Send Email
     Mail::to($customer->email)->send(new SentOrderEmail($customer->toArray(), $order, $products));
-
-
-
   }
 
 

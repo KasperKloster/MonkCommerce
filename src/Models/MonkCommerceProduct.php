@@ -26,9 +26,7 @@ class MonkCommerceProduct extends Model
       'in_stock',
   ];
 
-  /*
-  * Relationships
-  */
+  /* Relationships */
   // Product Categories
   public function productCategories()
   {

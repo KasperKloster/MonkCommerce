@@ -3,8 +3,6 @@
 namespace KasperKloster\MonkCommerce\Models;
 
 use Illuminate\Database\Eloquent\Model;
-// Models
-//use KasperKloster\MonkCommerce\Models\MonkCommerceProduct;
 
 class MonkCommerceProductMainImage extends Model
 {

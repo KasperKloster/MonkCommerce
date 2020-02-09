@@ -12,9 +12,7 @@ class MonkCommerceProductCategory extends Model
     // Name of the Table
     protected $table = 'mc_product_categories';
 
-    /*
-    * Relationships
-    */
+    /* Relationships */
     // Categories and recursive subcategories
     public function productCategories()
     {

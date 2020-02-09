@@ -91,6 +91,20 @@
         </div>
       </div>
       <hr/>
+      {{-- <div class="form-group row">
+        <div class="col-md-6">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="user" id="user" value="1">
+            <label class="form-check-label" for="user">
+            Create user?
+            <small>
+            <p>You can check your orders</p>
+            </small>
+            </label>
+          </div>
+        </div>
+      </div> --}}
+      <hr/>
       <!-- Buttons -->
       <div class="row d-flex justify-content-between pt-4">
         <div class="col-md-4">

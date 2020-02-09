@@ -13,9 +13,7 @@ class MonkCommerceProductAttributeValue extends Model
   protected $table = 'mc_prod_attr_values';
   public $timestamps = false;
 
-  /*
-  * Relationships
-  */
+  /* Relationships */
   public function attributes()
   {
     //return $this->hasMany(MonkCommerceProductAttribute::class, 'mc_prod_attr_prod_values');
