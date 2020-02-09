@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
   <a class="navbar-brand" href="#">{{ $storefrontShop->shop_name }}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -52,9 +52,7 @@
 
     <!-- Right -->
     <!-- Search -->
-
     <form method="get" action="{{ route('monk-shop-navbar-search') }}" class="form-inline my-2 my-lg-0 mr-4">
-
       <div class="input-group">
         <input type="text" class="form-control" name="q" placeholder="Search..." aria-label="Search.." aria-describedby="search" required>
         <div class="input-group-append">

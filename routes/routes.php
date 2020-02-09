@@ -1,8 +1,7 @@
 <?php
-/** Admin Dashboard **/
-// Group because of session & csrf
-Route::group(['middleware' => ['web']], function () {
-
+/** Users Dashboards **/
+Route::group(['middleware' => ['web', 'auth']], function () {
+	//Route::group(['middleware' => ['admin']], function () { });
 	Route::group([
 		'prefix'	=> 'admin'
 	], function() {
@@ -15,6 +14,7 @@ Route::group(['middleware' => ['web']], function () {
 	  ], function() {
 			Route::resource('categories', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminProductCategoryController')->except(['show']);
 	  });
+
 	  // Products
 	  Route::group([
 	  	'prefix'	=> 'products'
@@ -57,6 +57,7 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 /** Frontend **/
+// Group middleware web, because of session & csrf
 Route::group(['middleware' => 'web'], function (){
 	// Shop
 	Route::get('/', 'KasperKloster\MonkCommerce\Http\Controllers\Storefront\MonkStorefrontController@getShopIndex')->name('monk-shop-index');

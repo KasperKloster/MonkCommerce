@@ -2,10 +2,12 @@
 
 ## Installation
 - Install a new laravel project.
+- Install laravel/ui and run php artisan ui vue --auth
 - Run composer require kasperkloster/monkcommerce.
 - Go to config/app.php > providers, add: KasperKloster\MonkCommerce\Providers\MonkCommerceServiceProvider::class,
 - Run php artisan vendor:publish --tag=monkcommerce
 - Update seeder and run php artisan db:seed
+- Register admin middleware under app/kernel, routeMiddleware, ```'admin' => \KasperKloster\MonkCommerce\Middleware\AdminMiddleware::class,```
 
 ## Views
 Storefront views will be located in /resources/views/monkcommerce-storefront/.

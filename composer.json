@@ -11,7 +11,8 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "barryvdh/laravel-dompdf": "^0.8.5"
+        "barryvdh/laravel-dompdf": "^0.8.5",
+        "laravel/ui": "^1.1"
     },
     "autoload": {
       "psr-4": {

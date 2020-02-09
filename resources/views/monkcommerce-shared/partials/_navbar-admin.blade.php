@@ -1,3 +1,4 @@
+@auth
 <li class="nav-item dropleft">
   <a class="nav-link " href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <i class="material-icons">account_circle</i>
@@ -18,9 +19,12 @@
 
     <div class="dropdown-divider"></div>
 
-    <a class="dropdown-item" href="#">
-      Sign Out
-    </a>
-
+    <div class="dropdown-item sidebar-menu-header">
+      <form action="{{ route('logout')}}" method="post">
+        @csrf
+        <button type="submit" class="btn btn-link">Logout</button>
+      </form>
+     </div>
   </div>
 </li>
+@endauth
