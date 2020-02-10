@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMcRolesTable extends Migration
+class AddRoleToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateMcRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('mc_roles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('role');
+        Schema::table('users', function (Blueprint $table) {
+           $table->integer('role_id')->unsigned()->default('2');
         });
     }
 
@@ -26,6 +25,8 @@ class CreateMcRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mc_roles');
+        Schema::table('users', function (Blueprint $table) {
+          $table->dropColumn(['role_id']);
+        });
     }
 }

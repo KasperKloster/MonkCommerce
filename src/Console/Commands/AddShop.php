@@ -42,7 +42,7 @@ class AddShop extends Command
       $currency = $this->ask('Type in Currency. eg: KR or $');
       $schema_currency = $this->ask('Type in ISO 4217 currency format');
 
-      if ($this->confirm('Will you inserst the shop?'))
+      if ($this->confirm('Will you insert this shop?'))
       {
         DB::table('mc_shop_informations')->insert([
           [

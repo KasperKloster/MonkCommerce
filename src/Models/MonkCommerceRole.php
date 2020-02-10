@@ -3,6 +3,7 @@
 namespace KasperKloster\MonkCommerce\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use KasperKloster\MonkCommerce\Models\MonkCommerceUser;
 
 class MonkCommerceRole extends Model
 {
@@ -10,4 +11,8 @@ class MonkCommerceRole extends Model
   public $timestamps = false;
 
   /* Relationships */
+  public function user()
+  {
+    return $this->hasMany(MonkCommerceUser::class);
+  }
 }

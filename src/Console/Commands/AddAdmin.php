@@ -2,10 +2,9 @@
 namespace KasperKloster\MonkCommerce\Console\Commands;
 
 use Illuminate\Console\Command;
-//
-use App\User;
+
+use KasperKloster\MonkCommerce\Models\MonkCommerceUser;
 use Illuminate\Support\Facades\Hash;
-use DB;
 
 class AddAdmin extends Command
 {
@@ -42,19 +41,17 @@ class AddAdmin extends Command
     {
       $name = $this->ask('Type in admin username');
       $email = $this->ask('Type in email');
-      $password = $this->ask('Type in password');
+      $password = $this->secret('Type in password');
 
       if ($this->confirm('Will you insert. Name: ' . $name . 'email: ' . $email . ' as a admin?'))
       {
-        $admin = User::create([
+        $admin = MonkCommerceUser::create([
           'name'      => $name,
           'email'     => $email,
           'password'  => Hash::make($password),
+          'role_id'   => '1',
         ]);
 
-        DB::table('mc_role_user')->insert([
-          ['user_id' => $admin->id, 'role_id' => 1]
-        ]);
         return $this->info('Added: ' . $admin->name . ' as admin');
       }
       $this->warn('No admin was added');

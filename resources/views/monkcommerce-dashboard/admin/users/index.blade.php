@@ -26,9 +26,7 @@
     <tr>
       <td>{{ $user->id }}</td>
       <td>{{ $user->name }}</td>
-      @foreach($user->roles as $role)
-      <td>{{ $role->role }}</td>
-      @endforeach
+      <td>{{ $user->role->role }}</td>
     </tr>
     @endforeach
   </tbody>

@@ -1,7 +1,7 @@
 <?php
 /** Users Dashboards **/
 Route::group(['middleware' => ['web', 'auth']], function () {
-	//Route::group(['middleware' => ['admin']], function () {
+	Route::group(['middleware' => ['admin']], function () {
 		Route::group([
 			'prefix'	=> 'admin'
 		], function() {
@@ -56,7 +56,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 					Route::resource('static-page', 'KasperKloster\MonkCommerce\Http\Controllers\Admin\MonkAdminStaticPages')->except(['show']);
 			});
 		});
-	//});
+	});
 });
 
 /** Frontend **/

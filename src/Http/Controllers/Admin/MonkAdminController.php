@@ -9,8 +9,9 @@ use KasperKloster\MonkCommerce\Models\MonkCommerceOrder;
 // Testing
 //use KasperKloster\MonkCommerce\Models\MonkCommerceShop;
 //use PDF;
-// use App\User;
-// use Auth;
+//use KasperKloster\MonkCommerce\Models\MonkCommerceUser;
+//use App\User;
+//use Auth;
 
 class MonkAdminController extends Controller
 {
@@ -25,16 +26,8 @@ class MonkAdminController extends Controller
     // Testing
     public function getTesting()
     {
+      return 'test';
 
-      // echo '<pre>';
-      //
-      //  var_dump(User::find(Auth::id())->roles);
-      // echo '</pre>';
-      //
-      // foreach (User::find(Auth::id())->roles as $role)
-      // {
-      //   echo $role->pivot->role_id;
-      // }
 
       // $shop = MonkCommerceShop::first()->toArray();
       // $order = MonkCommerceOrder::first()->toArray();

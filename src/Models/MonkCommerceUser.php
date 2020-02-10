@@ -5,13 +5,15 @@ namespace KasperKloster\MonkCommerce\Models;
 use Illuminate\Database\Eloquent\Model;
 use KasperKloster\MonkCommerce\Models\MonkCommerceRole;
 
-class MonkCommereUser extends Model
+class MonkCommerceUser extends Model
 {
-    //
     protected $table = 'users';
-
-    public function roles()
+    protected $fillable = [
+      'name', 'email', 'password', 'role_id',
+    ];
+    /* Relationships */
+    public function role()
     {
-        return $this->belongsToMany(MonkCommerceRole::class, 'mc_role_user', 'role_id', 'user_id');
+      return $this->belongsTo(MonkCommerceRole::class);
     }
 }

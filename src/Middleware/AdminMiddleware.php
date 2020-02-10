@@ -4,8 +4,8 @@ namespace KasperKloster\MonkCommerce\Middleware;
 
 use Closure;
 
-use App\User;
 use Auth;
+use KasperKloster\MonkCommerce\Models\MonkCommerceUser;
 
 class AdminMiddleware
 {
@@ -18,27 +18,20 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-
-      // If logged in
+      // Check If logged in
       if(Auth::check())
       {
-        // Current User Role
-        $userRoles = User::find(Auth::id())->roles;
-        foreach ($userRoles as $role)
+        // Get Current User Role
+        $userRole = MonkCommerceUser::find(Auth::id())->role_id;
+        // Return next if user role is admin (1)
+        if($userRole == '1')
         {
-          if ($role->pivot->role_id == '1')
-          {
-            return $next($request);
-          }
-          else
-          {
-            abort(403, 'Unauthorized action.');
-          }
+          return $next($request);
         }
-      }
-      else
-      {
-        abort(403, 'Unauthorized action.');
+        else
+        {
+          abort(403, 'Unauthorized action.');
+        }
       }
     }
 }
