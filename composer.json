@@ -16,10 +16,10 @@
     },
     "autoload": {
       "psr-4": {
-          "KasperKloster\\MonkCommerce\\": "src/"
+          "KasperKloster\\MonkCommerce\\": "src/",
+          "KasperKloster\\MonkCommerce\\Tests\\": "tests/"
       }
     },
-
     "extra": {
       "laravel": {
         "providers": [
@@ -30,5 +30,9 @@
           "PDF": "Barryvdh\\DomPDF\\Facade::class"
         }
       }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.1@dev",
+         "orchestra/testbench": "^4.0"
     }
 }

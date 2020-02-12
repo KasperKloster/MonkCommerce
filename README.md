@@ -2,11 +2,11 @@
 
 ## Installation
 - Install a new laravel project.
-- Install laravel/ui and run php artisan ui vue --auth
+- Install laravel/ui and run ```php artisan ui vue --auth```
 - Run composer require kasperkloster/monkcommerce.
-- Go to config/app.php > providers, add: KasperKloster\MonkCommerce\Providers\MonkCommerceServiceProvider::class,
-- Run php artisan vendor:publish --tag=monkcommerce
-- Update seeder and run php artisan db:seed
+- Go to config/app.php > providers, add: ```KasperKloster\MonkCommerce\Providers\MonkCommerceServiceProvider::class,```
+- Run php ```artisan vendor:publish --tag=monkcommerce```
+- Update seeder and run ```php artisan db:seed```
 - Create an admin: Run ```php artisan monkcommerce:admin```
 - Create shop information: Run ```php artisan monkcommerce:shop```
 - Register admin middleware under app/kernel, routeMiddleware, ```'admin' => \KasperKloster\MonkCommerce\Middleware\AdminMiddleware::class,```
