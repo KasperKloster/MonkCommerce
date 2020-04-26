@@ -26,7 +26,9 @@ class CreateMcShopInformationsTable extends Migration
           $table->string('vat_number')->nullable();
           $table->string('currency')->default('KR')->nullable();
           $table->string('schema_currency')->default('DKK')->nullable();
-          $table->string('payment_api_key')->nullable();
+          $table->string('bambora_api')->default('bamboraApi')->nullable();
+          $table->string('bambora_merchant')->default('bamboraMerchant')->nullable();
+          $table->string('shipmondo_api')->default('shipmondo')->nullable();
           $table->string('prefix')->nullable();
           $table->string('cookie_msg')->default('This website uses cookies in order to offer you the most relevant information. Please accept cookies for optimal performance')->nullable();
           $table->timestamps();

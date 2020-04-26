@@ -10,7 +10,7 @@
   @stop
 
 @section('left')
-<div class="pt-4 mx-5">
+{{-- <div class="pt-4 mx-5">
   <h3>Checkout</h3>
   @include('monkcommerce::monkcommerce-storefront.shop.cart.checkout.partials._checkout-steps', ['step2' => TRUE, 'step3' => TRUE])
   <hr/>
@@ -68,11 +68,27 @@
         </div>
       </div>
   </form>
-</div>
+</div> --}}
+
+<input onclick="javascript: paymentwindow.open()" type="button" value="Go to payment">
+
 @stop
 
 @section('right')
 <div class="pt-4 ml-3">
   @include('monkcommerce::monkcommerce-storefront.shop.cart.checkout.partials._display-cart')
 </div>
+@stop
+
+@section('scripts')
+<script charset="UTF-8" src="https://ssl.ditonlinebetalingssystem.dk/integration/ewindow/paymentwindow.js" type="text/javascript"></script>
+<script>
+
+console.log()
+  paymentwindow = new PaymentWindow({
+    'merchantnumber': "{{ $storefrontShop->bambora_merchant }}",
+    'amount': "10095",
+    'currency': "DKK"
+  });
+</script>
 @stop

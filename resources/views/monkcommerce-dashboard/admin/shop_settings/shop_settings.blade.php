@@ -113,11 +113,6 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="payment_api_key">Payment API</label>
-          <input type="text" class="form-control @error('payment_api_key') is-invalid @enderror" id="payment_api_key" name="payment_api_key" value="{{ $shop->payment_api_key }}">
-        </div>
-
         <hr/>
         <div class="form-group">
           <label for="prefix">Prefix</label>
@@ -129,6 +124,37 @@
         </div>
 
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- API Keys -->
+  <div class="card mt-3">
+    <div class="card-header">
+      API Keys
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="bambora_api">Bambora API Key</label>
+          <input type="text" class="form-control @error('bambora_api') is-invalid @enderror" name="bambora_api" id="bambora_api" value="{{ $shop->bambora_api }}">
+          @error('bambora_api')
+            <small class="text-danger">{{ $message }}</small>
+          @enderror
+          <small id="helpBambora_api" class="form-text text-muted">Payment Gateway. Get your key here</small>
+          <label for="bambora_api">Bambora Merchant number</label>
+            <input type="text" class="form-control @error('bambora_merchant') is-invalid @enderror" name="bambora_merchant" id="bambora_merchant" value="{{ $shop->bambora_merchant }}">
+            @error('bambora_merchant')
+              <small class="text-danger">{{ $message }}</small>
+            @enderror
+            <small id="helpBambora_merchant" class="form-text text-muted">Bambora Merchant number. Get your key here</small>
+      </div>
+      <div class="form-group">
+        <label for="shipmondo_api">Shipmondo API Key</label>
+          <input type="text" class="form-control @error('shipmondo_api') is-invalid @enderror" name="shipmondo_api" id="shipmondo_api" value="{{ $shop->shipmondo_api }}">
+          @error('shipmondo_api')
+            <small class="text-danger">{{ $message }}</small>
+          @enderror
+          <small id="helpShipmondo_api" class="form-text text-muted">Shipping service. Get your key here</small>
       </div>
     </div>
   </div>

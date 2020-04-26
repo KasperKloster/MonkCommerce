@@ -36,11 +36,14 @@ class AddShop extends Command
       $city = $this->ask('Type in City');
       $country = $this->ask('Type in Country');
       $phone = $this->ask('Type in Phone');
-      $email = $this->ask('Type in Email');
+      $email = $this->ask('Type in store info email');
       $url = $this->ask('Type in URL');
       $vat_number = $this->ask('Type in Vat number');
       $currency = $this->ask('Type in Currency. eg: KR or $');
       $schema_currency = $this->ask('Type in ISO 4217 currency format');
+      $bambora_api = $this->ask('Type in your Bambora API Key');
+      $bambora_merchant = $this->ask('Type in your Bambora merchant number. Eg: 8038586');
+      $shipmondo_api = $this->ask('Type in your Shipmondo API Key');
 
       if ($this->confirm('Will you insert this shop?'))
       {
@@ -57,6 +60,9 @@ class AddShop extends Command
             'vat_number'      => $vat_number,
             'currency'        => $currency,
             'schema_currency' => $schema_currency,
+            'bambora_api'     => $bambora_api,
+            'bambora_merchant' => $bambora_merchant,
+            'shipmondo_api'   => $shipmondo_api,
           ]
         ]);
 

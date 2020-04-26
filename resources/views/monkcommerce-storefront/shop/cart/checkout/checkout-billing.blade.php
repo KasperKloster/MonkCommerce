@@ -65,7 +65,7 @@
           <label for="country">Country</label>
           <select class="d-block w-100 form-control form-control-sm @error('country') is-invalid @enderror" id="country" name="country" value="{{ old('country') }}" required>
             <option disabled>Choose...</option>
-            <option>United States</option>
+            <option>Denmark</option>
           </select>
           @error('country')
             <small class="text-danger">{{ $message }}</small>

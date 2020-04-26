@@ -36,15 +36,15 @@ class MonkAdminShopSettingController extends Controller
         'vat_number'            => 'string|nullable',
         'currency'              => 'required|string',
         'schema_currency'       => 'required|string',
-        'payment_api_key'       => 'string|nullable',
         'prefix'                => 'string|nullable',
+        'bambora_api'           => 'string|nullable',
+        'bambora_merchant'      => 'string|nullable',
+        'shipmondo_api'         => 'string|nullable',
         'cookie_msg'            => 'string|nullable',
       ]);
       MonkCommerceShop::first()->update($data);
-
       /* Message and Redirect */
       Session::flash('success', 'Shop Information has been updated');
       return Redirect::route('shop-setting.index');
-
     }
 }

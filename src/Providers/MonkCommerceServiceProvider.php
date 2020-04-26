@@ -97,8 +97,6 @@ class MonkCommerceServiceProvider extends ServiceProvider
           $view->with('storefrontStaticPages', MonkCommerceStaticPages::where('show_in_menu', 1)->get());
           // Admin New Orders
           $view->with('newLeftPanelOrders', MonkCommerceOrder::where('order_status_id', 1)->count());
-
         });
-
     }
 }
